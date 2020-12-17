@@ -1,0 +1,92 @@
+.body{
+    
+}
+
+.title_section{
+    display: flex;
+}
+.inbox_list_title{
+    width: 20%;
+    padding: 20px;
+    padding-left: 30px;
+    border-bottom: 1px solid #d8d8d8;
+    font-weight: bold;
+}
+
+.chat_title{
+    width: 60%;
+    padding: 20px;
+    border: 1px solid #d8d8d8;
+}
+
+.detail_title{
+    width: 20%;
+    padding: 20px;
+    padding-left: 30px;
+    border-bottom: 1px solid #d8d8d8;
+    font-weight: bold;
+}
+
+.main_section{
+    display: flex;
+}
+
+.inbox_list{
+    width: 20%;
+    padding: 20px;
+    padding-left: 30px;
+    height: 83.9vh;
+}
+
+.contact_tile{
+    background-color: orange; 
+    height:100px;
+    margin-bottom:20px;
+}
+
+.chat{
+    width: 60%;
+    padding: 20px;
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+}
+
+.chat_bar{
+    width: 80%;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 30px;
+    border: solid 1px grey
+
+}
+
+.chat_bar:focus{
+    outline: none;
+}
+
+.message_list{
+    /* background-color: orangered; */
+    height: 720px;
+    overflow: auto;
+}
+
+.message{
+    /* background-color: #1c8dff; */
+    word-wrap: break-word;
+    max-width: 600px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+
+.detail{
+    width: 20%;
+    padding: 20px;
+    padding-left: 30px;
+
+}
+
