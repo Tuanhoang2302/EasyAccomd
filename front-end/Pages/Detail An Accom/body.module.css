@@ -178,6 +178,53 @@
     font-weight: bold;
 }
 
+.load_comment_button{
+    border: 1px solid black;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.load_comment_button:hover{
+    background-color: #f3f3f3;
+}
+
+.comment_field{
+    width: 60%;
+    margin-top: 50px;
+    border-radius: 10px;
+    border: solid 1px #d2d2d2;
+    padding: 10px;
+}
+
+.textarea_comment{
+    border: 0px;
+    width: 100%;
+}
+
+.textarea_comment:focus{
+    outline: none;
+}
+
+.line_textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: solid 1px #f0f0f0;
+}
+
+.summit_text{
+    text-align: right;
+    font-weight: bold; 
+    cursor: pointer;
+}
+
+.summit_text:hover{
+    text-decoration: underline;
+}
+
 .chat_button:hover{
     background-color: #eeeeee;
 }

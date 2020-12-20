@@ -4,7 +4,7 @@ import socketIOClient from "socket.io-client";
 import body from './Body.module.css'
 import {useDispatch,useSelector} from 'react-redux'
 import axios from 'axios'
-import {change_chat_tile, get_room_and_contactid} from '../../redux/action/action'
+import {change_chat_tile, get_current_contact, get_room_and_contactid} from '../../redux/action/action'
 
 const ENDPOINT = "http://localhost:3001";
 const socket = socketIOClient(ENDPOINT, {
@@ -17,7 +17,7 @@ const Title = () => {
     return(
         <div className={body.title_section}>
             <div className={body.inbox_list_title}>Nhắn tin</div>
-            <div className={body.chat_title}>{chatTitle}</div>
+            <div style={{fontWeight:"bold"}} className={body.chat_title}>{chatTitle}</div>
             <div className={body.detail_title}>Thông tin chi tiết</div>
         </div>
     )
@@ -26,6 +26,8 @@ const Title = () => {
 const InboxList = (props) => {
     const [contactList, setContactList] = useState(null)
     const account = useSelector((state) => state.user)
+    const [selectedRoomIndex, setSelectedRoomIndex] = useState(1)
+
     var dispatch = useDispatch()
     useEffect(() => {
         const fetchData = async () => {
@@ -36,25 +38,22 @@ const InboxList = (props) => {
               }}
             );
             await setContactList(result.data)
+
           };
           
         fetchData();
-        // return () => {
-        //     cleanup
-        // }
     }, [account])
-    if(contactList != null){
-        //console.log(contactList);
-    }
-    const changeRoomChat = (e, accountContact, roomid) => {
-        //console.log(roomid);
-        dispatch(change_chat_tile({chat_title: accountContact.email, user: account}))
+
+    const changeRoomChat = (e, accountContact, roomid, index) => {
+        setSelectedRoomIndex(index)
+        dispatch(change_chat_tile({chat_title: accountContact.userId.fullname, user: account}))
         dispatch(get_room_and_contactid({
-            chat_title: accountContact.email,
+            chat_title: accountContact.userId.fullname,
             user: account,
             roomChatId: roomid,
             contactId: accountContact._id
         }))
+
         socket.emit("join room", roomid)
         props.fetchMessList(roomid)
     }
@@ -62,11 +61,22 @@ const InboxList = (props) => {
         <div className={body.inbox_list}>
             {contactList ? 
             <React.Fragment>
-                {contactList.map((item) => {
-                
+                {contactList.map((item, index) => {
+                    var bgColor
+                    if(index + 1 != selectedRoomIndex){
+                        bgColor="white"
+                    } else{
+                        bgColor="#e6e6e6"
+                    }
+                    //{item.account.email}
                     return(
-                        <div onClick={(e) => changeRoomChat(e, item.account, item.roomid)}
-                        key={item.roomId} className={body.contact_tile}>{item.account.email}</div>
+                        <div onClick={(e) => changeRoomChat(e, item.account, item.roomid, index + 1)}
+                        key={item.roomId} style={{backgroundColor:bgColor}} className={body.contact_tile}>
+                            <img src={`data:image/jpg;base64,${item.accom.images[0]}`} alt='avatar'/>
+                            <div style={{marginLeft:"15px"}}>
+                                <div>{item.account.userId.fullname}</div>
+                            </div>
+                        </div>
                     )
                 })}
             </React.Fragment>
@@ -78,7 +88,6 @@ const InboxList = (props) => {
 const Message = (props) => {
     const userName = useSelector((state) => state.user._id)
     var textAlign, textColor, textBgColor
-    console.log(props);
     if(userName != props.senderId){
         textAlign = "left"
         textColor = "black"
@@ -105,7 +114,6 @@ const ChatSection = (props) => {
     const contactId = useSelector((state) => state.contactId)
     //const [messageList, setMessageList] = useState([])
     const messageList = props.messageList
-    console.log(messageList);
     useEffect(() => {
         const fetchData = async () => {
             await socket.on("server send message", (data) => {
@@ -167,7 +175,6 @@ const Content = () => {
         setMessageList([])
     }
     const fetchMessList = async (roomId) => {
-        console.log(roomId);
         var result = await axios.get("http://localhost:3001/getPrevMessage", {
             params: {
                 roomId: roomId
@@ -187,7 +194,8 @@ const Content = () => {
     
     return(
         <div className={body.main_section}>
-            <InboxList resetMessList={resetMessList} fetchMessList={fetchMessList}/>
+            <InboxList messageList={messageList} resetMessList={resetMessList} 
+            fetchMessList={fetchMessList}/>
             <ChatSection setMessList={setMessList} messageList={messageList}/>
             <div className={body.detail}></div>
         </div>

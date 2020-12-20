@@ -58,19 +58,16 @@
 }
 
 .clicked_search_option_section{
-    padding-right: 70px;
     padding-left: 20px;
-    border-left: solid 1px grey;
+    border-right: solid 1px grey;
     border-color: #cfcfcf;
+
 }
 
-.clicked_search_option_section:hover{
-    background-color: #f5f5f5;
-}
-.hover:hover{
-    background-color: #f5f5f5;
-}
+.clicked_search_option_section input:focus{
+    outline: none;
 
+}
 
 .option{
     /* background-color:green; */

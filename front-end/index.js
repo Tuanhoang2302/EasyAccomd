@@ -8,16 +8,30 @@ import { BrowserRouter } from "react-router-dom";
 import { createStore } from 'redux';
 import allReducer from './redux/reducer/reducer'
 import {Provider} from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' 
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['locationSearch']
+}
+const persistedReducer = persistReducer(persistConfig, allReducer)
+
 const store = createStore(
-  allReducer,
+  persistedReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
+let persistor = persistStore(store)
 
 ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.Fragment>,

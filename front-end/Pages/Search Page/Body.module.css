@@ -10,7 +10,12 @@
     height: 100%;
     vertical-align: middle;
 }
-
+.line{
+    width: 100%;
+    height: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #d7d7d7;
+}
 .option_section{
     margin-top:17px;
     display: flex;
@@ -62,6 +67,48 @@
     text-overflow: ellipsis;
     white-space: nowrap
 }
+.filter_board{
+    margin-top: 16px;
+    width: 370px;
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px hsl(300, 2%, 80%);
+}
+
+.check_box_tile{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+
+.price_input_section{
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.price{
+    border: solid 1px #c9c9c9;
+    padding: 10px;
+    width: 45%;
+    border-radius: 10px;
+    
+}
+
+.price span{
+    margin-top: 5px;
+    width: 100%;
+    border: none;
+}
+
+.price span:focus{
+    outline: none;
+}
+
 
 .popular_places_section{
 

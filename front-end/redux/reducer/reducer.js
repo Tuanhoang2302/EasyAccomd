@@ -3,8 +3,9 @@ const initialState = {
     user: null,
     chatTitle: null,
     roomChatId:null,
-    contactId: null, 
-    messageList: []
+    contactId: null,
+
+    locationSearch: null
 }
 
 
@@ -12,13 +13,13 @@ export default function appReducer(state = initialState, action){
     switch (action.type){
         case "CHANGE_BG_DARK_MODE": {
             return{
-                ...initialState,
+                ...action.existing,
                 isDarkBackgroundMode: true
             }  
         }
         case "CHANGE_BG_NORMAL_MODE": {
             return{
-                ...initialState,
+                ...action.existing,
                 isDarkBackgroundMode: false
             }  
         }
@@ -44,7 +45,12 @@ export default function appReducer(state = initialState, action){
                 roomChatId: action.data.roomChatId
             }  
         }
-        
+        case "GET_LOCATION_SEARCH": {
+            return{
+                ...action.existing,
+                locationSearch: action.data
+            }  
+        }
         default:
             return initialState
     }

@@ -1,13 +1,13 @@
 
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SearchPage from './Search Page';
+import SearchPage from './Pages/Search Page/index';
 import {
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import { Navbar } from 'react-bootstrap';
+
 import AccomDetail from './Pages/Detail An Accom/index';
 import Chat from './Pages/Chat/index';
 import Login from './Pages/Login/index';

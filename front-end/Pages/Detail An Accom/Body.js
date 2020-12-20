@@ -7,7 +7,6 @@ import 'react-multi-carousel/lib/styles.css';
 import { AiOutlineDollar, AiOutlineCoffee } from "react-icons/ai";
 import { BsHouseDoor, BsReverseLayoutTextSidebarReverse, BsBuilding, BsBrightnessHigh } from "react-icons/bs";
 import { BiBed, BiBath, BiWifi, BiArch, BiWater } from "react-icons/bi";
-import { FaSortNumericUpAlt } from "react-icons/fa";
 import { GiElectric } from "react-icons/gi";
 import { MdKitchen } from "react-icons/md";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -171,6 +170,8 @@ const CommentTile = (props) => {
 const CommentSection = (props) => {
     const [numberComment, setNumberComment] = useState(null)
     const [commentList, setCommentList] = useState(null)
+    const [isLoadComment, setIsLoadComment] = useState(false)
+    const [comment, setComment] = useState(null)
     var columnLeft = [], columnRight = []
     useEffect(() => {
         const fetchData = async () => {
@@ -197,6 +198,34 @@ const CommentSection = (props) => {
         }
     }
 
+    var numberCommentLeftColumn, numberCommentRightColumn
+    if(commentList){
+        if(commentList.length <=6){
+            numberCommentLeftColumn = 3
+            numberCommentRightColumn = 3
+        } else{
+            if(isLoadComment){
+                numberCommentLeftColumn = columnLeft.length
+                numberCommentRightColumn = columnRight.length
+            } else{
+                numberCommentLeftColumn = 3
+                numberCommentRightColumn = 3
+            }
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        const commnet = e.target.value
+        await axios.post("http://localhost:3001/comment/add/Comment", {
+            accomId: props.accom._id,
+            accountId: "5fd724b43121842dfc9e6474",
+            comment: comment
+        })
+        setComment("")
+    }
+    const handleChange = (e) => {
+        setComment(e.target.value)
+    }
     return(
         <React.Fragment>
             {(commentList && numberComment) ? 
@@ -207,22 +236,37 @@ const CommentSection = (props) => {
                     {/* {(()=>{
                         if()
                     })()} */}
-                    <div>
-                        {columnLeft.map((item) => {
+                    <div>{columnLeft.slice(0, numberCommentLeftColumn).map((item) => {
                             return(
                                 <CommentTile commentData={item}/>
                             )
-                        })}
-                    </div>
-                    <div>
-                        {columnRight.map((item) => {
+                        })}</div>
+                    <div>{columnRight.slice(0, numberCommentRightColumn).map((item) => {
                             return(
                                 <CommentTile commentData={item}/>
                             )
-                        })}
-                    </div>
+                        })}</div>
                 </div>
-                
+
+                {isLoadComment ? 
+                <span onClick={() => setIsLoadComment(false)} className={body.load_comment_button}>
+                    Rút gọn bình luận
+                </span>
+                :<span onClick={() => setIsLoadComment(true)} className={body.load_comment_button}>
+                    Hiển thị tất cả bình luận
+                </span>}
+                <br/>
+                    
+                <div className={body.comment_field}>
+                    <textarea rows="4" 
+                        placeholder="Nhập bình luận của bạn"
+                        className={body.textarea_comment}
+                        value={comment}
+                        onChange={handleChange}>
+                    </textarea>
+                    <div onClick={handleSubmit}
+                    className={body.summit_text}>Send</div>
+                </div>
             </div>
             :null}
         </React.Fragment>
