@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {NavLink} from 'react-router-dom';
 class Search extends React.Component{
   render(){
       return(
@@ -45,29 +45,65 @@ class ObjectInput extends React.Component{
 //       );
 //   }
 // }
-function Header() {
-  return (
-      <div>
-            <div className="firtHeader">
-                <a className="logo" href="http://localhost:3000/">
-                </a>
-                <div className="directional">
-                    <div className="owner">
-                        <a className="link-owner" href="http://localhost:3000/">
-                            <div className="link-owner-text">Trở thành chủ nhà</div>
-                        </a>
-                    </div>
-                    <div className="main-directional">
-                        <button type="button" className="btn-main-directional">
-                            <div className="btn-list"></div>
-                            <div className="btn-user"></div>
-                        </button>
-                    </div>
-                </div>
+class Control extends React.Component {
+    render(){
+        return(
+            <div className="control-directional">
+                <ul className="ul-footer">
+                    <li className="content-list" style={{borderBottom: 'gray solid 1px'}}>
+                        <NavLink className="link-list" to="/registration" style={{padding: '12px'}}>Đăng ký</NavLink>
+                    </li>
+                    <div></div>
+                    <li className="content-list">
+                        <NavLink className="link-list" to="/login"  style={{padding: '12px'}}>Đăng nhập</NavLink>
+                    </li>
+                </ul>
             </div>
-            <Search/>
-      </div>
-  );
+        );
+    }
+}
+class Header extends React.Component {
+    constructor(props){
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.state={showResults: false};
+    }
+    render() {
+        return (
+            <div className="homeHeader">
+                    <div className="firtHeader">
+                        <NavLink className="logo" to="/"></NavLink>
+                        <div className="directional">
+                            <div className="owner">
+                                <NavLink className="link-owner" to="/">
+                                    <div className="link-owner-text">Trở thành chủ nhà</div>
+                                </NavLink>
+                            </div>
+                            <div className="main-directional">
+                                <button type="button" className="btn-main-directional" onClick={this.handleClick}>
+                                    <div className="btn-list"></div>
+                                    <div className="btn-user"></div>
+                                </button>
+                                { this.state.showResults ? <Control /> : null }
+                            </div>
+                        </div>
+                    </div>
+                    <Search/>
+            </div>
+        );
+    }
+    handleClick() {
+        if(!this.state.showResults){
+            this.setState({ 
+                showResults: true
+            });
+        }
+        else{
+            this.setState({ 
+                showResults: false
+            });
+        }
+    }
 }
 
-export default Header;
+export {Header, Control};

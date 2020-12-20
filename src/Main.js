@@ -29,29 +29,31 @@ class Post extends React.Component {
         );
     }
 }
-function Main(){
-    return(
-        <div>
-            <div className="content-main">
-                <span className="text-content-main">Gần trường đại học</span>
-                <div className="content-uni">
-                    <Uni name="Đại học Quốc gia Hà Nội" address="Dịch Vọng Hậu-Cầu Giấy"></Uni>
-                    <Uni name="Đại học Thương mại" address="Mai Dịch-Cầu Giấy"></Uni>
-                    <Uni name="Đại học Bách khoa Hà Nội" address="Bách Khoa-Hai Bà Trưng"></Uni>
-                    <Uni name="Học viện Công nghệ Bưu chính Viễn thông" address="Mỗ Lao-Hà Đông"></Uni>
-                    <Uni name="Đại học Luật Hà Nội" address="Thành Công-Đống Đa"></Uni>
-                    <Uni name="Đại học Hà Nội" address="Văn Quán-Hà Đông"></Uni>
+class Main extends React.Component{
+    render(){
+        return(
+            <div>
+                <div className="content-main">
+                    <span className="text-content-main">Gần trường đại học</span>
+                    <div className="content-uni">
+                        <Uni name="Đại học Quốc gia Hà Nội" address="Dịch Vọng Hậu-Cầu Giấy"></Uni>
+                        <Uni name="Đại học Thương mại" address="Mai Dịch-Cầu Giấy"></Uni>
+                        <Uni name="Đại học Bách khoa Hà Nội" address="Bách Khoa-Hai Bà Trưng"></Uni>
+                        <Uni name="Học viện Công nghệ Bưu chính Viễn thông" address="Mỗ Lao-Hà Đông"></Uni>
+                        <Uni name="Đại học Luật Hà Nội" address="Thành Công-Đống Đa"></Uni>
+                        <Uni name="Đại học Hà Nội" address="Văn Quán-Hà Đông"></Uni>
+                    </div>
+                </div>
+                <div className="content-main">
+                    <span className="text-content-main">Mới đăng gần đây</span>
+                    <div className="content">
+                        <Post money="3 Triệu" address="Dịch Vọng Hậu-Cầu Giấy"></Post>
+                        <Post money="2 Triệu" address="Mai Dịch-Cầu Giấy"></Post>
+                        <Post money="5 Triệu" address="Bách Khoa-Hai Bà Trưng"></Post>
+                    </div>
                 </div>
             </div>
-            <div className="content-main">
-                <span className="text-content-main">Mới đăng gần đây</span>
-                <div className="content">
-                    <Post money="3 Triệu" address="Dịch Vọng Hậu-Cầu Giấy"></Post>
-                    <Post money="2 Triệu" address="Mai Dịch-Cầu Giấy"></Post>
-                    <Post money="5 Triệu" address="Bách Khoa-Hai Bà Trưng"></Post>
-                </div>
-            </div>
-        </div>
-    )
+        );
+    }
 }
 export default Main;
