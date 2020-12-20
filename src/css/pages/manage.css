@@ -1,0 +1,107 @@
+.Manage {
+    display: block;
+}
+
+    .Manage .content {
+        width: calc(100% - 20px);
+        padding: 0px 10px 0px 10px;
+    }
+
+        .Manage .content .content__title {
+            width: 100%;
+            height: 65px;
+            overflow: hidden;
+        }
+
+            .Manage .content .content__title .text {
+                float: left;
+                font-weight: bold;
+                font-size: 25px;
+                margin-right: 20px;
+                min-width: 300px;
+                margin-top: 15px;
+                margin-left: 10px;
+                height: 100%;
+            }
+
+            .Manage .content .content__title .search {
+                float: right;
+                margin-top: 12px;
+            }
+
+        .Manage .content .content__option {
+            width: 100%;
+            height: 65px;
+            background-color: #008489;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+            .Manage .content .content__option .text {
+                float: left;
+                font-weight: bold;
+                font-size: 25px;
+                margin-right: 20px;
+                min-width: 300px;
+                margin-top: 15px;
+                margin-left: 10px;
+                height: 100%;
+            }
+
+            .Manage .content .content__option .button {
+                float: right;
+                height: 100%;
+            }
+
+        .Manage .content .content__table {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .Manage .content .content__table table {
+                width: 100%;
+                max-width: 100%;
+                border-collapse: collapse;
+                overflow: hidden;
+            }
+
+                .Manage .content .content__table table tr {              
+                }
+
+                    .Manage .content .content__table table tbody tr:hover {
+                        background-color: #f2f9f8;
+                        cursor: pointer;
+                    }
+
+                .Manage .content .content__table table th {
+                    text-align: left;
+                    height: 50px;
+                    border-bottom: 1px solid #ebebeb;
+                    padding: 0 0 0 10px;
+                }
+
+                .Manage .content .content__table  td {
+                    height: 100px;
+                    max-height: 100px;
+                    border-bottom: 1px solid #ebebeb;
+                    padding: 0 0 0 10px; 
+                    overflow: hidden;
+                }
+
+                .Manage .content .content__table  td .text{
+                    width: 200px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                
+.icon--search {
+    background: url('../../image/icon-search.svg') no-repeat center;
+    background-size: contain;
+}
+
+.trOnSelect {
+    background-color: #f2f9f8;
+}
