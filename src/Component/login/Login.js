@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
-import {ObjSign} from './Registration';
+import {ObjSign} from '../registration/Registration';
 
 class Login extends React.Component {
   handleSubmit(event){

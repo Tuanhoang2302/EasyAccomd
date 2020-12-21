@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {Control} from './Header';
+import {Control} from '../home/Header';
 
 class HeaderRegister extends React.Component {
     constructor(props){
