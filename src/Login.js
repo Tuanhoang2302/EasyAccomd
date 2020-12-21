@@ -12,7 +12,7 @@ class Login extends React.Component {
         <div>
             <div className="login">
                 <div className="back-right">
-                    <button type="button" className="btn-main-directional" style={{marginLeft: '105px', marginTop: '280px'}}>
+                    <button type="button" className="btn-main-directional" style={{marginLeft: '105px', marginTop: '300px'}}>
                         <NavLink className="link-list" to="/registration">Đăng ký</NavLink>
                     </button>
                 </div>
