@@ -61,6 +61,13 @@ body {
   height: 40px;
   border-radius: 20px;
 }
+.form-select {
+  width: 60%;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
 .search-form {
   padding-top: 16px;
   margin: 0 auto;
@@ -96,7 +103,6 @@ body {
   border-radius: 32px;
   flex: 1 0 0%;
   min-width: 0px;
-  padding: 14px 32px;
 }
 .form-main {
   position: relative;
@@ -222,13 +228,13 @@ body {
 }
 .content-main {
   width: 100%;
-  margin: 32px auto;
+  margin: 32px 32px;
 }
 .text-content-main {
   margin-left: 10px;
   white-space: pre-line;
   color: var(--tl-color, #222222);
-  font-size: var(--tl-font-size, 32px);
+  font-size: var(--tl-font-size, 24px);
   font-weight: var(--tl-font-weight, 800);
   letter-spacing: var(--tl-letter-spacing, normalem);
   line-height: var(--tl-line-height, 36px);
@@ -380,9 +386,11 @@ a {
 .registration,
 .login {
   width: 750px;
-  height: 550px;
+  height: 600px;
   border-radius: 10px;
   background-color: white;
+  background-size: auto;
+  background-position: 50% 50%;
   border: gray solid 1px;
   margin: 40px auto;
   display: flex;
@@ -397,6 +405,8 @@ a {
   width: 300px;
   margin-right: 0px;
   background-image: url(./img/SignIn.png);
+  background-size: cover;
+  background-position: 50% 50%;
 }
 .sign-up {
   width: 100%;
@@ -450,7 +460,7 @@ label {
 .back-left .sign-in {
   width: 100%;
   margin-left: 0px;
-  margin-top: 100px;
+  margin-top: 130px;
 }
 .sign-in label {
   font-size: 20px;
@@ -509,7 +519,7 @@ label {
     line-height: normal;
   }
   .text-content-main {
-    font-size: 20px;
+    font-size: 18px;
   }
   .uni {
     width: 40%;
