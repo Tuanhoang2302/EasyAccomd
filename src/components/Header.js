@@ -9,8 +9,8 @@ import '../css/common.css'
 import '../css/components/header.css'
 
 class Home extends Component {
-    constructor(prop) {
-        super(prop);
+    constructor(props) {
+        super(props);
         this.state = {
             showing: ""
         }
@@ -46,14 +46,22 @@ class Home extends Component {
         var self = this;
         return (
             <ListContext.Consumer>
-                {({listNotification}) => 
+                {({listNotification, typeOfUser, typeOfUsers}) => 
                     <div className="header">
                         <Link to="/">
                             <div className="header__logo"></div>
                         </Link>
-                        <div className="header__title">
-                            <label>Quản lý</label>
-                        </div>
+                        {typeOfUser!==typeOfUsers.ADMIN?    <div className="header__title"><label>Quản lý</label></div>:''}
+                        {typeOfUser===typeOfUsers.ADMIN? <div className={self.props.currentTab===self.props.adminTabs.STATISTICAL? "header__menu__item tabOnSelect":"header__menu__item"} 
+                            onClick={()=>self.props.onClick(self.props.adminTabs.STATISTICAL)}>Thống kê</div>:''}
+                        {typeOfUser===typeOfUsers.ADMIN? <div className={self.props.currentTab===self.props.adminTabs.POST? "header__menu__item tabOnSelect":"header__menu__item"}
+                            onClick={()=>self.props.onClick(self.props.adminTabs.POST)}>Bài đăng</div>:''}
+                        {typeOfUser===typeOfUsers.ADMIN? <div className={self.props.currentTab===self.props.adminTabs.ACCOUNT? "header__menu__item tabOnSelect":"header__menu__item"}
+                            onClick={()=>self.props.onClick(self.props.adminTabs.ACCOUNT)}>Tài khoản</div>:''}
+                        {typeOfUser===typeOfUsers.ADMIN? <div className={self.props.currentTab===self.props.adminTabs.TOP? "header__menu__item tabOnSelect":"header__menu__item"}
+                            onClick={()=>self.props.onClick(self.props.adminTabs.TOP)}>Top</div>:''}
+                        {typeOfUser===typeOfUsers.ADMIN? <div className={self.props.currentTab===self.props.adminTabs.REQUEST? "header__menu__item tabOnSelect":"header__menu__item"}
+                            onClick={()=>self.props.onClick(self.props.adminTabs.REQUEST)}>Duyệt</div>:''}
                         <div className="header__account" onClick={self.accountOnClick.bind(self)}>
                             <div className={"dialog" + (self.state.showing==="account"? "":" hidden")}>
                                 <div className="dialog__item">Hồ sơ</div>
@@ -71,9 +79,13 @@ class Home extends Component {
                                 )}
                             </div>
                         </div>
-                        <div className="header__btnCreateAccom">
-                            <Link to="/createAccom"><button>Tạo mục cho thuê mới</button></Link>
-                        </div>
+                        {
+                            typeOfUser!==typeOfUsers.OWNER? '':
+                                <div className="header__btnCreateAccom">
+                                    <Link to="/createAccom"><button>Tạo mục cho thuê mới</button></Link>
+                                </div>
+                        }
+                        
                     </div>
                 }
             </ListContext.Consumer>

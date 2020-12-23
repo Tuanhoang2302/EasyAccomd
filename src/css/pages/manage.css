@@ -1,8 +1,11 @@
 .Manage {
     display: block;
+    width: 100%;
+    height: auto;
 }
 
     .Manage .content {
+        display: block;
         width: calc(100% - 20px);
         padding: 0px 10px 0px 10px;
     }
@@ -68,7 +71,11 @@
                 overflow: hidden;
             }
 
-                .Manage .content .content__table table tr {              
+                .Manage .content .content__table table tbody tr {
+                    height: 80px;
+                    max-height: 80px;   
+                    overflow: hidden;
+                    border-bottom: 1px solid #ebebeb;
                 }
 
                     .Manage .content .content__table table tbody tr:hover {
@@ -79,16 +86,13 @@
                 .Manage .content .content__table table th {
                     text-align: left;
                     height: 50px;
-                    border-bottom: 1px solid #ebebeb;
                     padding: 0 0 0 10px;
                 }
 
                 .Manage .content .content__table  td {
-                    height: 100px;
-                    max-height: 100px;
-                    border-bottom: 1px solid #ebebeb;
                     padding: 0 0 0 10px; 
                     overflow: hidden;
+                    max-height: 80px;
                 }
 
                 .Manage .content .content__table  td .text{
@@ -96,6 +100,44 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
+
+                .Manage .content .content__table  tr .option{
+                    width: 30px;
+                }
+
+                    .Manage .content .content__table  tr .option>div {
+                        position: absolute;
+                    }
+
+                    .Manage .content .content__table  tr .option button{
+                        padding: 8px;
+                        height: 30px;
+                        margin: 0px;
+                    }
+
+                    .Manage .content .content__table  tr .option .dialog{
+                        position: absolute;
+                        top: 30px;
+                        right: 0;
+                        background-color: #ffffff;
+                        border: 1px solid #ebebeb;
+                        box-shadow: black;
+                        width: 150px;
+                        height: auto;
+                        z-index: 2;
+                    }
+
+                        .Manage .content .content__table  tr .option .dialog .dialog__item{
+                            height: 30px;
+                            width: calc(100% - 5px);
+                            border-bottom: 1px solid #ebebeb;
+                            padding-left: 5px;
+                        }
+
+                            .Manage .content .content__table  tr .option .dialog .dialog__item:hover {
+                                cursor: pointer;
+                                background-color: #f2f9f8;
+                            }
                 
 .icon--search {
     background: url('../../image/icon-search.svg') no-repeat center;

@@ -14,6 +14,12 @@ import DetailsAccom from './page/DetailsAccom'
 
 import './App.css';
 
+const typeOfUsers = {
+  RENTER: 'renter',
+  OWNER: 'owner',
+  ADMIN: 'admin'
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +62,7 @@ class App extends Component {
           airConditioner: true,
           balcony: false,
           electricAndWaterBill: "",
-          otherConveniences: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          otherConveniences: "aaaaaaaaa",
           typeOfAccom: "",
           price: 200000,
           isSelect: false
@@ -100,6 +106,206 @@ class App extends Component {
           typeOfAccom: "",
           price: 200000,
           isSelect: false
+        }, 
+        {
+          status: "Đã cho thuê",
+          image: "default.jpg",
+          title: "Nhà số 2",
+          description: "Nhà nguyên căn",
+          city: "Hà Nội",
+          district: "Cầu Giấy",
+          village: "Dịch Vọng Hậu",
+          street: "Phạm Văn Đồng",
+          number: "Số 2",
+          typeOfBathroom: "",
+          waterHeater: true,
+          airConditioner: true,
+          balcony: false,
+          electricAndWaterBill: "",
+          otherConveniences: "aaaaaaaaa",
+          typeOfAccom: "",
+          price: 200000,
+          isSelect: false
+        }, 
+        {
+          status: "Đã cho thuê",
+          image: "default.jpg",
+          title: "Nhà số 2",
+          description: "Nhà nguyên căn",
+          city: "Hà Nội",
+          district: "Cầu Giấy",
+          village: "Dịch Vọng Hậu",
+          street: "Phạm Văn Đồng",
+          number: "Số 2",
+          typeOfBathroom: "",
+          waterHeater: true,
+          airConditioner: true,
+          balcony: false,
+          electricAndWaterBill: "",
+          otherConveniences: "aaaaaaaaa",
+          typeOfAccom: "",
+          price: 200000,
+          isSelect: false
+        }, 
+        {
+          status: "Đã cho thuê",
+          image: "default.jpg",
+          title: "Nhà số 2",
+          description: "Nhà nguyên căn",
+          city: "Hà Nội",
+          district: "Cầu Giấy",
+          village: "Dịch Vọng Hậu",
+          street: "Phạm Văn Đồng",
+          number: "Số 2",
+          typeOfBathroom: "",
+          waterHeater: true,
+          airConditioner: true,
+          balcony: false,
+          electricAndWaterBill: "",
+          otherConveniences: "aaaaaaaaa",
+          typeOfAccom: "",
+          price: 200000,
+          isSelect: false
+        }, 
+        {
+          status: "Đã cho thuê",
+          image: "default.jpg",
+          title: "Nhà số 2",
+          description: "Nhà nguyên căn",
+          city: "Hà Nội",
+          district: "Cầu Giấy",
+          village: "Dịch Vọng Hậu",
+          street: "Phạm Văn Đồng",
+          number: "Số 2",
+          typeOfBathroom: "",
+          waterHeater: true,
+          airConditioner: true,
+          balcony: false,
+          electricAndWaterBill: "",
+          otherConveniences: "aaaaaaaaa",
+          typeOfAccom: "",
+          price: 200000,
+          isSelect: false
+        }, 
+        {
+          status: "Đã cho thuê",
+          image: "default.jpg",
+          title: "Nhà số 2",
+          description: "Nhà nguyên căn",
+          city: "Hà Nội",
+          district: "Cầu Giấy",
+          village: "Dịch Vọng Hậu",
+          street: "Phạm Văn Đồng",
+          number: "Số 2",
+          typeOfBathroom: "",
+          waterHeater: true,
+          airConditioner: true,
+          balcony: false,
+          electricAndWaterBill: "",
+          otherConveniences: "aaaaaaaaa",
+          typeOfAccom: "",
+          price: 200000,
+          isSelect: false
+        }, 
+        {
+          status: "Đã cho thuê",
+          image: "default.jpg",
+          title: "Nhà số 2",
+          description: "Nhà nguyên căn",
+          city: "Hà Nội",
+          district: "Cầu Giấy",
+          village: "Dịch Vọng Hậu",
+          street: "Phạm Văn Đồng",
+          number: "Số 2",
+          typeOfBathroom: "",
+          waterHeater: true,
+          airConditioner: true,
+          balcony: false,
+          electricAndWaterBill: "",
+          otherConveniences: "aaaaaaaaa",
+          typeOfAccom: "",
+          price: 200000,
+          isSelect: false
+        }, 
+        {
+          status: "Đã cho thuê",
+          image: "default.jpg",
+          title: "Nhà số 2",
+          description: "Nhà nguyên căn",
+          city: "Hà Nội",
+          district: "Cầu Giấy",
+          village: "Dịch Vọng Hậu",
+          street: "Phạm Văn Đồng",
+          number: "Số 2",
+          typeOfBathroom: "",
+          waterHeater: true,
+          airConditioner: true,
+          balcony: false,
+          electricAndWaterBill: "",
+          otherConveniences: "aaaaaaaaa",
+          typeOfAccom: "",
+          price: 200000,
+          isSelect: false
+        }, 
+        {
+          status: "Đã cho thuê",
+          image: "default.jpg",
+          title: "Nhà số 2",
+          description: "Nhà nguyên căn",
+          city: "Hà Nội",
+          district: "Cầu Giấy",
+          village: "Dịch Vọng Hậu",
+          street: "Phạm Văn Đồng",
+          number: "Số 2",
+          typeOfBathroom: "",
+          waterHeater: true,
+          airConditioner: true,
+          balcony: false,
+          electricAndWaterBill: "",
+          otherConveniences: "aaaaaaaaa",
+          typeOfAccom: "",
+          price: 200000,
+          isSelect: false
+        }, 
+        {
+          status: "Đã cho thuê",
+          image: "default.jpg",
+          title: "Nhà số 2",
+          description: "Nhà nguyên căn",
+          city: "Hà Nội",
+          district: "Cầu Giấy",
+          village: "Dịch Vọng Hậu",
+          street: "Phạm Văn Đồng",
+          number: "Số 2",
+          typeOfBathroom: "",
+          waterHeater: true,
+          airConditioner: true,
+          balcony: false,
+          electricAndWaterBill: "",
+          otherConveniences: "aaaaaaaaa",
+          typeOfAccom: "",
+          price: 200000,
+          isSelect: false
+        }, 
+        {
+          status: "Đã cho thuê",
+          image: "default.jpg",
+          title: "Nhà số 2",
+          description: "Nhà nguyên căn",
+          city: "Hà Nội",
+          district: "Cầu Giấy",
+          village: "Dịch Vọng Hậu",
+          street: "Phạm Văn Đồng",
+          number: "Số 2",
+          typeOfBathroom: "",
+          waterHeater: true,
+          airConditioner: true,
+          balcony: false,
+          electricAndWaterBill: "",
+          otherConveniences: "aaaaaaaaa",
+          typeOfAccom: "",
+          price: 200000,
+          isSelect: false
         }
       ],
       setListAccom: this.setListAccom.bind(this),
@@ -124,8 +330,25 @@ class App extends Component {
           user: "Thắng",
           content: "bình luận"
         }
-      ]
+      ],
+      typeOfUsers: typeOfUsers,
+      typeOfUser: typeOfUsers.ADMIN,
+      ListOwner: [
+        {
+          fullname: 'Phạm Việt Thắng'
+
+        }
+      ],
+      setListOwner: this.setListOwner.bind(this)
     }
+  }
+
+  setListOwner(listOwner) {
+    this.setState(state => {
+      return {
+        listOwner: [...listOwner]
+      }
+    })
   }
 
   setListAccom(listAccom) {

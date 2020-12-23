@@ -29,7 +29,8 @@ class PriceAccom extends Component {
                 </div><br/>
                 <div>
                     <label>Chu kỳ/thời hạn cho thuê</label><br/>
-                    <input type="text" value="tháng"/>
+                    <input type="number" name="period_number" value={this.props.accom.period_number} onChange={this.inputOnChange.bind(this)}/>
+                    <input type="text" name="period_unit" value={this.props.accom.period_unit} onChange={this.inputOnChange.bind(this)}/>
                     
                 </div><br/>
             </div>
