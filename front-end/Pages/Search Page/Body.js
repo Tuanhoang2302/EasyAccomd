@@ -168,7 +168,7 @@ const OtherFilterBoard = (props) => {
                     <div style={{fontWeight:'bold'}}>Tiện nghi</div>
                     <div style={{marginTop:"5px", display:"flex"}}>
                         <FormGroup style={{marginRight:"40px"}}>
-                            {CheckBoxTile(stateOtherFilter.isHaveBathroom, "isHaveBathroom", "Phòng tắm")}
+                            {CheckBoxTile(stateOtherFilter.isHaveFridge, "isHaveFridge", "Tủ lạnh")}
                             {CheckBoxTile(stateOtherFilter.isHaveWaterHeater, "isHaveWaterHeater", "Bình nóng lạnh")}
                             {CheckBoxTile(stateOtherFilter.isHaveAirConditioner, "isHaveAirConditioner", "Điều hòa")}
                         </FormGroup>
@@ -374,9 +374,10 @@ const PopularPlaceList = () => {
     )
 }
 
+
 function Body() {
     const stateFilter = {
-        isHaveBathroom: false,
+        isHaveFridge: false,
         isHaveWaterHeater: false,
         isHaveAirConditioner: false,
         isHaveBalcony: false,

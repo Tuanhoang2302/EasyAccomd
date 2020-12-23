@@ -15,6 +15,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import map_marker from './IconMap'
 import { useHistory } from "react-router-dom";
+import {useDispatch,useSelector} from 'react-redux'
 
 const ImageSection = (props) => {
     return (
@@ -168,11 +169,13 @@ const CommentTile = (props) => {
 }
 
 const CommentSection = (props) => {
-    const [numberComment, setNumberComment] = useState(null)
+    const [numberComment, setNumberComment] = useState(0)
     const [commentList, setCommentList] = useState(null)
     const [isLoadComment, setIsLoadComment] = useState(false)
     const [comment, setComment] = useState(null)
     var columnLeft = [], columnRight = []
+    const accountId = useSelector(state => state.user._id)
+
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios.get(
@@ -216,9 +219,9 @@ const CommentSection = (props) => {
 
     const handleSubmit = async (e) => {
         const commnet = e.target.value
-        await axios.post("http://localhost:3001/comment/add/Comment", {
+        await axios.post("http://localhost:3001/comment/create", {
             accomId: props.accom._id,
-            accountId: "5fd724b43121842dfc9e6474",
+            accountId: accountId,
             comment: comment
         })
         setComment("")
@@ -228,58 +231,80 @@ const CommentSection = (props) => {
     }
     return(
         <React.Fragment>
-            {(commentList && numberComment) ? 
-            <div>
-                <div style={{fontSize:"26px", fontWeight:"700"}}>Đánh giá ({numberComment})</div>
-                {/* <CommentTile commentData={columnLeft[0]}/> */}
-                <div style={{marginTop:"40px", display:"flex"}}>
-                    {/* {(()=>{
-                        if()
-                    })()} */}
-                    <div>{columnLeft.slice(0, numberCommentLeftColumn).map((item) => {
-                            return(
-                                <CommentTile commentData={item}/>
-                            )
-                        })}</div>
-                    <div>{columnRight.slice(0, numberCommentRightColumn).map((item) => {
-                            return(
-                                <CommentTile commentData={item}/>
-                            )
-                        })}</div>
-                </div>
-
-                {isLoadComment ? 
-                <span onClick={() => setIsLoadComment(false)} className={body.load_comment_button}>
-                    Rút gọn bình luận
-                </span>
-                :<span onClick={() => setIsLoadComment(true)} className={body.load_comment_button}>
-                    Hiển thị tất cả bình luận
-                </span>}
-                <br/>
-                    
-                <div className={body.comment_field}>
-                    <textarea rows="4" 
-                        placeholder="Nhập bình luận của bạn"
-                        className={body.textarea_comment}
-                        value={comment}
-                        onChange={handleChange}>
-                    </textarea>
-                    <div onClick={handleSubmit}
-                    className={body.summit_text}>Send</div>
-                </div>
+            <div style={{fontSize:"26px", fontWeight:"700"}}>Đánh giá ({numberComment})</div>
+            {(commentList) ? 
+            <div style={{marginTop:"40px", display:"flex"}}>
+                <div>{columnLeft.slice(0, numberCommentLeftColumn).map((item) => {
+                        return(
+                            <CommentTile commentData={item}/>
+                        )
+                    })}</div>
+                <div>{columnRight.slice(0, numberCommentRightColumn).map((item) => {
+                        return(
+                            <CommentTile commentData={item}/>
+                        )
+                    })}</div>
             </div>
-            :null}
+            : null}
+
+            {isLoadComment ? 
+            <span onClick={() => setIsLoadComment(false)} className={body.load_comment_button}>
+                Rút gọn bình luận
+            </span>
+            :<span onClick={() => setIsLoadComment(true)} className={body.load_comment_button}>
+                Hiển thị tất cả bình luận
+            </span>}
+            <br/>
+                
+            <div className={body.comment_field}>
+                <textarea rows="4" 
+                    placeholder="Nhập bình luận của bạn"
+                    className={body.textarea_comment}
+                    value={comment}
+                    onChange={handleChange}>
+                </textarea>
+                <div onClick={handleSubmit}
+                className={body.summit_text}>Send</div>
+            </div>
+            
+           
         </React.Fragment>
     )
 }
 
 const MapComponent = (props) => {
+    const accoutnId = useSelector(state => state.user._id)
+    const [contactId, setContactId] = useState(null)
     let history = useHistory();
-    const handleClick = (e) => {
-        history.push({
-            pathname: '/inbox',
-        })
-      }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios.get("http://localhost:3001/get/contactId", {
+                params: {
+                    accomId: props.accom._id
+                }
+            });
+            await setContactId(result.data)
+          };
+          
+          fetchData();
+    }, [props.accom._id])
+
+    const handleClick = async (e) => {
+        if(contactId) {
+            await axios.get("http://localhost:3001/newRoom", {
+                params: {
+                    accountId: accoutnId,
+                    contactId: contactId, 
+                    accomId: props.accom._id
+                }
+            })
+            history.push({
+                pathname: '/inbox',
+            })
+            history.go(0)
+        }
+    }
     return(
         <div>
             <div style={{fontSize:"26px", fontWeight:"700"}}>Vị trí</div>
@@ -310,22 +335,40 @@ const DetailSection = (props) => {
     const [isSelectReturnDayButton, setIsSelectReturnDayButton] = useState(false)
     const [rentDay, setRentDay] = useState(null)
     const [returnDay, setReturnDay] = useState(null)
+    const [isFavorite, setIsFavorite] = useState(false)
+    const accountId = useSelector((state) => state.user._id)
     useEffect(() => {
-        console.log(props.accom.description);
         const fetchData = async () => {
-            const result = await axios.get(
-              'http://localhost:3001/user/reservation/find',
-              {params: {
-                  accomId: props.accom._id
-              }}
-            )
-            await setReservationDate(result.data)
+            const result = await axios.get("http://localhost:3001/favorite/check", {
+                params: {
+                    accomId: props.accom._id,
+                    accountId: accountId
+                }
+            });
+            await setIsFavorite(result.data)
           };
           
           fetchData();
-
-    }, [props.accom._id])
-
+    }, [])
+    const clickFavorite = async () => {
+        setIsFavorite(!isFavorite)
+        if(isFavorite == false) {
+            await axios.get("http://localhost:3001/favorite/create", {
+                params:{
+                    accomId: props.accom._id,
+                    accountId: accountId
+                }
+            })
+        } else{
+            await axios.get("http://localhost:3001/favorite/delete", {
+                params:{
+                    accomId: props.accom._id,
+                    accountId: accountId
+                }
+            })
+        }
+    }
+    
     return (
         <div className={body.detail_section}>
             <div className={body.description_section}>
@@ -352,9 +395,15 @@ const DetailSection = (props) => {
                         </div>
                     </div>
                     
-                    <div style={{fontWeight:"600", fontSize:"18px", color:"white"}} className={body.button}>
-                        Yêu thích
-                    </div>
+                    {isFavorite == false ?
+                        <div onClick={clickFavorite}
+                        style={{fontWeight:"600", fontSize:"18px", color:"white"}} className={body.button}>
+                            Yêu thích
+                        </div>
+                    : <div onClick={clickFavorite}
+                        style={{fontWeight:"600", fontSize:"18px", color:"white", backgroundColor:"red"}} className={body.button}>
+                            Bỏ thích
+                        </div>}
                 </div>
             </div>
         </div>
@@ -364,13 +413,21 @@ const DetailSection = (props) => {
 const Body = (props) => {
     const [accomData, setAccomData] = useState(null)
     const [padding, setPadding] = useState(390)
+    const [numberOfFavorite, setNumberOfFavorite] = useState(null)
+
     var newPadding = 390
     var x = window.screen.width
     const {width} = useViewport()
-
+    
     useEffect(() => {
-        newPadding = 390 - (x - width) / 2
-        setPadding(newPadding)
+        if(width > 1280){
+            newPadding = 390 - (x - width) / 2
+            setPadding(newPadding)
+        } else if(width <= 1280 && width > 1130) {
+            setPadding(70)
+        } else {
+            setPadding(40)
+        }
     }, [width])
 
     useEffect(() => {
@@ -382,6 +439,17 @@ const Body = (props) => {
           };
           
           fetchData();
+    }, [props.id])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const numberFavorite = await axios.get(
+              `http://localhost:3001/favorite/get/${props.id}`
+            );
+            await setNumberOfFavorite(numberFavorite.data)
+          };
+          
+        fetchData();
     }, [props.id])
 
     return (
@@ -398,12 +466,18 @@ const Body = (props) => {
                     fontWeight:"600"}}>
                     {accomData.title}
                 </div>
-
-                <div style={{
-                    color: "grey",
-                    textDecoration: "underline"
-                }}>
-                    {accomData.address.city}
+                
+                <div style={{display:"flex", justifyContent:"space-between"}}>
+                    <div style={{
+                        color: "grey",
+                        textDecoration: "underline"}}>
+                        {accomData.address.city}
+                    </div>
+                    {numberOfFavorite != null ?
+                    <div>
+                        {numberOfFavorite} lượt thích
+                    </div>
+                    : null}
                 </div>
 
                 <ImageSection imageBase64={accomData.images}/>

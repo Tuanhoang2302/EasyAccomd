@@ -19,6 +19,12 @@ export const login = (user) => {
     }
 }
 
+export const logout = (user) => {
+    return {
+        type: "LOGOUT",
+    }
+}
+
 export const change_chat_tile = (data) => {
     return {
         type: "CHANGE_CHAT_TITLE",

@@ -18,7 +18,7 @@ class TitleAccom extends Component {
         return (
             <div className="TitleAccom">
                 <br/><br/>
-                <div className="title"><h2>Tạo tiêu đề cho nhà/phòng cho thuê của bạn</h2></div>
+                <div className="title"><h2>Tạo tiêu đề và liên lạc cho nhà/phòng cho thuê của bạn</h2></div>
                 <div className="subTitle">Thu hút sự chú ý của khách với tiêu đề mục cho thuê sao cho làm 
                     nổi bật được những điểm đặc biệt của nhà/phòng cho thuê.</div>
                 <br/><br/>
@@ -33,6 +33,14 @@ class TitleAccom extends Component {
                 <div>
                     <label>Mô tả thêm về nhà của bạn</label><br/>
                     <input type="text" name="description" value={this.props.accom.description} onChange={this.inputOnChange.bind(this)}/>
+                </div><br/>
+                <div>
+                    <label>Email liên lạc</label><br/>
+                    <input type="text" name="email" value={this.props.accom.email} onChange={this.inputOnChange.bind(this)}/>
+                </div><br/>
+                <div>
+                    <label>Số điện thoại liên lạc</label><br/>
+                    <input type="text" name="phone" value={this.props.accom.phone} onChange={this.inputOnChange.bind(this)}/>
                 </div><br/>
             </div>
         )

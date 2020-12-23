@@ -142,7 +142,7 @@ class Manage extends Component {
                         </div>
                     }
                 </ListContext.Consumer>
-                <Footer />
+            
             </div>
         )
     }

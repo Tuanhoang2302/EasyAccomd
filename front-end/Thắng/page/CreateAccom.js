@@ -64,7 +64,7 @@ class CreateAccom extends Component {
                             }
                         </div>
                         <div className="CreateAccom__footer">
-                            <Link to="/"><button>Quay lại</button></Link>
+                            <Link to="/user/manage"><button>Quay lại</button></Link>
                             <Link to="/createAccom/details"><button className="right" onClick={self.btnNextOnClick} 
                                 disabled={self.state.accomSelected===-2? true:false}>Tiếp theo</button></Link>
                             <button className="right" onClick={self.btnCloneOnClick.bind(self, listAccom, setListAccom)} disabled={self.state.accomSelected<0? true:false}>Sao chép</button>

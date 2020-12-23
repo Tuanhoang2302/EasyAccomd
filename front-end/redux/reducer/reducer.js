@@ -29,6 +29,11 @@ export default function appReducer(state = initialState, action){
                 user: action.user
             }  
         }
+        case "LOGOUT": {
+            return{
+                initialState,
+            }  
+        }
         case "CHANGE_CHAT_TITLE": {
             return{
                 ...initialState,

@@ -13,7 +13,8 @@ import ImageAccom from '../components/ImageAccom';
 import TitleAccom from '../components/TitleAccom';
 import PriceAccom from '../components/PriceAccom';
 import ListContext from '../context/ListContext'
-
+import axios from 'axios'
+import {useDispatch,useSelector} from 'react-redux'
 import iconBar from '../image/icon-bar.svg';
 import '../css/common.css'
 import '../css/pages/detailsAccom.css'
@@ -58,26 +59,73 @@ class DetailsAccom extends Component {
         this.setTab(tabs.MENU);
     }
 
-    btnSaveOnClick(listAccom, setListAccom, accomSelect) {
-        console.log(this);
-        console.log(listAccom);
-        console.log(setListAccom);
-        console.log(accomSelect);
-
+    async btnSaveOnClick(listAccom, setListAccom, accomSelect) {
+        console.log(this.state.accom);
         accomSelect === -1 ? setListAccom([...listAccom, this.state.accom]):
         setListAccom([...listAccom.slice(0, accomSelect), this.state.accom, ...listAccom.slice(accomSelect + 1)])
+        var fetchImagePath = await axios.post("http://localhost:3001/accomodation/upload/image", this.state.accom.imagesFormData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        var imagePath
+        if(fetchImagePath.data){
+            imagePath = fetchImagePath.data.map((item) => {
+                return item.replace(/\\/g, "\\\\");
+            })
+        }
+        
+        await axios.post("http://localhost:3001/accomodation/create", {
+            accountId: this.props.accountId,
+            isHaveFridge: this.state.accom.fridge != null ? true : false,
+            isHaveWaterHeater: this.state.accom.waterHeater != null ? true : false,
+            isHaveAirConditioner: this.state.accom.airConditioner != null ? true : false,
+            isHaveBalcony: this.state.accom.balcony != null ? true : false,
+            isHaveWifi: this.state.accom.wifi != null ? true : false,
+            isHaveKitchen: this.state.accom.kitchen != null ? true : false,
+            electricBill: this.state.accom.electricBill,
+            waterBill: this.state.accom.waterBill,
+            numberOfRooms: this.state.accom.numberOfRooms,
+            typeOfBathroom: this.state.accom.typeOfBathroom,
+            images: imagePath,
+
+            city: this.state.accom.city,
+            district:  this.state.accom.district,
+            village: this.state.accom.village,
+            street: this.state.accom.street,
+            numberAddress: this.state.accom.number,
+
+            description: this.state.accom.description,        
+            price: this.state.accom.price,
+            title: this.state.accom.title,
+            type: this.state.accom.typeOfAccom,
+            square: this.state.accom.square,
+            
+            week: this.state.accom.week,
+            month: this.state.accom.month,
+            year: this.state.accom.year,
+        })
     }
 
     btnNextOnClick() {
+        var accom = this.state.accom
         switch (this.state.tab) {
             case tabs.ADDRESS:
-                this.setTab(tabs.CONVENIENCES);
+                if(accom.village != null && accom.city != null &&
+                accom.district != null && accom.street != null && accom.number != null){
+                    this.setTab(tabs.CONVENIENCES);
+                }
                 break;
             case tabs.CONVENIENCES:
-                this.setTab(tabs.IMAGE);
+                if(accom.numberOfRooms != null && accom.typeOfBathroom != null
+                && accom.square != null){
+                    this.setTab(tabs.IMAGE);
+                }
                 break;
             case tabs.IMAGE:
-                this.setTab(tabs.TITLE);
+                if(accom.imagesFormData != null){
+                    this.setTab(tabs.TITLE);
+                }
                 break;
             case tabs.TITLE:
                 this.setTab(tabs.PRICE);
@@ -152,6 +200,7 @@ class DetailsAccom extends Component {
                                 <button onClick={self.btnBackOnClick.bind(self)}>Quay lại</button>
                             }
                         </div>
+
                     </div>
                 }
             </ListContext.Consumer>

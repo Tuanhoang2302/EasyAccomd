@@ -7,7 +7,7 @@
     grid-gap: 10px;
     /* background-color: #2196F3; */
     grid-template-columns: 24% 24% 24% auto;
-    grid-template-rows: 13vw 13vw
+    grid-template-rows: 250px 250px
 }
 
 .grid_image_item{
@@ -227,4 +227,23 @@
 
 .chat_button:hover{
     background-color: #eeeeee;
+}
+
+@media only screen and (min-width: 1280px)  {
+    .image_grid_section{
+        margin-top: 20px;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 24% 24% 24% auto;
+        grid-template-rows: 260px 260px
+    }
+}
+@media only screen and (max-width: 1280px)  {
+    .image_grid_section{
+        /* margin-top: 20px;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 24% 24% 24% auto; */
+        grid-template-rows: 20vw 20vw
+    }
 }

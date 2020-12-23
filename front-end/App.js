@@ -17,13 +17,28 @@ import {listAccomData, listNotificationData} from './Thắng/constant'
 
 import AccomDetail from './Pages/Detail An Accom/index';
 import Chat from './Pages/Chat/index';
-import Login from './Pages/Login/index';
+import LoginFake from './Pages/Login/index';
+
+//import trinh from './Trình/index.module.css'
+import './Trình/index.css'
+import {Header} from './Trình/Component/home/Header';
+import Main from './Trình/Component/home/Main';
+import Footer from './Trình/Component/home/Footer';
+import Login from './Trình/Component/login/Login'
+import HeaderRegister from './Trình/Component/registration/HeaderRegister';
+import {Registration} from './Trình/Component/registration/Registration';
+import Personal from './Trình/Component/personnal/Personal';
+import {useDispatch,useSelector} from 'react-redux'
 
 function App() {
   const [accomSelect, setAccomSelect] = useState(-2)
   const [listAccom, setListAccom] = useState(listAccomData)
   const [listNotification, setListNotification] = useState(listNotificationData)
-
+  const user = useSelector(state => state.user)
+  var accountId = null
+  if(user != null){
+    accountId = user._id
+  }
   return (
     <ListContext.Provider value={{
       accomSelect: accomSelect,
@@ -33,25 +48,47 @@ function App() {
       listNotification: listNotification
     }}>
       <div className="App">
-      <Switch>
-        <Route exact path="/" component={SearchPage}/>
-        <Route path="/accom-detail" component={AccomDetail}/>
-        <Route path="/inbox" component={Chat}/>
-        <Route path="/login" component={Login}/>
+        <Switch>
+          <Route path="/search" component={SearchPage}/>
+          <Route path="/accom-detail" component={AccomDetail}/>
+          <Route path="/inbox" component={Chat}/>
+          <Route path="/fakelogin" component={LoginFake}/>
 
-        <Route path="/user/manage">
-            <Manage />
-        </Route>
-        <Route exact path="/createAccom">
-            <CreateAccom setIndex={setAccomSelect} index={accomSelect}/>
-        </Route>
-        <Route exact path="/createAccom/details">
-            <DetailsAccom accom={accomSelect>=0? {...listAccom[accomSelect]}:{}} />
-        </Route>
-        <Route>
-          <Error />
-        </Route>
+          <Route path="/user/manage">
+              <Manage />
+          </Route>
+          <Route exact path="/createAccom">
+              <CreateAccom setIndex={setAccomSelect} index={accomSelect}/>
+          </Route>
+          <Route exact path="/createAccom/details">
+              <DetailsAccom accountId={accountId} accom={accomSelect>=0? {...listAccom[accomSelect]}:{}} />
+          </Route>
+          <Route path='/error'>
+            <Error />
+          </Route>
+
         </Switch>
+
+        <div id='header'>
+          <Switch>
+            <Route exact path="/" component={Header} />
+            <Route path="/registration" component={HeaderRegister} />
+            <Route path="/login" component={HeaderRegister} />
+            <Route path="/personal" component={HeaderRegister} />
+          </Switch>
+        </div>
+        <div id='container'>
+            <Switch>
+              <Route exact path="/" component={Main} />
+              <Route path="/registration" component={Registration} />
+              <Route path="/login" component={Login} />
+              <Route path="/personal" component={Personal} />
+            </Switch>
+          </div>
+          {/* <div id='footer'>
+            <Footer/>
+          </div> */}
+
       </div>
     </ListContext.Provider>
   );
