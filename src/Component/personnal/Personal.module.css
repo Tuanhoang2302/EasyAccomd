@@ -104,15 +104,7 @@
   padding-top: var(--font-button-padding-top, undefined);
   padding-bottom: var(--font-button-padding-bottom, undefined);
 }
-@media (min-width: 1128px) {
-  .back_info {
-    max-width: 1080px;
-  }
-}
 @media (min-width: 744px) {
-  .back_info {
-    max-width: 696px;
-  }
   .list_info {
     width: 60%;
   }
@@ -121,5 +113,8 @@
   .title {
     font-size: 24px;
     font-weight: 600;
+  }
+  .list_info {
+    width: 80%;
   }
 }
