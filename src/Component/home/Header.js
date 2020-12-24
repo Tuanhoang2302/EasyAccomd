@@ -70,35 +70,37 @@ class FirtHeader extends React.Component {
     }
     render() {
         return (
-            <div className="firtHeader">
-                <NavLink className="logo" to="/"></NavLink>
-                <div className="directional">
-                    <div className="owner">
-                        <NavLink className="link-owner" to="/">
-                            <div className="link-owner-text">Tìm kiếm nhà trọ</div>
-                        </NavLink>
-                    </div>
-                    <div className="owner">
-                        <NavLink className="link-owner" to="/registration">
-                            <div className="link-owner-text">Trở thành chủ nhà</div>
-                        </NavLink>
-                    </div>
-                    <div className="owner header-signInUp">
-                        <NavLink className="link-owner" to="/registration">
-                            <div className="link-owner-text">Đăng ký</div>
-                        </NavLink>
-                    </div>
-                    <div className="owner header-signInUp">
-                        <NavLink className="link-owner" to="/login">
-                            <div className="link-owner-text">Đăng nhập</div>
-                        </NavLink>
-                    </div>
-                    <div className="main-directional" onMouseEnter={this.handleEnter} onMouseLeave={this.handleLeave}>
-                        <button type="button" className="btn-main-directional">
-                            <div className="btn-list"></div>
-                            <div className="btn-user"></div>
-                        </button>
-                        { this.state.showResults ? <Control /> : null }
+            <div style={{minHeight: '70px'}}>
+                <div className="firtHeader">
+                    <NavLink className="logo" to="/"></NavLink>
+                    <div className="directional">
+                        <div className="owner header-signInUp">
+                            <NavLink className="link-owner" to="/">
+                                <div className="link-owner-text">Tìm kiếm nhà trọ</div>
+                            </NavLink>
+                        </div>
+                        <div className="owner header-signInUp">
+                            <NavLink className="link-owner" to="/registration">
+                                <div className="link-owner-text">Trở thành chủ nhà</div>
+                            </NavLink>
+                        </div>
+                        <div className="owner">
+                            <NavLink className="link-owner" to="/registration">
+                                <div className="link-owner-text">Đăng ký</div>
+                            </NavLink>
+                        </div>
+                        <div className="owner">
+                            <NavLink className="link-owner" to="/login">
+                                <div className="link-owner-text">Đăng nhập</div>
+                            </NavLink>
+                        </div>
+                        <div className="main-directional" onMouseEnter={this.handleEnter} onMouseLeave={this.handleLeave}>
+                            <button type="button" className="btn-main-directional">
+                                <div className="btn-list"></div>
+                                <div className="btn-user"></div>
+                            </button>
+                            { this.state.showResults ? <Control /> : null }
+                        </div>
                     </div>
                 </div>
             </div>

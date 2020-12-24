@@ -11,7 +11,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div>
           <div id="header">
             <Switch>
               <Route exact path="/" component={Header} />
@@ -31,7 +30,6 @@ function App() {
           <div id="footer">
             <Footer/>
           </div>
-        </div>
       </BrowserRouter>
     </div>
   );

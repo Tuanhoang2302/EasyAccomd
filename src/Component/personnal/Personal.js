@@ -9,7 +9,7 @@ const FormEdit = (props) =>{
     }
     return(
         <form onSubmit={handleSubmit}>
-            <ObjSign nameId={props.type+"Input"} helpId={props.type+"Help"} type="props.type"/>
+            <ObjSign nameId={props.props.type+"Input"} helpId={props.props.type+"Help"} type={props.props.type}/>
             <button type="submit" className={styles.btn_save}>
                 <span class={styles.save}>Lưu</span>
             </button>
@@ -53,20 +53,14 @@ const Info = (props) => {
 const Personal = () => {
     return (
         <div className={styles.main_info}>
-            <div style={{margin: 'auto'}}>
-                <div style={{marginTop: '100px', marginBottom: '48px'}}>
-                        <div style={{marginTop: '40px', marginBottom: '40px'}}>
-                            <div className={styles.title}>Thông tin cá nhân</div>
-                        </div>
-                        <div className={styles.list_info}>
-                            <Info name="Tên pháp lý" content="Nguyễn Tiến Trình" type="name"/>
-                            <Info name="Giới tính" content="Nam" type="gender"/>
-                            <Info name="Ngày sinh" content="14 tháng 01 năm 2000" type="date"/>
-                            <Info name="Địa chỉ email" content="Nguyentrinhs2000@gmail.com" type="email"/>
-                            <Info name="Số điện thoại" content="0934655724" type="phone"/>
-                            <Info name="Địa chỉ liên hệ" content="Mễ Trì Thượng, Nam Từ Liêm, Hà Nội" type="address"/>
-                        </div>
-                </div>
+            <div className={styles.list_info}>
+                <div className={styles.title}>Thông tin cá nhân</div>
+                <Info name="Tên pháp lý" content="Nguyễn Tiến Trình" type="name"/>
+                <Info name="Giới tính" content="Nam" type="gender"/>
+                <Info name="Ngày sinh" content="14 tháng 01 năm 2000" type="date"/>
+                <Info name="Địa chỉ email" content="Nguyentrinhs2000@gmail.com" type="email"/>
+                <Info name="Số điện thoại" content="0934655724" type="phone"/>
+                <Info name="Địa chỉ liên hệ" content="Mễ Trì Thượng, Nam Từ Liêm, Hà Nội" type="address"/>
             </div>
         </div>
     );

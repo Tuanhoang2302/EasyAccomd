@@ -9,7 +9,7 @@ class Login extends React.Component {
   }
   render(){
     return(
-        <div>
+        <div className= "background-signup">
             <div className="login">
                 <div className="back-right">
                     <button type="button" className="btn-main-directional" style={{marginLeft: '105px', marginTop: '300px'}}>

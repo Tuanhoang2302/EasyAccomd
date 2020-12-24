@@ -18,7 +18,7 @@ class Registration extends React.Component {
     }
     render(){
         return(
-            <div>
+            <div className="background-signup">
                 <div className="registration">
                     <div className="back-left">
                         <form class="sign-up" onSubmit={this.handleSubmit}>
@@ -27,9 +27,9 @@ class Registration extends React.Component {
                             <ObjSign name="Địa chỉ email" nameId="emailInput" helpId="emailHelp" type="email"></ObjSign>
                             <ObjSign name="Số điện thoại" nameId="phoneNumberInput" helpId="phoneNumberHelp" type="text"></ObjSign>
                             <ObjSign name="Địa chỉ" nameId="addressInput" helpId="addressHelp" type="text"></ObjSign>
-                            <div style={{marginLeft: '20px', marginBottom: '0.5rem'}}>
+                            <div style={{marginBottom: '0.5rem'}}>
                                 <label for="typeAccount" className="form-label">Loại tài khoản:</label>
-                                <select className="sign-form-control" id="typeAccountInput" style={{width: '96%'}}>
+                                <select className="sign-form-control" id="typeAccountInput">
                                     <option value="renter">Người thuê trọ</option>
                                     <option value="owner">Chủ nhà trọ</option>
                                 </select>
@@ -39,11 +39,11 @@ class Registration extends React.Component {
                             <button type="submit" class="btn-main-directional">Đăng ký</button>
                         </form>
                     </div>
-                    <div className="back-right">
+                    {/* <div className="back-right">
                         <button type="button" className="btn-main-directional" style={{marginLeft: '105px', marginTop: '300px'}}>
                             <NavLink className="link-list" to="/login">Đăng nhập</NavLink>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );

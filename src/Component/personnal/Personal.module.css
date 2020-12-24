@@ -1,10 +1,11 @@
 .main_info {
   margin-left: auto;
   margin-right: auto;
-  width: auto;
-  padding-right: 24px;
-  padding-left: 24px;
-  height: 768px;
+  width: 100%;
+  padding: 40px 0px 40px 0px;
+  height: 736px;
+  background-image: url(../../img/big-home.jpg);
+  background-size: cover;
 }
 .title {
   margin: 0px;
@@ -19,6 +20,12 @@
   padding-right: 8px;
   min-height: 1px;
   position: relative;
+  padding: 20px;
+  background-color: white;
+  margin: auto;
+  opacity: 90%;
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px rgba(194, 247, 238, 0.76);
 }
 .info {
   border-bottom: 1px solid #ebebeb;
@@ -52,7 +59,7 @@
 .btn_edit {
   text-decoration: var(--font-link-text-decoration, none);
   color: #008489;
-  font: inherit;
+  font-family: inherit;
   background: transparent;
   border: 0px;
   cursor: pointer;
@@ -65,23 +72,24 @@
   border-bottom: #008489 solid 1px;
 }
 .btn_save {
-  border-radius: var(--border-button-border-radius, 4px);
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  border-radius: var(--border-button-border-radius, 10px);
   font-size: var(--font-button-font-size, 16px);
   line-height: var(--font-button-line-height, 24px);
   letter-spacing: var(--font-button-letter-spacing, normal);
   text-transform: var(--font-button-text-transform, undefined);
-  padding-top: var(--spacing-button-vertical, 10px);
-  padding-bottom: var(--spacing-button-vertical, 10px);
-  font-weight: var(--font-bold-font-weight, 800);
+  /* padding-top: var(--spacing-button-vertical, 5px);
+  padding-bottom: var(--spacing-button-vertical, 5px); */
+  font-weight: var(--font-bold-font-weight, 500);
   border-width: var(--border-button-border-width, 2px);
-  padding-left: var(--spacing-button-horizontal, 22px);
-  padding-right: var(--spacing-button-horizontal, 22px);
+  padding-left: var(--spacing-button-horizontal, 10px);
+  padding-right: var(--spacing-button-horizontal, 10px);
   box-shadow: var(--shadow-button-level0-box-shadow, none);
   background: var(--color-buttons-default-color, #008489);
   border-color: var(--color-buttons-default-border, transparent);
   color: var(--color-buttons-default-text, #ffffff);
   display: inline-block;
-  margin: 0px;
+  margin: 0px 0px 5px 20px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -89,7 +97,7 @@
   cursor: pointer;
 }
 .save {
-  font-size: var(--font-button-font-size, 16px);
+  font-size: var(--font-button-font-size, 14px);
   line-height: var(--font-button-line-height, 24px);
   letter-spacing: var(--font-button-letter-spacing, normal);
   text-transform: var(--font-button-text-transform, undefined);
@@ -97,16 +105,21 @@
   padding-bottom: var(--font-button-padding-bottom, undefined);
 }
 @media (min-width: 1128px) {
-  .main_info {
+  .back_info {
     max-width: 1080px;
   }
 }
 @media (min-width: 744px) {
-  .main_info {
+  .back_info {
     max-width: 696px;
   }
   .list_info {
-    width: 80%;
-    float: left;
+    width: 60%;
+  }
+}
+@media all and (min-width: 270px) and (max-width: 760px) {
+  .title {
+    font-size: 24px;
+    font-weight: 600;
   }
 }
