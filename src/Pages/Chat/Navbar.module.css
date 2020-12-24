@@ -1,0 +1,177 @@
+.navbar_frame{
+    box-shadow: 0 0 10px hsl(300, 2%, 80%);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    transition: height 0.5s;
+    height: 90px;
+}
+
+
+.image_section{
+    /* background-color: green; */
+}
+
+.logo{
+    height: 40px;
+    vertical-align: middle;
+    margin-top: 5px;
+    /* background-color: red; */
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+/* --------------------------------------------- */
+
+.search_bar{
+    /* background-color:red; */
+    border: 1px solid;
+    border-color: #cfcfcf;
+    border-radius: 50px;
+    display: flex;
+    padding: 8px;
+
+}
+
+.search_bar:hover{
+    box-shadow: 0 0 10px hsl(300, 2%, 80%);
+}
+
+.clicked_search_bar{
+    display: flex;
+    border-radius: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-top: 20px;
+    border: solid 1px grey;
+    border-color: #cfcfcf;
+}
+
+.clicked_search_option_section{
+    padding-right: 70px;
+    padding-left: 20px;
+    border-left: solid 1px grey;
+    border-color: #cfcfcf;
+}
+
+.clicked_search_option_section:hover{
+    background-color: #f5f5f5;
+}
+.hover:hover{
+    background-color: #f5f5f5;
+}
+
+
+.option{
+    /* background-color:green; */
+    padding-left: 15px;
+    padding-right: 15px;
+    align-items: center;
+}
+
+span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.input{
+    border: none;
+}
+
+.input:focus{
+    outline: none;
+}
+  
+.option.lan_can{
+    border-right: solid #cfcfcf 1px;
+}
+
+.option.them_ngay{
+    border-right: solid #cfcfcf 1px;
+}
+
+.search_circle_button{
+    border-radius: 50%;
+    background-color: #f32c72;
+    margin-left: 5px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+.search_icon{
+    color:white;
+    width: 20px;
+    height: 20px;
+}
+
+/* --------------------------------------------- */
+
+.account_logo{
+    /* background-color: green; */
+    display: flex
+}
+
+.become_owner{
+    /* background-color: #f32c72; */
+    border-radius: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    height: 30px;
+}
+
+.section{
+    margin-top: 10px;
+}
+
+.section:hover{
+    background-color: #e5e5e5 ;
+}
+
+.language_section{
+    /* background-color: orange; */
+    border-radius: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: 10px;
+    height: 30px;
+}
+
+.language_icon{
+    width: 20px;
+    height: 20px;
+}
+
+.setting_section{
+    /* background-color: aqua; */
+    border-radius: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+}
+
+.setting_icon{
+    width: 20px;
+    height: 20px;
+}
+
+.headerMobile{
+    width: 100%;
+    height: 40px;
+    border-radius: 50px;
+    margin-left: 40px;
+    margin-right: 40px;
+    box-shadow: 0 0 10px hsl(300, 2%, 80%);
+}

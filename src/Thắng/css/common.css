@@ -1,0 +1,93 @@
+a {
+    text-decoration: none;
+}
+
+button {
+    background-color: #008489;
+    color: #ffffff;
+    border: 0;
+    border-radius: 4px;
+    font-weight: 200;
+    cursor: pointer;
+    margin: 10px;
+    padding: 15px;
+    height: 45px;
+}
+
+button:disabled {
+    opacity: 0.4;
+}
+
+.button--second {
+    background-color: #ffffff;
+    color: #008489;
+}
+
+input[type="text"], input[type="number"] {
+    max-width: 350px;
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding-left: 10px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #008489;
+}
+
+input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0px;
+}
+
+li {
+    list-style: none;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.input--icon {
+    display: flex;
+    max-width: 350px;
+    width: 100%;
+    border: 1px solid #ebebeb;
+    height: 40px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+    .input--icon .icon {
+        margin-left: 10px;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+
+    .input--icon input {
+        border: 0;
+        width: calc(100% - 35px);
+        max-width: calc(100% - 35px);
+        height: 38px;
+    }
+
+        .input--icon input:focus {
+            border: 0;
+        }
+
+    .input--icon:focus-within {
+        border: 1px solid #008489;
+    }
+    
+
+.hidden {
+    display: none !important;
+}
