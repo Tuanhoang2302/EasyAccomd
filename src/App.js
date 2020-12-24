@@ -1,10 +1,9 @@
 import React from 'react';
-import {Header} from './Component/home/Header';
+import {FirtHeader, Header} from './Component/home/Header';
 import Main from './Component/home/Main';
 import Footer from './Component/home/Footer';
 import Login from './Component/login/Login'
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
-import HeaderRegister from './Component/registration/HeaderRegister';
 import {Registration} from './Component/registration/Registration';
 import Personal from './Component/personnal/Personal';
 
@@ -16,9 +15,9 @@ function App() {
           <div id="header">
             <Switch>
               <Route exact path="/" component={Header} />
-              <Route path="/registration" component={HeaderRegister} />
-              <Route path="/login" component={HeaderRegister} />
-              <Route path="/personal" component={HeaderRegister} />
+              <Route path="/registration" component={FirtHeader} />
+              <Route path="/login" component={FirtHeader} />
+              <Route path="/personal" component={FirtHeader} />
             </Switch>
           </div>
           <div id="container">

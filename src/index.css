@@ -18,10 +18,14 @@ body {
   float: right;
   position: relative;
   flex: auto;
+  margin-right: 300px;
 }
 .owner {
   display: flex;
   flex: auto;
+}
+.owner:hover {
+  border-bottom: #3e79ff solid 1px;
 }
 .link-owner {
   background: transparent;
@@ -38,7 +42,7 @@ body {
   text-decoration: none;
   position: relative;
   z-index: 1;
-  color: #ffffff;
+  color: #3e79ff;
 }
 .link-owner-text {
   align-items: center;
@@ -51,8 +55,7 @@ body {
   display: flex;
   position: relative;
   flex: auto;
-  color: #ffffff;
-  margin-right: 10px;
+  color: black;
 }
 .btn-main-directional {
   background-color: white;
@@ -60,6 +63,7 @@ body {
   width: 90px;
   height: 40px;
   border-radius: 20px;
+  cursor: pointer;
 }
 .form-select {
   width: 60%;
@@ -69,7 +73,7 @@ body {
   border-radius: 0.2rem;
 }
 .search-form {
-  padding-top: 16px;
+  padding-top: 300px;
   margin: 0 auto;
   max-width: 850px;
   position: relative;
@@ -142,19 +146,19 @@ body {
 }
 #header {
   margin: 0;
-  height: 25%;
+  height: fit-content;
   width: 100%;
   background-color: #f7f7f7;
   border-bottom: #dddddd solid 1px;
 }
 .homeHeader {
   width: 100%;
-  height: 100%;
-  background-image: url(./img/home-big.png);
+  height: 786px;
+  background-image: url(./img/big-home.jpg);
   background-size: cover;
   display: block;
   background-position: 50% 50%;
-  min-height: 500px;
+  min-height: 768px;
   background-repeat: no-repeat;
 }
 .logo {
@@ -166,17 +170,21 @@ body {
   background-image: url(./img/LoGo.png);
   background-size: cover;
   float: left;
-  margin-top: 15px;
+  margin-top: 10px;
   flex: auto;
-  margin-left: 10px;
+  margin-left: 300px;
 }
 .firtHeader {
-  height: 80px;
-  max-width: 850px;
+  height: 68px;
+  width: 100%;
   z-index: 2;
-  position: relative;
-  color: #ffffff;
+  position: fixed;
+  color: #3e79ff;
   margin: auto;
+  border-bottom: #dddddd solid 1px;
+  background-color: #f7f7f7;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1);
+  opacity: 90%;
 }
 .btn-list {
   height: 24px;
@@ -211,6 +219,7 @@ body {
 #container {
   width: 100%;
   height: 50%;
+  margin: auto;
 }
 .content {
   display: flex;
@@ -218,6 +227,8 @@ body {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding: 24px;
+  width: fit-content;
+  margin: auto;
 }
 .content-uni {
   display: flex;
@@ -227,15 +238,15 @@ body {
   scroll-padding: 24px;
 }
 .content-main {
-  width: 100%;
-  margin: 32px 32px;
+  width: 90%;
+  margin: 48px auto auto auto;
 }
 .text-content-main {
   margin-left: 10px;
   white-space: pre-line;
   color: var(--tl-color, #222222);
   font-size: var(--tl-font-size, 24px);
-  font-weight: var(--tl-font-weight, 800);
+  font-weight: var(--tl-font-weight, 700);
   letter-spacing: var(--tl-letter-spacing, normalem);
   line-height: var(--tl-line-height, 36px);
 }
@@ -257,8 +268,8 @@ body {
   position: relative;
   background-color: rgb(221, 221, 221);
   border-radius: 12px;
-  flex: 0 0 72px;
-  height: 72px;
+  flex: 0 0 50px;
+  height: 50px;
   margin-right: 12px;
   background-image: url(./img/uni.png);
   background-size: cover;
@@ -273,10 +284,10 @@ body {
   padding-bottom: 2px;
 }
 .post {
+  width: fit-content;
   margin-top: 12px;
   margin-right: 6px;
   margin-bottom: 12px;
-  width: 30%;
   margin-left: 24px;
 }
 .link-post {
@@ -291,8 +302,8 @@ body {
   position: relative;
   background-color: rgb(221, 221, 221);
   border-radius: 12px;
-  height: 330px;
-  width: 330px;
+  height: 360px;
+  width: 360px;
   margin-right: 12px;
   background-image: url(./img/post.png);
   background-size: cover;
@@ -308,6 +319,7 @@ body {
   text-align: center;
 }
 #footer {
+  margin-top: 50px;
   width: 100%;
   height: 25%;
   min-height: 320px;
@@ -340,7 +352,6 @@ body {
   margin-top: 12px;
 }
 .control-directional .content-list {
-  width: 90%;
   margin: 12px auto 0px auto;
   padding-bottom: 10px;
 }
@@ -370,14 +381,14 @@ body {
 }
 .control-directional {
   display: block;
-  position: relative;
+  position: absolute;
   height: fit-content;
-  width: 120px;
+  width: max-content;
   background-color: white;
   border-radius: 10px;
   border: gray solid 1px;
   margin-top: 42px;
-  margin-left: -120px;
+  right: 0px;
   z-index: 2;
 }
 a {
@@ -392,7 +403,7 @@ a {
   background-size: auto;
   background-position: 50% 50%;
   border: gray solid 1px;
-  margin: 40px auto;
+  margin: 100px auto;
   display: flex;
 }
 .back-left {
@@ -470,6 +481,12 @@ label {
 }
 /* Dành cho điện thoại */
 @media all and (min-width: 270px) and (max-width: 760px) {
+  .directional {
+    margin-right: 0px;
+  }
+  .logo {
+    margin-left: 10px;
+  }
   .content-footer {
     border-bottom: 1px solid #dddddd;
   }
@@ -530,14 +547,11 @@ label {
   }
   .img-uni {
     border-radius: 6px;
-    flex: 0 0 36px;
-    height: 36px;
+    flex: 0 0 24px;
+    height: 24px;
   }
   #footer {
     min-height: 500px;
-  }
-  .control-directional {
-    height: 60px;
   }
   .registration {
     width: 90%;
@@ -591,6 +605,9 @@ label {
   .sign-in .sign-form-control {
     font-size: 1rem;
   }
+  .header-signInUp {
+    display: none;
+  }
 }
 
 /* Dành cho máy tính bảng chiều dọc */
@@ -608,8 +625,8 @@ label {
   }
   .img-uni {
     border-radius: 10px;
-    flex: 0 0 48px;
-    height: 48px;
+    flex: 0 0 36px;
+    height: 36px;
   }
   .text-content-main {
     font-size: 16px;
@@ -635,5 +652,15 @@ label {
   .link-list {
     font-size: 12px;
     line-height: 14px;
+  }
+}
+@media all and (max-width: 1024px) {
+  .post {
+    margin-left: 0px;
+  }
+  .img-post {
+    width: 270px;
+    height: 270px;
+    margin-left: 16px;
   }
 }
