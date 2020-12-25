@@ -68,7 +68,7 @@ class Main extends React.Component{
                     </div>
                 </div>
                 <div className="content-main" style={{width: '100%',backgroundColor: 'black'}}>
-                    <section style={{padding: '50px'}}>
+                    <section>
                         <span className="text-content-main" style={{marginLeft: '0px', display: 'block', color: 'rgb(255, 255, 255)'}}>Trải nghiệm không gian trực tuyến</span>
                         <small><span style={{color: 'rgb(255, 255, 255)'}}>Các hình ảnh mô phỏng phòng trọ cùng với những trang bị nội thất.</span></small>
                     </section>

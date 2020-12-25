@@ -338,7 +338,7 @@ body {
   border-radius: 12px;
   height: 280px;
   width: 280px;
-  margin-right: 12px;
+  /* margin-right: 12px; */
   background-image: url(./img/post.png);
   background-size: cover;
 }
@@ -535,6 +535,9 @@ label {
 .sign-up div {
   margin-left: 20px;
 }
+.content-main section {
+  padding: 50px;
+}
 /* Dành cho điện thoại */
 @media all and (min-width: 270px) and (max-width: 760px) {
   .directional {
@@ -574,22 +577,21 @@ label {
     background-image: url(./img/home.png);
   }
   .post {
-    margin-left: 3px;
-    margin-top: 1px;
-    margin-bottom: 30px;
-    margin-right: 1px;
+    width: 40%;
   }
   .img-post {
-    width: 300px;
-    height: 300px;
-    margin-left: 15px;
+    width: 160px;
+    height: 160px;
   }
   .info-post {
     flex: 0 1 100%;
     padding-bottom: 0px;
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
     line-height: normal;
+  }
+  .content-main {
+    width: calc(100% - 20px);
   }
   .text-content-main {
     font-size: 18px;
@@ -598,7 +600,7 @@ label {
     width: 40%;
   }
   .link-uni {
-    font-size: 10px;
+    font-size: 8px;
     line-height: normal;
   }
   .img-uni {
@@ -681,6 +683,27 @@ label {
   .header-signInUp {
     display: none;
   }
+  .content-img {
+    height: 260px;
+    grid-gap: 12px;
+    gap: 12px;
+    padding: 0px 20px;
+    padding-bottom: 40px;
+  }
+  .content-main section {
+    padding: 20px;
+  }
+  .text-discovery {
+    margin-top: -15px;
+    padding: 8px;
+    padding-top: 2px;
+    padding-left: 4px;
+    border-radius: 0px 0px 10px 10px;
+    font-size: 5px;
+  }
+  .img-discovery {
+    border-radius: 10px;
+  }
 }
 
 /* Dành cho máy tính bảng chiều dọc */
@@ -689,11 +712,11 @@ label {
     margin-top: 6px;
     margin-right: 6px;
     margin-bottom: 6px;
-    width: 30%;
+    width: 22%;
     margin-left: 12px;
   }
   .link-uni {
-    font-size: 10px;
+    font-size: 8px;
     line-height: normal;
   }
   .img-uni {
@@ -701,25 +724,24 @@ label {
     flex: 0 0 36px;
     height: 36px;
   }
+  .content-main {
+    width: calc(100% - 100px);
+  }
   .text-content-main {
     font-size: 16px;
   }
   .post {
-    margin-left: 6px;
-    margin-top: 4px;
-    margin-bottom: 2px;
-    margin-right: 2px;
+    width: 24%;
   }
   .img-post {
-    width: 210px;
-    height: 210px;
-    margin-left: 30px;
+    width: 140px;
+    height: 140px;
   }
   .info-post {
     flex: 0 1 100%;
     padding-bottom: 0px;
     text-align: center;
-    font-size: 10px;
+    font-size: 8px;
     line-height: normal;
   }
   .content-list {
@@ -732,12 +754,31 @@ label {
   .directional {
     margin-right: 20px;
   }
+  .text-discovery {
+    font-size: 9px;
+    margin-top: -34px;
+  }
 }
-@media all and (min-width: 1024px) {
+@media all and (min-width: 1020px) and (max-width: 1125px) {
   .logo {
     margin-left: 100px;
   }
   .directional {
     margin-right: 100px;
+  }
+  .link-uni {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .uni {
+    width: 20%;
+  }
+  .img-post {
+    width: 195px;
+    height: 195px;
+  }
+  .link-post {
+    font-size: 12px;
+    line-height: 14px;
   }
 }
