@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import Table from './Table'
 import {AppContext} from '../context/AppContext'
 import {ManageContext} from '../context/ManageContext'
+import common from '../css/common.module.css'
+import manage from '../css/pages/manage.module.css'
 
 export default function(props) {
     const tabs = {
@@ -63,25 +65,28 @@ export default function(props) {
             appContext.setListAccom([...appContext.listAccom.slice(0, currentRow), ...appContext.listAccom.slice(currentRow + 1)]);
     }
     return (
-        <div className='AdminTopTab'>
-            <div className="option--tab">
-                {
-                    listTab.map((tab) => <div className="item--tab" onClick={()=>setCurrentTab(tab)}><button className="button--second">{tab}</button></div>)
-                }
-            </div>
-            <div className={"content__title"}>
-                <div className="text">{currentTab}</div>
-                <div className="input--icon search">
-                    <div className="icon icon--search"></div>
+        <div className={manage.AdminTopTab}>
+            
+            <div className={manage.content__header}>
+                <div className={manage.contentOptionTab}>
+                    {
+                        listTab.map((tab) => 
+                            <div className={`${manage.itemTab} ${currentTab===tab? manage.tabOnSelect:null}`} onClick={()=>setCurrentTab(tab)}>
+                                <div>{tab}</div>
+                            </div>)
+                    }
+                </div>
+                <div className={`${common.inputIcon} ${manage.search}`}>
+                    <div className={`${common.icon} ${manage.iconSearch}`}></div>
                     <input type="text" placeholder="Tìm kiếm"/>
                 </div>
             </div>
-            <div className="content__table">
+            <div className={manage.content__data}>
                 <Table data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow}>
-                    <div className="dialog">
-                        <Link to="/createAccom/details"><div className="dialog__item">Vô hiệu hóa</div></Link>
-                        <div className="dialog__item" onClick={()=>btnDeleteOnClick()}>Xóa</div>
-                        <Link to="/"><div className="dialog__item">Chi tiết</div></Link>
+                    <div className={manage.dialog}>
+                        <Link to="/createAccom/details"><div className={manage.dialog__item}>Vô hiệu hóa</div></Link>
+                        <div className={manage.dialog__item} onClick={()=>btnDeleteOnClick()}>Xóa</div>
+                        <Link to="/"><div className={manage.dialog__item}>Chi tiết</div></Link>
                     </div>
                 </Table>
             </div>

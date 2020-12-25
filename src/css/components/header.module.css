@@ -24,22 +24,15 @@
         font-size: 20px;
     }
 
-    .header .header__menu {
+    .header .header__menu__item{
         float: left;
         display: flex;
-        height: 100%;
-        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        height: calc(100% - 5px);
+        margin-left: 10px;
+        margin-right: 10px;
     }
-
-        .header .header__menu__item{
-            float: left;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: calc(100% - 5px);
-            margin-left: 10px;
-            margin-right: 10px;
-        }
 
         .header .header__menu__item:hover {
             border-bottom: 5px solid #008489;
@@ -53,7 +46,10 @@
     .header .header__btnCreateAccom {
         float: right;
         right: 50px;
+        height: 100%;
         background-color: #ffffff;
+        display: flex;
+        align-items: center;
     }
 
     .header .header__account {

@@ -19,7 +19,7 @@ button:disabled {
     opacity: 0.4;
 }
 
-.button--second {
+.buttonSecond {
     background-color: #ffffff;
     color: #008489;
 }
@@ -55,7 +55,7 @@ li {
     margin-bottom: 10px;
 }
 
-.input--icon {
+.inputIcon {
     display: flex;
     max-width: 350px;
     width: 100%;
@@ -66,25 +66,25 @@ li {
     align-items: center;
 }
 
-    .input--icon .icon {
+    .inputIcon .icon {
         margin-left: 10px;
         width: 25px;
         height: 25px;
         cursor: pointer;
     }
 
-    .input--icon input {
+    .inputIcon input {
         border: 0;
         width: calc(100% - 35px);
         max-width: calc(100% - 35px);
         height: 38px;
     }
 
-        .input--icon input:focus {
+        .inputIcon input:focus {
             border: 0;
         }
 
-    .input--icon:focus-within {
+    .inputIcon:focus-within {
         border: 1px solid #008489;
     }
     

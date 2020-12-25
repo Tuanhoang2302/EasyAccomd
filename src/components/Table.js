@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import common from '../css/common.module.css'
+import manage from '../css/pages/manage.module.css'
 
 export default function(props) {
     const [isOptionOnClick, setIsOptionOnClick] = useState(null)
@@ -16,29 +18,29 @@ export default function(props) {
         }
     }
     return (
-        <div className="table">
+        <div className={manage.table}>
             <table>
                 <thead>
-                    <tr>
-                        {props.content.map((item, index) => <th key={"thead cell " + index}>{item.title}</th>)}
-                        <th className="option"></th>
+                    <tr className={manage.trHead}>
+                        {props.content.map((item, index) => <th key={"thead cell " + index}><div>{item.title}</div></th>)}
+                        <th className={manage.option}></th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.data.map((accom, index) => 
-                        <tr>
-                            {props.content.map((item) => <td>{accom[item.key]}</td>)}
-                            <td className="option">
+                        <tr className={`${manage.trBody} ${props.currentRow===index? manage.trOnSelect:null}`}>
+                            {props.content.map((item) => <td><div>{accom[item.key]}</div></td>)}
+                            <td className={manage.option}>
                                 <div>
-                                <ClickAwayListener onClickAway={()=>clickAway(index)}>
-                                    <div>
-                                    <button className="button--second" onClick={()=>click(index)} >...</button>
-                                    {
-                                        props.currentRow === index &&
-                                            props.children
-                                    }
-                                    </div>
-                                </ClickAwayListener>
+                                    <ClickAwayListener onClickAway={()=>clickAway(index)}>
+                                        <div>
+                                            <button className={common.buttonSecond} onClick={()=>click(index)} >...</button>
+                                            {
+                                                props.currentRow === index &&
+                                                    props.children
+                                            }
+                                        </div>
+                                    </ClickAwayListener>
                                 </div>
                             </td>
                         </tr>

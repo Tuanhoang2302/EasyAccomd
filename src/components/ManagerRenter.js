@@ -4,6 +4,8 @@ import Table from './Table'
 import Header from './Header'
 import {AppContext} from '../context/AppContext'
 import {ManageContext} from '../context/ManageContext'
+import common from '../css/common.module.css'
+import manage from '../css/pages/manage.module.css'
 
 export default function(props) {
     const [currentRow, setCurrentRow] = useState(null);
@@ -12,7 +14,7 @@ export default function(props) {
     var content = [ //key:title
         {
             key: 'image',
-            title: 'Ảnh'
+            title: 'Ảnh aaaa aaaaaaaa aaaaaaaaaaaa aaaaaaaa aaaa'
         },
         {
             key: 'title',
@@ -54,22 +56,21 @@ export default function(props) {
             appContext.setListAccom([...appContext.listAccom.slice(0, currentRow), ...appContext.listAccom.slice(currentRow + 1)]);
     }
     return (
-        <div className='ManagerRenter'>
+        <div className={manage.ManagerRenter}>
             <Header />
-            <div className="content">
-                renter!
-                <div className={"content__title"}>
-                    <div className="text">Nhà trọ đang theo dõi:</div>
-                    <div className="input--icon search">
-                        <div className="icon icon--search"></div>
+            <div className={manage.content}>
+                <div className={manage.content__header}>
+                    <div className={manage.text}>Nhà trọ đang theo dõi:</div>
+                    <div className={`${common.inputIcon} ${manage.search}`}>
+                        <div className={`${common.icon} ${manage.iconSearch}`}></div>
                         <input type="text" placeholder="Tìm kiếm"/>
                     </div>
                 </div>
-                <div className="content__table">
+                <div className={manage.content__data}>
                     <Table data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow}>
-                        <div className="dialog">
-                            <div className="dialog__item" onClick={()=>btnUnfollowOnClick()}>Bỏ theo dõi</div>
-                            <Link to="/"><div className="dialog__item">Chi tiết</div></Link>
+                        <div className={manage.dialog}>
+                            <div className={manage.dialog__item} onClick={()=>btnUnfollowOnClick()}>Bỏ theo dõi</div>
+                            <Link to="/"><div className={manage.dialog__item}>Chi tiết</div></Link>
                         </div>
                     </Table>
                 </div>

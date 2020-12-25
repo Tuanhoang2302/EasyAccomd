@@ -1,8 +1,9 @@
 import React, {useContext, useState} from 'react'
-import { Link } from "react-router-dom"
 import Table from './Table'
 import {AppContext} from '../context/AppContext'
 import {ManageContext} from '../context/ManageContext'
+import common from '../css/common.module.css'
+import manage from '../css/pages/manage.module.css'
 
 export default function(props) {
     const [currentRow, setCurrentRow] = useState(null);
@@ -53,19 +54,19 @@ export default function(props) {
             appContext.setListAccom([...appContext.listAccom.slice(0, currentRow), ...appContext.listAccom.slice(currentRow + 1)]);
     }
     return (
-        <div className='AdminRequestTab'>
-            <div className={"content__title"}>
-                <div className="text">Yêu cầu:</div>
-                <div className="input--icon search">
-                    <div className="icon icon--search"></div>
+        <div className={manage.AdminRequestTab}>
+            <div className={manage.content__header}>
+                <div className={manage.text}>Yêu cầu:</div>
+                <div className={`${common.inputIcon} ${manage.search}`}>
+                    <div className={`${common.icon} ${manage.iconSearch}`}></div>
                     <input type="text" placeholder="Tìm kiếm"/>
                 </div>
             </div>
-            <div className="content__table">
+            <div className={manage.content__data}>
                 <Table data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow}>
-                    <div className="dialog">
-                        <button onClick={()=>btnDeleteOnClick()}>Chấp nhận</button>
-                        <button className="button--second" onClick={()=>btnDeleteOnClick()}>Hủy</button>
+                    <div className={manage.dialogRequest}>
+                        <div className={`${manage.dialogRequest__item} ${manage.btnAccept}`} onClick={()=>btnDeleteOnClick()}>Chấp nhận</div>
+                        <div className={manage.dialogRequest__item} onClick={()=>btnDeleteOnClick()}>Hủy</div>
                     </div>
                 </Table>
             </div>

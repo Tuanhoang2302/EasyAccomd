@@ -7,14 +7,13 @@ import ContentRenter from '../components/ManagerRenter'
 import { AppContext } from '../context/AppContext'
 import ManageProvider from '../context/ManageContext'
 
-import '../css/common.css'
-import '../css/pages/manage.css'
+import manage from '../css/pages/manage.module.css'
 
 export default function(props) {
     const {user, typeOfUsers} = useContext(AppContext);
     return (
         <ManageProvider>
-            <div className="Manage">
+            <div className={manage.Manage}>
                 {user.type === typeOfUsers.RENTER && <ContentRenter />}
                 {user.type === typeOfUsers.OWNER && <ContentOwner />}
                 {user.type === typeOfUsers.ADMIN && <ContentAdmin />}

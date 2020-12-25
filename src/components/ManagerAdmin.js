@@ -5,6 +5,7 @@ import AdminPostTab from './AdminPostTab'
 import AdminRequestTab from './AdminRequestTab'
 import AdminStatisticalTab from './AdminStatisticalTab'
 import AdminTopTab from './AdminTopTab'
+import manage from '../css/pages/manage.module.css'
 
 export default function(props) {
     const tabs = {
@@ -16,9 +17,9 @@ export default function(props) {
     };
     const [currentTab, setCurrentTab] = useState(tabs.POST);
     return (
-        <div className="ManagerAdmin">
+        <div className={manage.ManagerAdmin}>
             <Header currentTab={currentTab} tabs={tabs} onClick={(tab) => setCurrentTab(tab)}/>
-            <div className="content">
+            <div className={manage.content}>
                 {
                     currentTab===tabs.STATISTICAL? <AdminStatisticalTab/>:
                     currentTab===tabs.POST? <AdminPostTab/>:
