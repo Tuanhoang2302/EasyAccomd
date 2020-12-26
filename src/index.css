@@ -216,6 +216,9 @@ body {
   border: white;
   border-radius: 32px;
 }
+.wrong {
+  color: red;
+}
 #container {
   width: 100%;
   height: 50%;
@@ -449,6 +452,9 @@ a {
   display: flex;
   position: relative;
   box-shadow: 10px 10px 10px rgba(144, 245, 245, 0.5);
+}
+.registration {
+  height: 720px;
 }
 .back-left {
   background-color: white;
