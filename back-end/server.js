@@ -10,19 +10,27 @@ const Models = require('./models/index')
 
 require('dotenv').config()
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
-app.use('/user',require('./routers/auth/register'))
-app.use('/user',require('./routers/auth/login'))
+app.use('/auth',require('./routers/auth/register'))
+app.use('/auth',require('./routers/auth/login'))
 app.use("/find", require('./routers/getQuery/User'))
 app.use("/user", require('./routers/getQuery/Request After Login/registerAccomdation'))
 app.use("/user", require('./routers/getQuery/Request After Login/reservation'))
 app.use("/", require('./routers/getQuery/Chat/Chat'))
 app.use("/comment", require('./routers/getQuery/Comment'))
+app.use("/favorite", require('./routers/getQuery/Favorite'))
+app.use("/accomodation", require('./routers/getQuery/Accomdation'))
+app.use("/notification", require('./routers/getQuery/Notification'))
+app.use("/fake", require('./routers/Fake Data/Accomodation'))
+app.use("/usermanage", require('./routers/getQuery/Owner'))
+app.use("/rentermanage", require('./routers/getQuery/Renter'))
 // app.listen(port, () => {
 //     console.log(`Example app listening at ${port}`);
 // })
-
+const test = require('./routers/Fake Data/Constant Data/image')
+console.log(test[0]);
+var userOnline ={}
 const server = http.createServer(app)
 const io = socketIo(server, {
   cors: {
@@ -32,12 +40,12 @@ const io = socketIo(server, {
   }
 });
 io.on("connection", (socket) => {
+  
   socket.on("join room", (roomId) => {
     socket.join(roomId)
   })
   //socket.emit("send message", socket.id)
   socket.on("client send message", (data) => {
-    console.log(data);
     const message = new Models.Message({
       roomChatId:data.roomId,
       senderId: data.senderId,
@@ -46,10 +54,32 @@ io.on("connection", (socket) => {
       createdAt: Date.now(),
     })
     message.save().then(() => {
-      io.sockets.to(data.roomId).emit("server send message", 
-    {message: data.message, senderId: data.senderId})
+      Models.RoomChat.where({
+        _id: data.roomId
+      }).update({
+        lastMessage: data.message
+      }).then((upd) => {
+        io.sockets.to(data.roomId).emit("server send message", 
+        {message: data.message, senderId: data.senderId})
+      })
+      
     })
-    
+  })
+  socket.on("first time", (data) => {
+    userOnline[data.email] = socket.id
+  })
+  socket.on("client send notification", async (data) => {
+    console.log("Hello");
+    const noti = new Models.Notification({
+       senderId: data.account,
+       type: data.type,
+       createdAt: Date.now(),
+       receiverId: mongoose.Types.ObjectId("5fe34ab502c2b55488620374")
+    })
+    noti.save().then((notiData) => {
+      io.to(userOnline['admin@gmail.com'])
+      .emit("server send notification to admin", noti)
+    })
   })
 })
 

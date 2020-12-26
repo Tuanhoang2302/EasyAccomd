@@ -4,35 +4,55 @@ const Models = require('../../../models/index')
 var mongoose = require('mongoose');
 
 router.get('/newRoom', async (req, res) => {
-    var room = new Models.RoomChat({
-        accountId:[
-            mongoose.Types.ObjectId("5fd724b43121842dfc9e6474"),
-            mongoose.Types.ObjectId("5fd773725bcfb3240c9dfc42"),
-        ]
+    const accountId = req.query.accountId
+    const contactId = req.query.contactId
+    const accomId = req.query.accomId
+
+    var checkRoom = await Models.RoomChat.findOne({
+        accountId: accountId,
+        contactId: contactId,
+        accomId: accomId
     })
+    if(checkRoom != null){
+        res.send("room has existed")
+    } else {
+        var room = new Models.RoomChat({
+            accountId: accountId,
+            contactId: contactId,
+            accomId: accomId
+        })
+        await room.save()
+        res.send("success")
+    }
 
-    await room.save()
-    res.send("success")
+})
 
+router.get('/get/contactId', async (req, res) => {
+    const accomId = req.query.accomId
+    Models.Accomodation.findOne({
+        _id: accomId
+    }).then((accom) => {
+        res.send(accom.accountId)
+    })
 })
 
 router.get('/getRoomChat', async (req, res) => {
     var accountId = req.query.accountId 
+    //var accomId = req.query.accomId 
     Models.RoomChat.find({
-        accountId: { $in: [accountId]}
-    }).populate([ "fsdntId" ])
+        accountId: accountId
+    }).populate([ "us" ])
     .exec(async (err, data) => {
-        
+        //res.send(data)
         var contactIdList = []
-        function checkContactId(id) {
-            if(id != accountId){
-                return id
-            }
-          }
+        
         for(let i = 0; i < data.length; i++){
             var roomid = data[i]._id
-            var temp = data[i].accountId.filter(checkContactId)[0]
-            contactIdList.push({roomid:roomid, contactId: temp})
+            var accomId = data[i].accomId
+            var lastMessage = data[i].lastMessage
+            
+            contactIdList.push({roomid:roomid, contactId: data[i].contactId, 
+                accomId: accomId, lastMessage: lastMessage})
         }
         
         var contactList = []
@@ -40,9 +60,16 @@ router.get('/getRoomChat', async (req, res) => {
             
             var account = await Models.Account.findOne({
                 _id: contactIdList[i].contactId
+            }).populate({
+                path:"userId"
+            })
+            var accom = await Models.Accomodation.findOne({
+                _id:contactIdList[i].accomId
             })
             //res.send(account)
-            contactList.push({account: account, roomid: contactIdList[i].roomid})
+            contactList.push({account: account, 
+                roomid: contactIdList[i].roomid,
+                accom: accom, lastMessage: contactIdList[i].lastMessage})
         }
         res.send(contactList)
     })
@@ -50,7 +77,6 @@ router.get('/getRoomChat', async (req, res) => {
 
 router.get('/getPrevMessage', async(req, res) => {
     var roomId = req.query.roomId
-    console.log(roomId);
     await Models.Message.find({
         roomChatId: roomId
     }).then((data) => {

@@ -1,0 +1,25 @@
+const images = [
+    "\\assets\\image for faker\\4eb1fe32-4be9-40bb-a75f-017a091bc0a1.jpg",
+    "\\assets\\image for faker\\6a1008fe-30be-481c-9381-67aa5fb03e3e.jpg",
+    "\\assets\\image for faker\\9abc8baa-d18f-4e13-a510-9a7e1c3a5c50.jpg",
+    "\\assets\\image for faker\\11fa9092-dac0-4bff-bced-c09700d1413b.jpg",
+    "\\assets\\image for faker\\33c8324b-0a35-4e50-8c04-64a8750abc97.jpg",
+    "\\assets\\image for faker\\381f4f5a-e3a1-4333-a9b4-86f2a9b7f9c8.jpg",
+    "\\assets\\image for faker\\772b07bf-ee3e-4925-9b9c-d99ddf5bf8d3.jpg",
+    "\\assets\\image for faker\\43275aa1-235c-4fcd-a71e-6f97fe5a6e63.jpg",
+    "\\assets\\image for faker\\a967263b-1447-4820-bd60-408a41a1ec38.jpg",
+    "\\assets\\image for faker\\ad4316f6-b05a-471c-b3f0-d04c4818bc68.jpg",
+    "\\assets\\image for faker\\be8ec859-bc3e-49fb-9f8a-04ff0e8089d6.jpg",
+    "\\assets\\image for faker\\c8a9798e-089f-4366-a4fb-aa78bb355d25.jpg",
+    "\\assets\\image for faker\\cbab0473-14af-4abd-86e8-a7164e8bdc92.jpg",
+    "\\assets\\image for faker\\d57fa8cd-f232-47da-a1c9-a29ab67ca7a7.jpg",
+    "\\assets\\image for faker\\d94d2696-82b3-4fbf-9579-78c76d96259f.jpg",
+    "\\assets\\image for faker\\e588cd8d-1d30-4432-9921-3885256d9794.jpg",
+    "\\assets\\image for faker\\photos-1608702116345.jpg",
+    "\\assets\\image for faker\\photos-1608702296490.jpg",
+    "\\assets\\image for faker\\photos-1608774120448.jpg",
+    "\\assets\\image for faker\\photos-1608774120454.jpg",
+    "\\assets\\image for faker\\photos-1608774120459.jpg",
+]
+
+module.exports = images

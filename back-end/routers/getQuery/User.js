@@ -4,6 +4,7 @@ const verify = require('../auth/verifyToken')
 const Models = require('../../models/index');
 var fs = require('fs');
 const path = require("path");
+var mongoose = require('mongoose');
 
 function base64_encode(file) {
     // read binary data
@@ -35,13 +36,26 @@ router.post('/login', (req, res) => {
     })
 })
 
-router.get("/add/userInfo", async (req, res) => {
+router.post("/add/Account", async (req, res) => {
+    const userId = mongoose.Types.ObjectId();
+    var base64str = base64_encode('../../assets/images/male empty account.jpg');
+
+    const account = new Models.Account({
+        email: req.body.email,
+        password: req.body.password,
+        type: req.body.type,
+        userId: userId,
+        avatar: base64str
+    })
+    await account.save()
     const user = new Models.User({
-        fullname: "Hoàng Minh Tuấn",
+        _id: userId,
+        fullname: req.body.fullname,
+        address: req.body.address,
+        phoneNumber: req.body.phoneNumber
     })
-    user.save().then((data) => {
-        res.send(data)
-    })
+    await user.save()
+    res.send({account: account, user: user})
 })
 
 router.get("/modify/anAccount", async (req, res) => {
@@ -51,16 +65,13 @@ router.get("/modify/anAccount", async (req, res) => {
     Models.Account.where({
         _id: accountId
     }).update({
-        //avatar: base64str
-        userId: "5fda29be5c92424108f2e586"
+        avatar: base64str
+        //userId: "5fda29be5c92424108f2e586"
     }).then((data) => {
         res.send(data)
     })
     
 })
 
-router.get('/post', verify, (req, res) => {
-    res.send("helllo")
-})
 
 module.exports = router

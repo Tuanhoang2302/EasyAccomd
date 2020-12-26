@@ -1,0 +1,221 @@
+.Manage {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+    .Manage .content {
+        display: block;
+        width: calc(100% - 80px);
+        padding: 0px 40px 0px 40px;
+    }
+
+        .Manage .content .content__header {
+            width: 100%;
+            height: 65px;
+            overflow: hidden;
+        }
+
+            .Manage .content .content__header .contentOptionTab {
+                margin-top: 10px;
+                float: left;
+                height: 50px;
+                overflow: hidden;
+                display: flex;
+            }
+
+                .Manage .content .content__header .contentOptionTab .itemTab{
+                    width: auto;
+                    padding: 0 10px 0 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    cursor: pointer;
+                    font-weight: bold;
+                    opacity: 0.3;
+                    border: 1px solid #c9bebe;
+                }
+
+                    .Manage .content .content__header .contentOptionTab .itemTab.tabOnSelect{
+                        color: #008489;
+                        opacity: 1;
+                        border-bottom: 0;
+                    }
+
+            .Manage .content .content__header .text {
+                float: left;
+                font-weight: bold;
+                font-size: 25px;
+                margin-right: 20px;
+                min-width: 300px;
+                margin-top: 15px;
+                margin-left: 10px;
+                height: 100%;
+            }
+
+            .Manage .content .content__header .search {
+                float: right;
+                margin-top: 12px;
+            }
+
+        .Manage .content .content__option {
+            width: 100%;
+            height: 65px;
+            background-color: #008489;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+            .Manage .content .content__option .text {
+                float: left;
+                font-weight: bold;
+                font-size: 25px;
+                margin-right: 20px;
+                min-width: 300px;
+                margin-top: 15px;
+                margin-left: 10px;
+                height: 100%;
+            }
+
+            .Manage .content .content__option .button {
+                float: right;
+                height: 100%;
+            }
+
+        .Manage .content .content__data {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .Manage .content .content__data .table {
+                width: 100%;
+                overflow-x: auto;
+            }
+
+                .Manage .content .content__data .table table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    overflow-x: hidden;
+                    text-align: left;
+                }
+
+                    .Manage .content .content__data .table .trHead {
+                        height: 50px;  
+                        overflow: hidden;
+                        cursor: default;
+                    }
+
+                        .Manage .content .content__data .table .trHead th {
+                            padding: 0; 
+                            max-width: 200px;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                        }
+
+                            .Manage .content .content__data .table .trHead th>div {
+                                padding: 0; 
+                                padding-left: 10px;
+                                width: auto;
+                                height: 50px;
+                                display: flex;
+                                align-items: center;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                            }
+
+                    .Manage .content .content__data .table .trBody {
+                        height: 100px;
+                        max-height: 100px;   
+                        overflow: hidden;
+                        border-bottom: 1px solid #ebebeb;
+                        cursor: default;
+                    }
+
+                        .Manage .content .content__data .table .trBody td {
+                            padding: 0; 
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                        }
+
+                            .Manage .content .content__data .table .trBody td>div {
+                                padding: 0; 
+                                padding-left: 10px;
+                                height: 80px;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                display: flex;
+                                align-items: center;
+                            }
+
+                        .Manage .content .content__data .table .trBody .option {
+                            width: 30px;
+                        }
+
+                        .Manage .content .content__data .table .trBody .option button{
+                            padding: 10px;
+                            width: 30px;
+                            height: 30px;
+                        }
+
+                        .Manage .content .content__data .table .trBody .option .dialog {
+                            position: absolute;
+                            right: 40px;
+                            width: 120px;
+                            background-color: #ffffff;
+                            border: 1px solid #ebebeb;
+                        }
+
+                            .Manage .content .content__data .table .trBody .option .dialog .dialog__item{
+                                height: 35px;
+                                border-bottom: 1px solid #ebebeb;
+                                display: flex;
+                                align-items: center;
+                                text-overflow: ellipsis;
+                                padding-left: 10px;
+                                cursor: pointer;
+                            }
+
+                                .Manage .content .content__data .table .trBody .option .dialog .dialog__item:hover{
+                                    background-color: #f2f9f8;
+                                }
+                        
+                        .Manage .content .content__data .table .trBody .option .dialogRequest {
+                            display: block;
+                            width: 100px;
+                            position: absolute;
+                            right: 40px;
+                            background-color: #ffffff;
+                            border: 1px solid #ebebeb;
+                            border-radius: 4px;
+                        }
+                        
+                        .Manage .content .content__data .table .trBody .option .dialogRequest .dialogRequest__item{
+                            width: 100%;
+                            height: 40px;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: #ebebeb;
+                            border-radius: 4px;
+                        }
+
+                        .Manage .content .content__data .table .trBody .option .dialogRequest .btnAccept {
+                            background-color: #008489;
+                            color: #ffffff;
+                        }
+
+                    
+                
+.iconSearch {
+    background: url('../../image/icon-search.svg') no-repeat center;
+    background-size: contain;
+}
+
+.trOnSelect {
+    background-color: #f2f9f8;
+}

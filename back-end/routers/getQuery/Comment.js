@@ -3,7 +3,7 @@ const router = express.Router();
 const Models = require('../../models/index')
 var mongoose = require('mongoose');
 
-router.post("/add/Comment", async (req, res) => {
+router.post("/create", async (req, res) => {
     var accomId = req.body.accomId
     var accountId = req.body.accountId
     for(let i = 0; i < 1; i++) {
@@ -11,6 +11,7 @@ router.post("/add/Comment", async (req, res) => {
             accomId: mongoose.Types.ObjectId(accomId),
             accountId: mongoose.Types.ObjectId(accountId),
             comment: req.body.comment,
+            isChecked: false,
             createdAt: Date.now()
         })
         await comment.save()

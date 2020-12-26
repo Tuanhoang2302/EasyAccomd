@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const NotificationSchema = new Schema({
-    _id: mongoose.Types.ObjectId,
-    isAccepted: Boolean,
-    content: String,
-    accomId: {type:mongoose.Types.ObjectId, ref:"Accomdation"}
+    senderId:{type:mongoose.Types.ObjectId, ref:"Account"},
+    type: String,
+    createdAt: Date, 
+    receiverId: {type:mongoose.Types.ObjectId, ref:"Account"}
 })
 
 const Notification = mongoose.model("Notification", NotificationSchema)

@@ -2,9 +2,7 @@ const Joi = require('@hapi/joi')
 
 const registerValidation = (data) => {
     const validationSchema = Joi.object({
-        firstName: Joi.string().min(1).required(),
-        lastName: Joi.string().min(1).required(),
-        phone: Joi.string().regex(/^\d{3}-\d{3}-\d{4}$/).required(),
+        //phoneNumber: Joi.string().regex(/^\d{3}-\d{3}-\d{4}$/).required(),
         //birthday: Joi.string.min(9),
         email: Joi.string().min(6).required().email(),
         password: Joi.string().min(6).required(),

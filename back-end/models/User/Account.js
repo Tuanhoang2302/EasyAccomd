@@ -18,11 +18,7 @@ const AccountSchema = new Schema({
     avatar: String,
     type: String,
     userId: {type: Schema.Types.ObjectId, ref:"User"},
-    tokens: [{
-        token: {
-            type: String,
-        }
-    }]
+    tokens: [String]
 })
 
 const Account = mongoose.model('Account', AccountSchema)

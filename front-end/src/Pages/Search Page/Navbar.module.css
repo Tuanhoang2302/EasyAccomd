@@ -1,0 +1,222 @@
+.navbar_frame{
+    box-shadow: 0 0 10px hsl(300, 2%, 80%);
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    transition: height 0.5s;
+    height: 90px;
+}
+
+
+.image_section{
+    /* background-color: green; */
+}
+
+.logo{
+    height: 40px;
+    vertical-align: middle;
+    margin-top: 5px;
+    /* background-color: red; */
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+/* --------------------------------------------- */
+
+.search_bar{
+    /* background-color:red; */
+    border: 1px solid;
+    border-color: #cfcfcf;
+    border-radius: 50px;
+    display: flex;
+    padding: 8px;
+
+}
+
+.search_bar:hover{
+    box-shadow: 0 0 10px hsl(300, 2%, 80%);
+}
+
+.clicked_search_bar{
+    display: flex;
+    border-radius: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-top: 20px;
+    border: solid 1px grey;
+    border-color: #cfcfcf;
+}
+
+.clicked_search_option_section{
+    padding-left: 20px;
+    border-right: solid 1px grey;
+    border-color: #cfcfcf;
+
+}
+
+.clicked_search_option_section input:focus{
+    outline: none;
+
+}
+
+.option{
+    /* background-color:green; */
+    padding-left: 15px;
+    padding-right: 15px;
+    align-items: center;
+    cursor: pointer;
+}
+
+span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.input{
+    border: none;
+}
+
+.input:focus{
+    outline: none;
+}
+  
+.option.lan_can{
+    border-right: solid #cfcfcf 1px;
+}
+
+.option.them_ngay{
+    border-right: solid #cfcfcf 1px;
+}
+
+.search_circle_button{
+    border-radius: 50%;
+    background-color: #f32c72;
+    margin-left: 5px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+.search_icon{
+    color:white;
+    width: 20px;
+    height: 20px;
+}
+
+/* --------------------------------------------- */
+
+.account_logo{
+    /* background-color: green; */
+    display: flex
+}
+
+.become_owner{
+    /* background-color: #f32c72; */
+    border-radius: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    height: 30px;
+}
+
+.section{
+    margin-top: 10px;
+}
+
+/* .section:hover{
+    background-color: #e5e5e5 ;
+} */
+
+.language_section{
+    /* background-color: orange; */
+    border-radius: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: 10px;
+    height: 30px;
+}
+
+.language_icon{
+    width: 20px;
+    height: 20px;
+}
+
+.setting_section{
+    /* background-color: aqua; */
+    border-radius: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+}
+.setting_section:hover{
+    background-color: #e5e5e5 ;
+}
+
+.setting_icon{
+    width: 20px;
+    height: 20px;
+}
+
+@media only screen and (max-width: 1760px) and (min-width: 1130px)  {
+    .navbar_frame{
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+}
+@media only screen and (max-width: 1130px)  {
+    .navbar_frame{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+.headerMobile{
+    width: 100%;
+    height: 40px;
+    border-radius: 50px;
+    margin-left: 40px;
+    margin-right: 40px;
+    box-shadow: 0 0 10px hsl(300, 2%, 80%);
+}
+
+.control_board {
+    position: absolute;
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px hsl(300, 2%, 80%);
+    z-index: 10;
+    top: 50px;
+}
+
+.control_tile_normal{
+    padding:10px;
+    padding-right: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.control_tile_normal:hover{
+    background-color: #e9e9e9;
+}
+.control_tile_logout{
+    padding:10px;
+    padding-right: 30px;
+    border-top: 1px solid #dddddd;
+    cursor: pointer;
+    border-radius: 0 0px 10px 10px;
+}
+.control_tile_logout:hover{
+    background-color: #e9e9e9
+}

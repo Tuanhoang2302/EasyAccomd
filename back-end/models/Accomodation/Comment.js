@@ -5,6 +5,7 @@ const CommentSchema = new Schema({
     accomId: {type: mongoose.Types.ObjectId, ref:"Accomodation"},
     accountId: {type: mongoose.Types.ObjectId, ref:"Account"},
     comment: String,
+    isChecked: Boolean,
     createdAt: Date
 })
 

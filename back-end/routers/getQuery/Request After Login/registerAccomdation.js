@@ -31,7 +31,8 @@ router.get('/newAccom', async (req, res) => {
         price: 17,
         square: 23,
         conveniences: {
-            typeOfBathroom: "Bồn tắm",
+            isHaveBathroom: true,
+            isHaveFridge: true,
             isHaveWaterHeater: true,
             isHaveAirConditioner: false,
             isHaveBalcony: true,
@@ -42,13 +43,14 @@ router.get('/newAccom', async (req, res) => {
         },
         type: "Phòng riêng",
         status: "pending",
+        //typeOfBathroom: 
         images: images,
         description: "Thiết kế theo dạng căn hộ cao cấp, 1 căn bao gồm 4 phòng ngủ; 1 phòng khách, bếp và phòng ăn để khách có thể có tự nấu ăn và tụ tập ăn uống ngay tại nhà, Tầng 1 có bể bơi trong nhà giúp Khách thư giãn sau giờ đi chơi hoặc làm việc căng thẳng,Trên tầng thượng có 1 mini bar để khách thư giãn cafe ngắm toàn cảnh thành phố ninh Bình",
         title: "Balanha homestay - Nhà là nơi để về",
         view: 0,
         postingTime: null,
         expiredTime: null,
-        
+        numberOfRooms: 4
         
     })
     accom.save().then((data) => {

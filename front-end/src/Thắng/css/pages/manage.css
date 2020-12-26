@@ -1,0 +1,162 @@
+/* .Manage {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+    .Manage .content {
+        display: block;
+        width: calc(100% - 80px);
+        padding: 0px 40px 0px 40px;
+    }
+
+        .Manage .content .option--tab {
+            width: 100%;
+            height: 50px;
+            overflow: hidden;
+            display: flex;
+        }
+
+            .Manage .content .option--tab .item--tab{
+                border: 1px solid #ebebeb;
+                width: auto;
+                overflow: hidden;
+            }
+
+        .Manage .content .content__title {
+            width: 100%;
+            height: 65px;
+            overflow: hidden;
+        }
+
+            .Manage .content .content__title .text {
+                float: left;
+                font-weight: bold;
+                font-size: 25px;
+                margin-right: 20px;
+                min-width: 300px;
+                margin-top: 15px;
+                margin-left: 10px;
+                height: 100%;
+            }
+
+            .Manage .content .content__title .search {
+                float: right;
+                margin-top: 12px;
+            }
+
+        .Manage .content .content__option {
+            width: 100%;
+            height: 65px;
+            background-color: #008489;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+            .Manage .content .content__option .text {
+                float: left;
+                font-weight: bold;
+                font-size: 25px;
+                margin-right: 20px;
+                min-width: 300px;
+                margin-top: 15px;
+                margin-left: 10px;
+                height: 100%;
+            }
+
+            .Manage .content .content__option .button {
+                float: right;
+                height: 100%;
+            }
+
+        .Manage .content .content__table {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .Manage .content .content__table table {
+                width: 100%;
+                max-width: 100%;
+                border-collapse: collapse;
+                overflow: hidden;
+            }
+
+                .Manage .content .content__table table tbody tr {
+                    height: 80px;
+                    max-height: 80px;   
+                    overflow: hidden;
+                    border-bottom: 1px solid #ebebeb;
+                }
+
+                    .Manage .content .content__table table tbody tr:hover {
+                        background-color: #f2f9f8;
+                        cursor: pointer;
+                    }
+
+                .Manage .content .content__table table th {
+                    text-align: left;
+                    height: 50px;
+                    padding: 0 0 0 10px;
+                }
+
+                .Manage .content .content__table  td {
+                    padding: 0 0 0 10px; 
+                    overflow: hidden;
+                    max-height: 80px;
+                }
+
+                .Manage .content .content__table  td .text{
+                    width: 200px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .Manage .content .content__table  tr .option{
+                    width: 30px;
+                }
+
+                    .Manage .content .content__table  tr .option>div {
+                        position: absolute;
+                    }
+
+                    .Manage .content .content__table  tr .option button{
+                        padding: 8px;
+                        height: 30px;
+                        margin: 0px;
+                    }
+
+                    .Manage .content .content__table  tr .option .dialog{
+                        position: absolute;
+                        top: 30px;
+                        right: 0;
+                        background-color: #ffffff;
+                        border: 1px solid #ebebeb;
+                        box-shadow: black;
+                        width: 150px;
+                        height: auto;
+                        z-index: 2;
+                    }
+
+                        .Manage .content .content__table  tr .option .dialog .dialog__item{
+                            height: 30px;
+                            width: calc(100% - 5px);
+                            border-bottom: 1px solid #ebebeb;
+                            padding-left: 5px;
+                        }
+
+                            .Manage .content .content__table  tr .option .dialog .dialog__item:hover {
+                                cursor: pointer;
+                                background-color: #f2f9f8;
+                            }
+                
+.icon--search {
+    background: url('../../image/icon-search.svg') no-repeat center;
+    background-size: contain;
+}
+
+.trOnSelect {
+    background-color: #f2f9f8;
+} */
