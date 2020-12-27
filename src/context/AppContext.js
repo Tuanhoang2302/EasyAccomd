@@ -12,7 +12,7 @@ export class AppProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            accomSelect: -2,
+            accomSelect: null,
             setAccomSelect: this.setAccomSelect.bind(this),
             listAccom: [
               {
@@ -280,7 +280,7 @@ export class AppProvider extends React.Component {
               }
             ],
             user: {
-                type: typeOfUsers.ADMIN
+                type: typeOfUsers.OWNER
             },
             typeOfUsers: typeOfUsers,
             ListOwner: [

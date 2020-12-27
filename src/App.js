@@ -4,8 +4,8 @@ import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Error from './page/Error';
 import { AppProvider } from './context/AppContext';
 import Manage from './page/Manage';
-// import CreateAccom from './page/CreateAccom'
-// import DetailsAccom from './page/DetailsAccom'
+import CreateAccom from './page/CreateAccom'
+import DetailsAccom from './page/DetailsAccom'
 
 import './App.css';
 
@@ -20,12 +20,13 @@ export default function(props) {
                 <Manage />
             </Route>
             
-            {/* <Route exact path="/createAccom">
+            <Route exact path="/createAccom">
                 <CreateAccom />
             </Route>
+
             <Route exact path="/createAccom/details">
                 <DetailsAccom />
-            </Route> */}
+            </Route>
 
             <Route>
               <Error />

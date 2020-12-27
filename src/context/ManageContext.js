@@ -9,13 +9,6 @@ const listView = {
     OPTION: 'option'
 }
 
-const ACTION = {
-    VIEW_ACCOUNT: 'view_account',
-    VIEW_POST: 'view_post',
-    DELETE: 'delete'
-
-}
-
 export default class ManageProvider extends React.Component{
     constructor(props) {
         super(props);
@@ -44,7 +37,7 @@ export default class ManageProvider extends React.Component{
         for (var i = price.length-1; i >= 0; --i) {
             count ++;
             strPrice = price[i] + strPrice;
-            if (count === 3 && i != 0) {
+            if (count === 3 && i !== 0) {
                 strPrice = '.' + strPrice;
                 count = 0;
             }

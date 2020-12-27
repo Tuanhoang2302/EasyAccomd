@@ -4,7 +4,6 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import {AppContext} from '../context/AppContext'
 
 import header from '../css/components/header.module.css'
-import Manage from '../page/Manage'
 
 export default function({currentTab, tabs, onClick}) {
     const {user, typeOfUsers, listNotification} = useContext(AppContext);
