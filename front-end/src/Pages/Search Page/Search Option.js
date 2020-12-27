@@ -13,7 +13,14 @@ const SearchOption = (props) => {
     }else{
         disable = true
     }
-    
+    var searchOptionStyle, border
+    if(props.setAccom){
+        searchOptionStyle  ="clicked_search_option_section_create_accom"
+        border = {border: "1px solid #e9e9e9"}
+    } else {
+        searchOptionStyle  ="clicked_search_option_section"
+        border={border: "none"}
+    }
     const handleChange = (e, value, type, setAccom) => {
         if(type =="Thành phố"){
             props.setDistrictValue(null)
@@ -76,7 +83,7 @@ const SearchOption = (props) => {
   
     return(
         <div style={{backgroundColor: color}}
-        className={styles.clicked_search_option_section}>
+        className={styles[searchOptionStyle]}>
             <div style={{fontSize:"14px", fontWeight:"bold"}}>{props.black}</div>
             <Autocomplete
                 options={options}
@@ -86,7 +93,7 @@ const SearchOption = (props) => {
                 onChange={(e, value) => handleChange(e, value, props.black, props.setAccom)}
                 renderInput={(params) => (
                     <div ref={params.InputProps.ref}>
-                    <input style={{ width: "90%", height:20, border:"none"}} 
+                    <input style={border} className={styles.clicked_search_option_section_create_accom}
                     placeholder="Nhập tên"
                     //value={props.value}
                     type="text" {...params.inputProps} />

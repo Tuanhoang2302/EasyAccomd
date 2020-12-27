@@ -63,12 +63,22 @@
     border-color: #cfcfcf;
 
 }
+.clicked_search_option_section_create_accom{
+    border-color: #cfcfcf;
+}
 
 .clicked_search_option_section input:focus{
     outline: none;
 
 }
 
+.input_search_option{
+    
+}
+.input_search_option_create_accom{
+    width: 90%;
+    height: 40px
+}
 .option{
     /* background-color:green; */
     padding-left: 15px;

@@ -16,7 +16,8 @@ import ListContext from '../context/ListContext'
 import axios from 'axios'
 import {useDispatch,useSelector} from 'react-redux'
 import iconBar from '../image/icon-bar.svg';
-//import '../css/common.css'
+import PVT_common from '../css/common.module.css'
+import detailsAccom from '../css/pages/detailsAccom.module.css'
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:3001";
 const socket = socketIOClient(ENDPOINT, {
@@ -165,12 +166,12 @@ class DetailsAccom extends Component {
         return (
             <ListContext.Consumer>
                 {({listAccom, setListAccom, accomSelect}) => 
-                    <div className="DetailsAccom">
+                    <div className={`${detailsAccom.DetailsAccom} ${PVT_common.common}`}>
                         {
                             self.state.tab === tabs.MENU? 
-                                "":<div className="DetailAccom__header">
+                                "":<div className={detailsAccom.DetailAccom__header}>
                                     <img src={iconBar} width="25" onClick={self.iconBarOnClick.bind(self)}></img>
-                                    <div className="title">
+                                    <div className={detailsAccom.title}>
                                         {
                                             self.state.tab === tabs.ADDRESS? 'Địa chỉ':
                                             self.state.tab === tabs.PRICE? 'Định giá':
@@ -179,10 +180,10 @@ class DetailsAccom extends Component {
                                             self.state.tab === tabs.TITLE? 'Tiêu đề':''
                                         }
                                     </div>
-                                    <Link to="/createAccom"><button className="right" onClick={self.btnSaveOnClick.bind(self, listAccom, setListAccom, accomSelect)}>Lưu và thoát</button></Link>
+                                    <Link to="/createAccom"><button className={detailsAccom.right} onClick={self.btnSaveOnClick.bind(self, listAccom, setListAccom, accomSelect)}>Thoát</button></Link>
                                 </div>
                         }
-                        <div className="DetailAccom__content">
+                        <div className={detailsAccom.DetailAccom__content}>
                             {
                                 self.state.tab === tabs.ADDRESS? <AddressAccom accom={self.state.accom} setAccom={self.state.setAccom}/>:
                                 self.state.tab === tabs.PRICE? <PriceAccom accom={self.state.accom} setAccom={self.state.setAccom} />:
@@ -192,12 +193,12 @@ class DetailsAccom extends Component {
                                 <MenuDetailAccom tabs={tabs} setTab={self.state.setTab} />
                             }
                         </div>
-                        <div className="DetailAccom__footer">
+                        <div className={detailsAccom.DetailAccom__footer}>
                             {
-                                self.state.tab === tabs.MENU? <Link to="/createAccom"><button className="right" 
+                                self.state.tab === tabs.MENU? <Link to="/createAccom"><button  className={detailsAccom.right} 
                                     onClick={self.btnSaveOnClick.bind(self, listAccom, setListAccom, accomSelect)}>Lưu và thoát</button></Link>:
-                                self.state.tab === tabs.PRICE? <button className="right" onClick={self.btnNextOnClick.bind(self)}>Hoàn thành</button>:
-                                <button className="right" onClick={self.btnNextOnClick.bind(self)}>Tiếp tục</button>
+                                self.state.tab === tabs.PRICE? <button className={detailsAccom.right} onClick={self.btnNextOnClick.bind(self)}>Hoàn thành</button>:
+                                <button className={detailsAccom.right} onClick={self.btnNextOnClick.bind(self)}>Tiếp tục</button>
                             }
                             {
                                 self.state.tab === tabs.MENU? <Link to="/createAccom"><button>Huỷ</button></Link>:

@@ -1,8 +1,9 @@
-a {
+
+.common a {
     text-decoration: none;
 }
 
-button {
+.common button {
     background-color: #008489;
     color: #ffffff;
     border: 0;
@@ -15,16 +16,16 @@ button {
     margin: 0;
 }
 
-button:disabled {
+.common button:disabled {
     opacity: 0.4;
 }
 
-.buttonSecond {
+.common .buttonSecond {
     background-color: #ffffff;
     color: #008489;
 }
 
-input[type="text"], input[type="number"] {
+.common input[type="text"], .common input[type="number"] {
     max-width: 350px;
     width: 100%;
     border: 1px solid #ebebeb;
@@ -33,29 +34,29 @@ input[type="text"], input[type="number"] {
     border-radius: 8px;
 }
 
-input[type="text"]:focus, input[type="number"]:focus {
+.common input[type="text"]:focus, .common input[type="number"]:focus {
     outline: none;
     border-radius: 8px;
     border: 1px solid #008489;
 }
 
-input[type="checkbox"] {
+.common input[type="checkbox"] {
     width: 25px;
     height: 25px;
 }
 
-h1, h2, h3, h4, h5 {
+.common h1, .common h2, .common h3, .common h4, .common h5 {
     margin: 0px;
 }
 
-li {
+.common li {
     list-style: none;
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-.inputIcon {
+.common .inputIcon {
     display: flex;
     max-width: 350px;
     width: 100%;
@@ -66,29 +67,24 @@ li {
     align-items: center;
 }
 
-    .inputIcon .icon {
+    .common .inputIcon .icon {
         margin-left: 10px;
         width: 25px;
         height: 25px;
         cursor: pointer;
     }
 
-    .inputIcon input {
+    .common .inputIcon input {
         border: 0;
         width: calc(100% - 35px);
         max-width: calc(100% - 35px);
         height: 38px;
     }
 
-        .inputIcon input:focus {
+        .common .inputIcon input:focus {
             border: 0;
         }
 
-    .inputIcon:focus-within {
+    .common .inputIcon:focus-within {
         border: 1px solid #008489;
     }
-    
-
-.hidden {
-    display: none !important;
-}

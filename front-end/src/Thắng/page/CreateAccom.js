@@ -10,8 +10,8 @@ import ItemAccom from '../components/Detail and Create Accom/ItemAccom';
 import ListContext from '../context/ListContext'
 import DetailsAccom from '../page/DetailsAccom'
 
-//import '../css/common.css'
-import '../css/pages/createAccom.css';
+import PVT_common from '../css/common.module.css'
+import createAccom from '../css/pages/createAccom.module.css'
 
 class CreateAccom extends Component {
     constructor(props) {
@@ -46,12 +46,12 @@ class CreateAccom extends Component {
         return (
             <ListContext.Consumer>
                 {({listAccom, setListAccom}) =>
-                    <div className="CreateAccom">
-                        <div className="CreateAccom__header" onClick={self.itemOnClick}>
+                    <div className={`${createAccom.CreateAccom} ${PVT_common.common}`}>
+                        <div className={createAccom.CreateAccom__header} onClick={self.itemOnClick}>
                             <h2>Bạn muốn bắt đầu như thế nào?</h2>
                         </div>
                         <br/><br/>
-                        <div className="CreateAccom__content">
+                        <div className={createAccom.CreateAccom__content}>
                             <ItemAccom onClick={self.itemOnClick(-1)} key={-1} accomSelected={self.state.accomSelected} index={-1} self={self} 
                                 item={{title: "Tạo mục cho thuê mới"}}/>
                             <br/>
@@ -63,11 +63,11 @@ class CreateAccom extends Component {
                                     <ItemAccom onClick={this.itemOnClick(index)} key={index} index={index} item={item} self={self} accomSelected={this.state.accomSelected} />)
                             }
                         </div>
-                        <div className="CreateAccom__footer">
+                        <div className={createAccom.CreateAccom__footer}>
                             <Link to="/user/manage"><button>Quay lại</button></Link>
-                            <Link to="/createAccom/details"><button className="right" onClick={self.btnNextOnClick} 
+                            <Link to="/createAccom/details"><button className={createAccom.right} onClick={self.btnNextOnClick} 
                                 disabled={self.state.accomSelected===-2? true:false}>Tiếp theo</button></Link>
-                            <button className="right" onClick={self.btnCloneOnClick.bind(self, listAccom, setListAccom)} disabled={self.state.accomSelected<0? true:false}>Sao chép</button>
+                            <button className={createAccom.right} onClick={self.btnCloneOnClick.bind(self, listAccom, setListAccom)} disabled={self.state.accomSelected<0? true:false}>Sao chép</button>
                         </div>
                     </div>
                 }

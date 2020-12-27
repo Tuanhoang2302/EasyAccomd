@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react'
 import SearchOption from '../../../Pages/Search Page/Search Option'
-//import '../../css/common.css'
+import common from '../../css/common.module.css'
+import detailsAccom from '../../css/pages/detailsAccom.module.css'
 
 
 const AddressAccom = (props) => {
@@ -32,10 +33,10 @@ const AddressAccom = (props) => {
     }
     var originCity = JSON.parse(localStorage.getItem("cities"))
     return (
-        <div className="AddressAccom">
+        <div className={detailsAccom.AddressAccom}>
             <br/><br/>
-            <div className="title"><h2>Nhà/phòng cho thuê của bạn ở đâu?</h2></div>
-            <div className="subTitle">Khách sẽ chỉ nhận được địa chỉ chính xác của bạn sau khi hoàn tất đặt phòng.</div>
+            <div className={detailsAccom.title}><h2>Nhà/phòng cho thuê của bạn ở đâu?</h2></div>
+            <div className={detailsAccom.subTitle}>Khách sẽ chỉ nhận được địa chỉ chính xác của bạn sau khi hoàn tất đặt phòng.</div>
             <br/><br/>
             <div>
                 <SearchOption black="Thành phố" 

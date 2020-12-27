@@ -8,6 +8,7 @@ import { AppContext } from '../context/AppContext'
 import ManageProvider from '../context/ManageContext'
 import {useDispatch,useSelector} from 'react-redux'
 import manage from '../css/pages/manage.module.css'
+import PVT_common from '../css/common.module.css'
 
 export default function(props) {
     const {user, typeOfUsers} = useContext(AppContext);
@@ -15,7 +16,7 @@ export default function(props) {
     //console.log(userRedux.type);
     return (
         <ManageProvider>
-            <div className={manage.Manage}>
+            <div className={`${manage.Manage} ${PVT_common.common}`}>
                 {userRedux.type === "renter" && <ContentRenter />}
                 {userRedux.type === "owner" && <ContentOwner setAccomSelect = {props.setAccomSelect} />}
                 {userRedux.type === "admin" && <ContentAdmin />}

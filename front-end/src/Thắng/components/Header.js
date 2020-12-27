@@ -98,12 +98,11 @@ export default function({currentTab, tabs, onClick}) {
             {
                 userRedux.type==="owner" &&
                 <div>
-                    <div className={header.header__btnCreateAccom}>
+                    <div className={header.header__btnCreateAccom}
+                    >
                         <Link to="/createAccom"><button>Tạo mục cho thuê mới</button></Link>
                     </div>
-                    <div className={header.header__btnCreateAccom}>
-                        <Link to="/createAccom"><button>Tạo thông báo ưu đãi</button></Link>
-                    </div>
+
                 </div>
             }
             

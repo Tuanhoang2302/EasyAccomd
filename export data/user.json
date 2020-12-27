@@ -1,0 +1,61 @@
+[{
+  "_id": {
+    "$oid": "5fda29be5c92424108f2e586"
+  },
+  "fullname": "Hoàng Minh Tuấn",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fdcea94a0e80120d03a2fb9"
+  },
+  "fullname": "Nguyễn Quỳnh Mai",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fdd6e83b1a51108649192de"
+  },
+  "fullname": "Lê Hà Khanh",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe0ae94f4221b1ddc085e1e"
+  },
+  "fullname": "tester",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe34ab502c2b55488620373"
+  },
+  "fullname": "admin",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe5e225f66cc8278079e7aa"
+  },
+  "fullname": "fdsrefds",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe6eef9df2a0725cc9f1869"
+  },
+  "fullname": "Hoàng Minh Tuấn",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe72891cbc4e513089d4ced"
+  },
+  "fullname": "Hoàng Minh Tuấn",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe80dd578fc3f3e7051cc91"
+  },
+  "fullname": "fdsa",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe80e3478fc3f3e7051cc93"
+  },
+  "fullname": "admin",
+  "__v": 0
+}]
