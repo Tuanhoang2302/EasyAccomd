@@ -11,7 +11,7 @@ import {AppContext} from '../context/AppContext'
 import axios from 'axios'
 import {useDispatch,useSelector} from 'react-redux'
 import iconBar from '../image/icon-bar.svg';
-import common from '../css/common.module.css'
+import PVT_common from '../css/common.module.css'
 import detailsAccom from '../css/pages/detailsAccom.module.css'
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:3001";
@@ -161,7 +161,7 @@ class DetailsAccom extends Component {
         return (
             <AppContext.Consumer>
                 {({listAccom, setListAccom, accomSelect}) => 
-                    <div className={detailsAccom.DetailsAccom}>
+                    <div className={`${detailsAccom.DetailsAccom} ${PVT_common.common}`}>
                         {
                             self.state.tab === tabs.MENU? 
                                 "":<div className={detailsAccom.DetailAccom__header}>
