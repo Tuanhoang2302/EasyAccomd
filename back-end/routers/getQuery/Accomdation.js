@@ -6,6 +6,8 @@ var fs = require('fs');
 const path = require("path");
 var mongoose = require('mongoose');
 var multer  = require('multer')
+var faker = require("faker")
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, path.dirname("E:\\btl web\\my-app\\public\\assets\\images\\rưer"))
@@ -41,18 +43,19 @@ router.post('/create', async (req, res) => {
             waterBill: req.body.waterBill
         },
         type: req.body.type,
-        isDisplay: false,
+        isDisplay: true,
         isAccepted: 2,
         images: req.body.images,
         description: req.body.description,
         title: req.body.title,
         view: 0,
+        favorite: 0,
         displayTime: {
             year: req.body.year,
             month: req.body.month,
             week: req.body.week
         },
-        createdAt: Date.now(),
+        createdAt: (Date.now()).toString(),
         postingTime: null,
         expiredTime: null,
     })
@@ -62,7 +65,6 @@ router.post('/create', async (req, res) => {
 
 router.get('/get/userManage', async (req, res) => {
     Models.Accomodation.find({
-        isAccepted: false
     }).sort({createdAt: -1})
     .limit(15)
     .then((data) => {
@@ -123,34 +125,52 @@ router.post("/find/filter/:index", async (req, res) => {
     }
     
     if(price != null){
-        resultQuery["price"] = {$gt: price[0] * 100000, $lt: price[1] * 100000}
+        resultQuery["price"] = {$gt: price[0] * 1000000, $lt: price[1] * 1000000}
     }
 
     if(type != null) {
         resultQuery["type"] = {$eq : type}
     }
+    resultQuery["isAccepted"] = {$eq: 1}
     var totalResult = await Models.Accomodation.countDocuments(resultQuery)
     var listAccom = await Models.Accomodation.find(resultQuery)
     .select(['address.city','type','images', 'title', 'price', '_id'])
     .limit(15)
     .skip(15*(index - 1))
     res.send({listAccom: listAccom, totalResult: totalResult})
+    
   
 })
 
+router.get("/delete", async (req, res) => {
+    await Models.Accomodation.deleteMany({})
+    res.send.apply("succes")
+})
 router.get("/update", async (req, res) => {
-    Models.Accomodation.updateMany({}, {
-        accountId: mongoose.Types.ObjectId("5fe0ae94f4221b1ddc085e1f")
-    }).then((data) => {
+    //res.send(faker.date.between('2018-01-01', '2020-01-01'))
+    var accom  = await Models.Accomodation.find({})
+    .then(async (accomData) => {
+        for(let i = 0; i< accomData.length; i++){
+            await Models.Accomodation.findOneAndUpdate({
+                _id: accomData[i]._id,
+                isAccepted: 0
+            }, {
+                //accountId: mongoose.Types.ObjectId(accomData[i].accountId)
+                //view: 0, favorite: 0
+            }, {new: true})
+        }
         res.send("success")
-        console.log("success");
     })
 })
 
 router.get('/get/recently/:index', async (req, res) => {
     const index = req.params.index
-    var totalResult = await Models.Accomodation.countDocuments({})
-    Models.Accomodation.find({})
+    var totalResult = await Models.Accomodation.countDocuments({
+        isAccepted: 1
+    })
+    Models.Accomodation.find({
+        isAccepted: 1
+    })
     .sort({createdAt: -1})
     .limit(15)
     .skip(15*(index - 1))

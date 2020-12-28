@@ -64,12 +64,12 @@ export default function(props) {
                 </div>
             </div>
             <div className={manage.content__data}>
-                <Table data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow}>
+                {/* <Table data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow}>
                     <div className={manage.dialog}>
                         <div className={manage.dialog__item} onClick={()=>btnDeleteOnClick()}>Xóa</div>
                         <Link to="/"><div className={manage.dialog__item}>Chi tiết</div></Link>
                     </div>
-                </Table>
+                </Table> */}
             </div>
         </div>
     )

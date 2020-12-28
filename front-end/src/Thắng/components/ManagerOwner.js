@@ -9,6 +9,7 @@ import manage from '../css/pages/manage.module.css'
 import axios from 'axios'
 import {useSelector, useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
+import { io } from 'socket.io-client'
 
 export default function(props) {
     const [currentRow, setCurrentRow] = useState(null);
@@ -59,7 +60,7 @@ export default function(props) {
 
     useEffect(() => {
         var fetchData = async () => {
-            var fetchResult = await axios.get("http://localhost:3001/usermanage/get/accom", {
+            var fetchResult = await axios.get("http://localhost:3001/usermanage/get/accom/1", {
                 params: {
                     accountId: user._id
                 }
@@ -68,20 +69,30 @@ export default function(props) {
             setDataModify(listAccom)
             var formatArrayData = []
             for(let i = 0; i < listAccom.length; i++){
-                const postTime = new Date(listAccom[i].accom.postingTime)
+                var postTimeString, expiredTimeString
+                if(listAccom[i].accom.postingTime == null){
+                    postTimeString = ""
+                }else{
+                    const postTime = new Date(listAccom[i].accom.postingTime)
+                    postTimeString = postTime.getDate() + "/" + (postTime.getMonth()+ 1) + "/" + postTime.getFullYear()
+                }
                 
-                var expiredTime = new Date()
-                var displayTime = listAccom[i].accom.displayTime
-                expiredTime.setDate(postTime.getDate() + (displayTime.year * 365) )
+                if(listAccom[i].accom.expiredTime == null){
+                    expiredTimeString=""
+                } else {
+                    const expiredTime = new Date(listAccom[i].accom.expiredTime)
+                    expiredTimeString = expiredTime.getDate() + "/" + (expiredTime.getMonth() + 1) + "/" + expiredTime.getFullYear()
+                }
+            
                 var accom = {
                     image: listAccom[i].accom.images[0],
                     title: listAccom[i].accom.title,
                     status: listAccom[i].accom.isDisplay == true ? "Chưa cho thuê" : "Đã cho thuê",
                     price: listAccom[i].accom.price,
                     view: listAccom[i].accom.view,
-                    favorite: listAccom[i].countFav,
-                    postTime: postTime.getDay() + "/" + postTime.getMonth() + "/" + postTime.getFullYear(),
-                    expiredTime: expiredTime.getDate() + "/" + expiredTime.getMonth() + "/" + expiredTime.getFullYear()
+                    favorite: listAccom[i].accom.favorite,
+                    postTime: postTimeString,
+                    expiredTime: expiredTimeString
                 }
                 formatArrayData.push(accom)
             }
@@ -97,10 +108,16 @@ export default function(props) {
     //         price: manageContext.formatPrice(accom.priceAccom)
     //     }
     // });
-    function btnDisableOnClick() {
+    async function btnDisableOnClick(e,accomId) {
         if (currentRow !== null){
-        
-            setData([...data.slice(0, currentRow), ...data.slice(currentRow + 1)]);
+            console.log(accomId);
+            axios.get("http://localhost:3001/usermanage/delete/accom", {
+                params:{
+                    accomId: accomId
+                }
+            }).then((res) => {
+                setData([...data.slice(0, currentRow), ...data.slice(currentRow + 1)]);
+            }).catch(err => console.log(err))
         }
     }
 
@@ -165,7 +182,7 @@ export default function(props) {
                     data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow}>
                         <div className={manage.dialog}>
                             <div onClick={(e) => modifyAccom(e, dataModify[currentRow])} className={manage.dialog__item}>Sửa</div>
-                            <div className={manage.dialog__item} onClick={()=>btnDisableOnClick()}>vô hiệu hóa</div>
+                            <div className={manage.dialog__item} onClick={(e) => btnDisableOnClick(e, dataModify[currentRow].accom._id)}>vô hiệu hóa</div>
                             <div onClick={(e) => goToDetailAccom(e, dataModify[currentRow].accom._id)} className={manage.dialog__item}>Chi tiết</div>
                         </div>
                     </Table>

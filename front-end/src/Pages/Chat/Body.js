@@ -38,12 +38,12 @@ const InboxList = (props) => {
               }}
             );
             await setContactList(result.data)
-
+              console.log(result.data);
           };
           
         fetchData();
     }, [account])
-
+    console.log(contactList);
     const changeRoomChat = (e, accountContact, roomid, index) => {
         setSelectedRoomIndex(index)
         dispatch(change_chat_tile({chat_title: accountContact.userId.fullname, user: account}))

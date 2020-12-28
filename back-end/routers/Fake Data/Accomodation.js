@@ -7,6 +7,7 @@ const path = require("path");
 var mongoose = require('mongoose');
 var faker = require('faker');
 var axios = require('axios')
+
 const ownerAccount = "5fe0ae94f4221b1ddc085e1f"
 const typeOfBathroom = ["Bồn tắm", "Vòi hoa sen", "Phòng tắm chung"]
 const typeOfAccom = ["Toàn bộ nhà", "Phòng riêng", "Phòng chung"]
@@ -16,11 +17,27 @@ var days = 7;
 var expireDate = new Date(Date.now()+days*24*60*60*1000);
 const city = require("./Constant Data/city")
 
+Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
+
 router.get('/accom/create', async (req, res) => {
+    var accountList = []
+    await Models.Account.find({
+        type:"owner"
+    }).then((accountData) => {
+        for(let i = 0; i < accountData.length; i++){
+            accountList.push(accountData[i]._id)
+        }
+    })
+    
     var jsonFile = []
-    for(let i = 0; i < 1000; i++){
-        const cityName = faker.random.arrayElement(city).province_name
-        const cityId = faker.random.arrayElement(city).province_id
+    for(let i = 0; i < 10000; i++){
+        const _city = faker.random.arrayElement(city)
+        const cityName = _city.province_name
+        const cityId = _city.province_id
         
         var districts = await axios.get("https://vapi.vnappmob.com/api/province/district/" + cityId)
         const district = faker.random.arrayElement(districts.data.results)
@@ -39,9 +56,9 @@ router.get('/accom/create', async (req, res) => {
         for(let i = 0; i < 5; i++){
             fiveImages.push(faker.random.arrayElement(images))
         }
-        //const accom = new Models.Accomodation(
+        var fakeDate = faker.date.between("2015-01-01", "2017-01-01")
         const accom = {
-            accountId: mongoose.Types.ObjectId(ownerAccount), 
+            accountId: mongoose.Types.ObjectId(faker.random.arrayElement(accountList)), 
             address: {
                 numberAddress: "117/4",
                 street: "Cổ Nhuế",
@@ -49,10 +66,17 @@ router.get('/accom/create', async (req, res) => {
                 district: districtName,
                 city: cityName,
             },
-            price: faker.random.number(1000000, 20000000),
-            square: faker.random.number(30, 100),
+            price: faker.random.number({
+                min: 1000000,
+                max: 20000000
+            }),
+            square: faker.random.number({
+                min: 30, max: 100
+            }),
             conveniences: {
-                numberOfRooms: faker.random.number(1, 4),
+                numberOfRooms: faker.random.number({
+                    min: 1, max: 4
+                }),
                 typeOfBathroom: faker.random.arrayElement(typeOfBathroom),
                 isHaveFridge: faker.random.boolean(),
                 isHaveWaterHeater: faker.random.boolean(),
@@ -60,41 +84,58 @@ router.get('/accom/create', async (req, res) => {
                 isHaveBalcony: faker.random.boolean(),
                 isHaveWifi: faker.random.boolean(),
                 isHaveKitchen: faker.random.boolean(),
-                electricBill: faker.random.number(10000, 30000),
-                waterBill: faker.random.number(10000, 30000)
+                electricBill: faker.random.number({
+                    min: 10000,
+                    max: 30000
+                }),
+                waterBill: faker.random.number({
+                    min: 10000,
+                    max: 20000
+                }),
             },
             type: faker.random.arrayElement(typeOfAccom),
             isDisplay: true,
-            isAccepted: 1,
+            isAccepted: faker.random.number({
+                min: 0,
+                max: 2
+            }),
             images: fiveImages,
             description: description,
             title: "Nhà ở siêu cấp",
-            view: faker.random.number(0, 30000),
+            view: faker.random.number({
+                min: 100,
+                max: 100000
+            }),
+            favorite: faker.random.number({
+                min: 10,
+                max: 1000
+            }),
             displayTime: {
                 year: 1,
                 month: 1,
                 week: 1
             },
-            createdAt: Date.now(),
-            postingTime: Date.now(),
-            expiredTime: expireDate,
+            createdAt: fakeDate,
+            postingTime: fakeDate.addDays(1),
+            expiredTime: fakeDate.addDays(366),
         }
         //await accom.save()
-        let data = JSON.stringify(accom, null, 2);
-        jsonFile.push(data)
+        jsonFile.push(accom)
         console.log(i);
-        //fs.writeFileSync('./accom.json', data);
+
     }
+    let data = JSON.stringify(jsonFile, null, 2);
     console.log("start");
-    fs.writeFileSync('./accom.json', jsonFile);
+    //fs.writeFileSync('./accom.json', data);
     console.log("end");
     res.send("success")
 })
 
 router.get("/accom/delete", async (req, res) => {
     Models.Accomodation.deleteMany({
-        title: "Nhà ở siêu cấp"
+    
     }).then(result => res.send(result))
+   
 })
 
 

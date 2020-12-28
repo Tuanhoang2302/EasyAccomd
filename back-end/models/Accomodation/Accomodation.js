@@ -39,10 +39,10 @@ const AccomodationSchema = new Schema({
         month: Number,
         week: Number
     },
-    createdAt: Date,
-    postingTime: Date,
-    expiredTime: Date,
-    
+    createdAt: String,
+    postingTime: String,
+    expiredTime: String,
+    favorite: Number
 })
 
 AccomodationSchema.pre('deleteOne', { document: false, query: true }, async function(next) {

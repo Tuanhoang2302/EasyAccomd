@@ -65,12 +65,12 @@ export default function(props) {
                 </div>
             </div>
             <div className={manage.content__data}>
-                <Table data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow}>
+                {/* <Table data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow}>
                     <div className={manage.dialogRequest}>
                         <div className={`${manage.dialogRequest__item} ${manage.btnAccept}`} onClick={()=>btnDeleteOnClick()}>Chấp nhận</div>
                         <div className={manage.dialogRequest__item} onClick={()=>btnDeleteOnClick()}>Hủy</div>
                     </div>
-                </Table>
+                </Table> */}
             </div>
         </div>
     )

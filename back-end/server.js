@@ -23,8 +23,10 @@ app.use("/favorite", require('./routers/getQuery/Favorite'))
 app.use("/accomodation", require('./routers/getQuery/Accomdation'))
 app.use("/notification", require('./routers/getQuery/Notification'))
 app.use("/fake", require('./routers/Fake Data/Accomodation'))
+app.use("/fake", require('./routers/Fake Data/User'))
 app.use("/usermanage", require('./routers/getQuery/Owner'))
 app.use("/rentermanage", require('./routers/getQuery/Renter'))
+app.use("/adminManage", require('./routers/getQuery/Admin'))
 // app.listen(port, () => {
 //     console.log(`Example app listening at ${port}`);
 // })

@@ -43,7 +43,7 @@ router.get('/getRoomChat', async (req, res) => {
         accountId: accountId
     }).populate([ "us" ])
     .exec(async (err, data) => {
-        //res.send(data)
+        
         var contactIdList = []
         
         for(let i = 0; i < data.length; i++){
