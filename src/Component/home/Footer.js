@@ -17,7 +17,7 @@ class Footer extends React.Component{
                         <h4 className="title-footer">Giới thiệu</h4>
                         <ul className="ul-footer">
                             <List href="" name="Phương thức hoạt động"></List>
-                            <List href="" name="Tìm kiếm nhà trọ"></List>
+                            <List href="/search" name="Tìm kiếm nhà trọ"></List>
                             <List href="" name="Cho thuê nhà trọ"></List>
                             <List href="" name="Nhà trọ gần trường đại học"></List>
                         </ul>

@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom';
+import {useDispatch,useSelector} from 'react-redux'
+import { logout } from '../../../redux/action/action';
+import { useHistory } from "react-router-dom";
 class Search extends React.Component{
   render(){
       return(
@@ -45,45 +48,64 @@ class ObjectInput extends React.Component{
 //       );
 //   }
 // }
-class Control extends React.Component {
-    render(){
-        return(
+
+
+const Control = () => {
+    const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const SignOut = () => {
+        dispatch(logout())
+        history.push('/login')
+    }
+    return (
+        <React.Fragment>
+            
             <div className="control-directional">
                 <ul className="ul-footer">
-                    <li className="content-list" style={{borderBottom: 'gray solid 1px'}}>
-                        <NavLink className="link-list" to="/personal" style={{padding: '12px'}}>Tài khoản</NavLink>
-                    </li>
-                    <li className="content-list" style={{padding: '0px 12px 12px 12px', cursor: 'pointer'}}>
-                        Đăng xuất
-                    </li>
+                    {user && 
+                    <React.Fragment>
+                        <li className="content-list">
+                            <NavLink className="link-list" to="/search" style={{padding: '12px'}}>Search</NavLink>
+                        </li>
+                        <li className="content-list">
+                            <NavLink className="link-list" to="/inbox" style={{padding: '12px'}}>Tin nhắn</NavLink>
+                        </li>
+                        <li className="content-list" >
+                            <NavLink className="link-list" to="/user/manage" style={{padding: '12px'}}>Quản lý nhà</NavLink>
+                        </li>
+                        <li className="content-list" style={{borderBottom: 'gray solid 1px'}}>
+                            <NavLink className="link-list" to="/personal" style={{padding: '12px'}}>Tài khoản</NavLink>
+                        </li>
+                        <li className="content-list">
+                            <NavLink onClick={SignOut} className="link-list" to="/"  style={{padding: '12px', cursor:"pointer"}}>Đăng xuất</NavLink>
+                        </li>
+                    </React.Fragment>}
+
                 </ul>
             </div>
-        );
+
+    
+        </React.Fragment>
+    );
+};
+
+const FirtHeader = () => {
+    const [showResults, setShowResults] = useState(false)
+    const user = useSelector(state => state.user)
+    const handleEnter = () => {
+        setShowResults(true)
     }
-}
-class FirtHeader extends React.Component {
-    constructor(props){
-        super(props);
-        this.handleEnter = this.handleEnter.bind(this);
-        this.handleLeave = this.handleLeave.bind(this);
-        this.state={showResults: false};
+    const handleLeave = () => {
+        setShowResults(false)
     }
-    render() {
-        return (
-            <div style={{minHeight: '70px'}}>
-                <div className="firtHeader">
-                    <NavLink className="logo" to="/"></NavLink>
-                    <div className="directional">
-                        <div className="owner header-signInUp">
-                            <NavLink className="link-owner" to="/">
-                                <div className="link-owner-text">Tìm kiếm nhà trọ</div>
-                            </NavLink>
-                        </div>
-                        <div className="owner header-signInUp">
-                            <NavLink className="link-owner" to="/registration">
-                                <div className="link-owner-text">Trở thành chủ nhà</div>
-                            </NavLink>
-                        </div>
+    return (
+        <div style={{minHeight: '70px'}}>
+            <div className="firtHeader">
+                <NavLink className="logo" to="/"></NavLink>
+                <div className="directional">
+                    {!user &&
+                    <React.Fragment>
                         <div className="owner">
                             <NavLink className="link-owner" to="/registration">
                                 <div className="link-owner-text">Đăng ký</div>
@@ -94,35 +116,29 @@ class FirtHeader extends React.Component {
                                 <div className="link-owner-text">Đăng nhập</div>
                             </NavLink>
                         </div>
-                        <div className="main-directional" onMouseEnter={this.handleEnter} onMouseLeave={this.handleLeave}>
-                            <button type="button" className="btn-main-directional">
-                                <div className="btn-list"></div>
-                                <div className="btn-user"></div>
-                            </button>
-                            { this.state.showResults ? <Control /> : null }
-                        </div>
+                    </React.Fragment>}
+                    <div className="main-directional" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+                        <button type="button" className="btn-main-directional">
+                            <div className="btn-list"></div>
+                            <div className="btn-user"></div>
+                        </button>
+                        { showResults ? <Control /> : null }
                     </div>
                 </div>
             </div>
-        );
-    }
-    handleEnter() {
-        this.setState({ 
-            showResults: true
-        });
-    }
-    handleLeave() {
-        this.setState({ 
-            showResults: false
-        });
-    }
-}
+        </div>
+    );
+};
+
 class Header extends React.Component {
     render() {
         return (
             <div className="homeHeader">
                 <FirtHeader/>
-                <Search/>
+                <div className="back-titleHeader">
+                    <span className="text-titleHeader">Bạn đang tìm kiếm phòng trọ và điều đó có ở đây!</span>
+                    <NavLink to="/search"><span className="text-header">Khám phá ngay</span></NavLink>
+                </div>
             </div>
         );
     }

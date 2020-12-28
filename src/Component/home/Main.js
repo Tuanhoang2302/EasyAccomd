@@ -58,15 +58,7 @@ class Main extends React.Component{
                         <Uni name="Đại học Mỏ Hà Nội" address="Cầu Diễn-Bắc Từ Liêm"></Uni>
                     </div>
                 </div>
-                <div className="content-main">
-                    <span className="text-content-main">Mới đăng gần đây</span>
-                    <div className="content">
-                        <Post money="3 Triệu" address="Dịch Vọng Hậu-Cầu Giấy"></Post>
-                        <Post money="2 Triệu" address="Mai Dịch-Cầu Giấy"></Post>
-                        <Post money="5 Triệu" address="Bách Khoa-Hai Bà Trưng"></Post>
-                        <Post money="4 Triệu" address="Văn Quán-Hà Đông"></Post>
-                    </div>
-                </div>
+
                 <div className="content-main" style={{width: '100%',backgroundColor: 'black'}}>
                     <section>
                         <span className="text-content-main" style={{marginLeft: '0px', display: 'block', color: 'rgb(255, 255, 255)'}}>Trải nghiệm không gian trực tuyến</span>
@@ -77,6 +69,16 @@ class Main extends React.Component{
                         <ImgExtend style={{gridArea: '1 / 2 / auto / auto'}} url={discovery2} text="Chung cư mini với thiết kế đẹp"/>
                         <ImgExtend style={{gridArea: '1 / 3 / auto / auto'}} url={discovery3} text="Chung cư mini với thiết kế đẹp"/>
                         <ImgExtend style={{gridArea: '2 / 2 / auto / span 2'}} url={discovery4} text="Chung cư mini với thiết kế đẹp"/>
+                    </div>
+                </div>
+
+                <div className="content-main">
+                    <span className="text-content-main">Mới đăng gần đây</span>
+                    <div className="content">
+                        <Post money="3 Triệu" address="Dịch Vọng Hậu-Cầu Giấy"></Post>
+                        <Post money="2 Triệu" address="Mai Dịch-Cầu Giấy"></Post>
+                        <Post money="5 Triệu" address="Bách Khoa-Hai Bà Trưng"></Post>
+                        <Post money="4 Triệu" address="Văn Quán-Hà Đông"></Post>
                     </div>
                 </div>
             </div>

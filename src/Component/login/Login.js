@@ -1,74 +1,73 @@
-import React from 'react';
+
+import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom'
 import {ObjSign} from '../registration/Registration';
+import Cookies from 'universal-cookie';
+import axios from 'axios'
+import { useHistory } from "react-router-dom";
+import { login } from '../../../redux/action/action';
+import {useDispatch,useSelector} from 'react-redux'
+const cookies = new Cookies();
 
-class Login extends React.Component {
-    constructor(props){
-        super(props);
-        this.handleSubmit=this.handleSubmit.bind(this);
-        this.onHandleChange=this.onHandleChange.bind(this);
-        this.state={
-            emailInput : '',
-            passwordInput : '',
-            warningEmail: true,
-            warningPassword: true
-        };
-    }
-    onHandleChange(event){
-        var target = event.target;
-        var name = target.name;
-        var value = target.value;
-        this.setState({
-            [name] : value
-        });
-    }
-    validationForm(){
+const Login = () => {
+    const [isLoginValid, setIsLoginValid] = useState(true)
+    const [emailInput, setEmailInput] = useState("")
+    const [passwordInput, setPasswordInput] = useState("")
+    const [warningEmail, setWarningEmail] = useState(true)
+    const [warningPassword, setWarningPassword] = useState(true)
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    const validationForm = () => {
         var check=true;
-        if(this.checkemailInput() === false) check=false;
-        if(this.checkpasswordInput() === false) check=false;
+        if(checkemailInput() === false) check=false;
+        if(checkpasswordInput() === false) check=false;
         return check;
     }
-    checkemailInput(){
-        const {emailInput} = this.state;
+    const checkemailInput = () =>{
         const regexEmail = /\S+@\S+\.\S+/;
         if (!regexEmail.test(emailInput) && emailInput.length === 0) {
             document.getElementsByClassName("wrong").innerText = "Địa chỉ email không hợp lệ!";
-            this.setState({
-                warningEmail: false
-            })
+            setWarningEmail(false)
             return false;
         }else{
             document.getElementsByClassName("wrong").innerText = "";
-            this.setState({
-                warningEmail: true
-            })
+            setWarningEmail(true)
             return true;
         }
     }
-    checkpasswordInput(){
-        const {passwordInput} = this.state;
+    const checkpasswordInput = () =>{
         const regexPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
         if(!regexPass.test(passwordInput)){
             document.getElementsByClassName("wrong").innerText = "Mật khẩu phải hơn 8 ký tự, có chữ hoa, chữ thường, chữ số!";
-            this.setState({
-                warningPassword: false
-            })
+            setWarningPassword(false)
             return false;
         }else{
             document.getElementsByClassName("wrong").innerText = "";
-            this.setState({
-                warningPassword: true
-            })
+            setWarningPassword(true)
             return true;
         }
     }
-  handleSubmit(event){
-    event.preventDefault();
-    const validation = this.validationForm();
-    if(validation) alert('complete');
-  }
-  render(){
-    return(
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log("fdsf");
+        
+        await axios.post("http://localhost:3001/auth/login", {
+            email: emailInput,
+            password: passwordInput
+        }).then((res) => {
+            setIsLoginValid(true)
+            dispatch(login(res.data.account, res.data.accessToken))
+            history.push("/")
+        }).catch((err) => {
+            setIsLoginValid(false)
+            console.log(err);
+        })
+        
+    }
+    
+    return (
         <div className= "background-signup">
             <div className="login">
                 <div className="back-right">
@@ -77,25 +76,25 @@ class Login extends React.Component {
                     </button>
                 </div>
                 <div className="back-left">
-                    <form class="sign-in" onSubmit={this.handleSubmit}>
+                    <form className="sign-in" onSubmit={handleSubmit}>
                         <h1 style={{color: '#3463CC', textAlign: 'center'}}>ĐĂNG NHẬP</h1>
-                        <div class="form-group">
+                        <div className="form-group">
                                 <label for="emailInput">Địa chỉ email</label>
-                                <input onChange={this.onHandleChange} type="email" value={this.state.emailInput} class="sign-form-control" name="emailInput" aria-describedby="emailHelp"/>
-                                {!this.state.warningEmail? <small class="wrong">Địa chỉ email không hợp lệ!</small>:null}
+                                <input onChange={(e) => (setEmailInput(e.target.value))} type="email" value={emailInput} class="sign-form-control" aria-describedby="emailHelp"/>
+                                {/* {!warningEmail? <small className="wrong">Địa chỉ email không hợp lệ!</small>:null} */}
                         </div>
-                        <div class="form-group">
+                        <div className="form-group">
                                 <label for="passwordInput">Mật khẩu</label>
-                                <input onChange={this.onHandleChange} type="password" value={this.state.passwordInput} class="sign-form-control" name="passwordInput" aria-describedby="passwordHelp"/>
-                                {!this.state.warningPassword? <small class="wrong">Mật khẩu phải hơn 8 ký tự, có chữ hoa, chữ thường, chữ số!</small>:null}
+                                <input onChange={(e) => (setPasswordInput(e.target.value))} type="password" value={passwordInput} class="sign-form-control" aria-describedby="passwordHelp"/>
+                                {isLoginValid == false ? <small className="wrong">Email hoặc Password không đúng!</small>:null}
                         </div>
-                        <button type="submit" class="btn-main-directional">Đăng nhập</button>
+                        <button style={{marginBottom:"120px", marginTop:"20px"}} type="submit" className="btn-main-directional">Đăng nhập</button>
                     </form>
                 </div>
                 
             </div>
         </div>
     );
-  }
-}
+};
+
 export default Login;
