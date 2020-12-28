@@ -1,58 +1,41 @@
 import React, {useContext, useState} from 'react'
-import { Link } from "react-router-dom"
 import Table from './Table'
+import ViewDetailUser from './user/ViewDetailUser'
 import {AppContext} from '../context/AppContext'
-import {ManageContext} from '../context/ManageContext'
 import common from '../css/common.module.css'
 import manage from '../css/pages/manage.module.css'
 
 export default function(props) {
     const [currentRow, setCurrentRow] = useState(null);
+    const [openDialog, setOpenDialog] = useState(false);
+    const [user_id, setUser_id] = useState(null);
     const appContext = useContext(AppContext);
-    const manageContext = useContext(ManageContext)
     var content = [ //key:title
         {
             key: 'image',
             title: 'Ảnh'
         },
         {
-            key: 'title',
-            title: 'Tiêu đề'
+            key: 'fullName',
+            title: 'Họ và tên'
         },
         {
-            key: 'owner',
-            title: 'Chủ trọ'
+            key: 'email',
+            title: 'Email'
         },
         {
-            key: 'status',
-            title: 'Trạng thái'
-        },
-        {
-            key: 'price',
-            title: 'Giá'
+            key: 'phoneNumber',
+            title: 'Số điện thoại'
         },
         {
             key: 'address',
             title: 'Địa chỉ'
-        },
-        {
-            key: 'postTime',
-            title: 'Ngày đăng'
-        },
-        {
-            key: 'expiredTime',
-            title: 'Ngày hết hạn'
         }
     ];
-    var data = appContext.listAccom.map((accom) => {
-        return {...accom,
-            address: manageContext.formatAddress(accom.city, accom.street, accom.number),
-            price: manageContext.formatPrice(accom.priceAccom)
-        }
-    });
+    var data = [...appContext.listOwner];
     function btnDeleteOnClick() {
         if (currentRow !== null)
-            appContext.setListAccom([...appContext.listAccom.slice(0, currentRow), ...appContext.listAccom.slice(currentRow + 1)]);
+            appContext.setListOwner([...appContext.listOwner.slice(0, currentRow), ...appContext.listOwner.slice(currentRow + 1)]);
     }
     return (
         <div className={manage.AdminAccountTab}>
@@ -64,13 +47,14 @@ export default function(props) {
                 </div>
             </div>
             <div className={manage.content__data}>
-                <Table data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow}>
+                <Table data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow} openDialog={openDialog} setOpenDialog={()=>setOpenDialog()}>
                     <div className={manage.dialog}>
                         <div className={manage.dialog__item} onClick={()=>btnDeleteOnClick()}>Xóa</div>
-                        <Link to="/"><div className={manage.dialog__item}>Chi tiết</div></Link>
+                        <div className={manage.dialog__item} onClick={()=>{setOpenDialog(true); setUser_id(currentRow)}}>Chi tiết</div>
                     </div>
                 </Table>
             </div>
+            <ViewDetailUser user_id={user_id} openDialog={openDialog} onClick={()=>setOpenDialog(false)}/>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import SearchOption from '../../../Pages/Search Page/Search Option'
-// import SearchOption from '../../components/Footer'
+// import SearchOption from '../../../Pages/Search Page/Search Option'
+import SearchOption from '../../components/Footer'
 import common from '../../css/common.module.css'
 import detailsAccom from '../../css/pages/detailsAccom.module.css'
 

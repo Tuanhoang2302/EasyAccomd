@@ -280,14 +280,58 @@ export class AppProvider extends React.Component {
               }
             ],
             user: {
-                type: typeOfUsers.OWNER
+                type: typeOfUsers.ADMIN
             },
             typeOfUsers: typeOfUsers,
-            ListOwner: [
+            listOwner: [
               {
-                fullname: 'Phạm Việt Thắng'
-      
-              }
+                image: "test chờ duyệt",
+                active: false,
+                fullName: 'Phạm Việt Thắng',
+                email: 'pvthang@gmail.com',
+                phoneNumber: '033011022',
+                address: 'so 1 Pham Van Dong, Cau Giay, Ha Noi',
+                post: 23,
+                view: 342,
+                like: 56,
+                report: 2
+              },
+              {
+                image: "image",
+                active: true,
+                fullName: 'Phạm Việt Thắng 3',
+                email: 'pvthang@gmail.com',
+                phoneNumber: '033011022',
+                address: 'so 1 Pham Van Dong, Cau Giay, Ha Noi',
+                post: 23,
+                view: 342,
+                like: 56,
+                report: 2
+              },
+              {
+                image: "image",
+                active: true,
+                fullName: 'Phạm Việt Thắng 2',
+                email: 'pvthang@gmail.com',
+                phoneNumber: '033011022',
+                address: 'so 1 Pham Van Dong, Cau Giay, Ha Noi',
+                post: 23,
+                view: 342,
+                like: 56,
+                report: 2
+              },
+              {
+                image: "image",
+                active: true,
+                fullName: 'Phạm Việt Thắng 1',
+                email: 'pvthang@gmail.com',
+                phoneNumber: '033011022',
+                address: 'so 1 Pham Van Dong, Cau Giay, Ha Noi',
+                post: 23,
+                view: 342,
+                like: 56,
+                report: 2
+              },
             ],
             setListOwner: this.setListOwner.bind(this)
         }
