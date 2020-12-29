@@ -332,7 +332,7 @@ class Registration extends React.Component {
                 <div className="registration">
                     <div className="back-left">
                         <form class="sign-up" onSubmit={this.handleSubmit}>
-                            <h2 style={{ color: '#3463CC', textAlign: 'center' }}>ĐĂNG KÝ</h2>
+                            <h2 style={{ color: '#3463CC', textAlign: 'center', fontSize: '1.5rem', marginTop:'20px' }}>ĐĂNG KÝ</h2>
                             <div class="form-group">
                                 <label for="usernameInput">Họ và tên</label>
                                 <input onChange={this.onHandleChange} type="text" value={this.state.usernameInput} class="sign-form-control" name="usernameInput" aria-describedby="usernameHelp" />
@@ -379,11 +379,11 @@ class Registration extends React.Component {
                             </Dialog>
                         </form>
                     </div>
-                    {/* <div className="back-right">
-                        <button type="button" className="btn-main-directional" style={{marginLeft: '105px', marginTop: '300px'}}>
-                            <NavLink className="link-list" to="/login">Đăng nhập</NavLink>
-                        </button>
-                    </div> */}
+                </div>
+                <div style={{position: 'relative'}} className="back-titleHeader">
+                    <span className="text-titleHeader">Bạn đang cần tìm trọ?</span>
+                    <span className="text-titleHeader">Hay muốn chia sẻ những không gian tuyệt vời của bạn?</span>
+                    <NavLink to="/login"><span className="text-header">Đăng nhập ngay</span></NavLink>
                 </div>
             </div>
         );

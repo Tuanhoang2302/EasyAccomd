@@ -28,7 +28,7 @@ a {
   flex: auto;
 }
 .owner:hover {
-  border-bottom: #3e79ff solid 1px;
+  border-bottom: white solid 1px;
 }
 .link-owner {
   background: transparent;
@@ -45,7 +45,7 @@ a {
   text-decoration: none;
   position: relative;
   z-index: 1;
-  color: #3e79ff;
+  color: white;
 }
 .link-owner-text {
   align-items: center;
@@ -181,13 +181,10 @@ a {
   height: 68px;
   width: 100%;
   z-index: 2;
-  position: fixed;
-  color: #3e79ff;
+  position: relative;
+  color: white;
   margin: auto;
-  border-bottom: #dddddd solid 1px;
-  background-color: #f7f7f7;
-  box-shadow: 0px 15px 15px rgba(255, 255, 255, 0.5);
-  opacity: 90%;
+  background-color: none;
 }
 .btn-list {
   height: 24px;
@@ -282,7 +279,7 @@ a {
 }
 .content-main {
   width: calc(100% - 160px);
-  margin: 48px auto auto auto;
+  margin: 48px auto 20px auto;
 }
 .text-content-main {
   margin-left: 10px;
@@ -327,7 +324,6 @@ a {
   padding-bottom: 2px;
 }
 .post {
-  width: 25%;
   margin: 12px auto 6px auto;
 }
 .link-post {
@@ -342,8 +338,8 @@ a {
   position: relative;
   background-color: rgb(221, 221, 221);
   border-radius: 12px;
-  height: 280px;
-  width: 280px;
+  width: 19vw;
+  height: 19vw;
   /* margin-right: 12px; */
   background-image: url(./img/post.png);
   background-size: cover;
@@ -365,7 +361,6 @@ a {
   min-height: 320px;
   background-color: #f7f7f7;
   border-top: 1px solid #dddddd;
-  margin-top: 50px;
 }
 button {
   outline: none !important;
@@ -437,11 +432,13 @@ button {
 }
 .background-signup {
   width: 100%;
-  height: 736px;
+  /* height: 736px; */
   background-image: url(./img/big-home.jpg);
   background-size: cover;
   background-position: 50% 50%;
   padding: 20px 0px 20px 0px;
+  display: flex;
+  flex-direction: row;
 }
 .registration,
 .login {
@@ -452,7 +449,8 @@ button {
   background-size: auto;
   background-position: 50% 50%;
   border: gray solid 1px;
-  margin: auto;
+  margin: 20px auto auto 200px;
+  /* margin-left: 100px; */
   display: flex;
   position: relative;
   box-shadow: 10px 10px 10px rgba(144, 245, 245, 0.5);
@@ -460,8 +458,8 @@ button {
   padding-bottom: 25px;
   background-color: white;
 }
-.registration {
-  /* height: 720px; */
+.login {
+  margin: 20px 200px auto auto;
 }
 .back-left {
   background-color: white;
@@ -471,14 +469,12 @@ button {
   opacity: 90%;
   border-radius: 10px;
 }
-.login .back-right {
-  display: none;
-}
 .back-right {
-  height: 100%;
-  width: 300px;
-  margin-right: 0px;
-  background-image: url(./img/SignIn.png);
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  margin: 50px auto;
+  background-image: url(./img/SignUp.png);
   background-size: cover;
   background-position: 50% 50%;
 }
@@ -520,11 +516,12 @@ label {
   font-size: 5px;
 }
 .text-titleHeader {
+  margin-top: 10px;
   color: var(--tl-lg-color, white);
-  font-size: var(--tl-lg-font-size, 36px);
+  font-size: var(--tl-lg-font-size, 44px);
   font-weight: var(--tl-lg-font-weight, 700);
   letter-spacing: var(--tl-lg-letter-spacing, normalem);
-  line-height: var(--tl-lg-line-height, 38px);
+  line-height: var(--tl-lg-line-height, 48px);
   -webkit-text-stroke-width: 0.5px;
   -webkit-text-stroke-color: rgb(48, 131, 240);
   text-shadow: 10px 10px 10px rgb(9, 165, 185, 0.7);
@@ -538,25 +535,26 @@ label {
   background-color: white;
   border-radius: 10px;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 5px 20px;
 }
 .sign-up .btn-main-directional {
   background-color: #3fc3e5;
   color: white;
   font-size: 14px;
-  margin: 0px 180px;
+  margin: 20px 180px 0px 180px;
 }
 .sign-in .btn-main-directional {
   background-color: #3fc3e5;
   color: white;
   font-size: 18px;
-  margin: 0px 150px;
+  margin: 0px 130px;
   width: 150px;
 }
 .back-left .sign-in {
   width: 100%;
   margin-left: 0px;
-  margin-top: 130px;
+  margin-top: 20px;
+  padding: 0px 20px;
 }
 .sign-in label {
   font-size: 20px;
@@ -574,10 +572,10 @@ label {
   padding: 50px;
 }
 .back-titleHeader {
-  width: 30%;
+  width: 28vw;
   height: fit-content;
-  margin-top: 200px;
-  margin-left: 100px;
+  margin-top: 150px;
+  margin-right: 200px;
 }
 /* Dành cho điện thoại */
 @media all and (min-width: 270px) and (max-width: 760px) {
@@ -622,13 +620,6 @@ label {
   }
   .homeHeader {
     background-image: url(./img/home.png);
-  }
-  .post {
-    width: 40%;
-  }
-  .img-post {
-    width: 150px;
-    height: 150px;
   }
   .info-post {
     flex: 0 1 100%;
@@ -692,15 +683,6 @@ label {
     height: 50%;
     border-radius: 0px 0px 10px 10px;
   }
-  .login .back-right {
-    display: inline;
-    width: 100%;
-    height: 50%;
-    background-image: url(./img/big-home.jpg);
-    background-size: cover;
-    background-position: 50% 50%;
-    border-radius: 10px 10px 0px 0px;
-  }
   .login .back-right .btn-main-directional {
     display: none;
   }
@@ -717,9 +699,6 @@ label {
   }
   .sign-in .sign-form-control {
     font-size: 1rem;
-  }
-  .sign-in h1 {
-    font-size: 1.5rem;
   }
   .sign-up select {
     width: 95%;
@@ -777,13 +756,6 @@ label {
   .text-content-main {
     font-size: 16px;
   }
-  .post {
-    width: 24%;
-  }
-  .img-post {
-    width: 140px;
-    height: 140px;
-  }
   .info-post {
     flex: 0 1 100%;
     padding-bottom: 0px;
@@ -819,10 +791,6 @@ label {
   }
   .uni {
     width: 20%;
-  }
-  .img-post {
-    width: 195px;
-    height: 195px;
   }
   .link-post {
     font-size: 12px;
