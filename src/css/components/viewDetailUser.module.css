@@ -1,6 +1,10 @@
 .dialog {
     width: 800px;
     height: 600px;
+    padding: 15px;
+    padding-top: 25px;
+    padding-bottom: 5px;
+    font-size: 20px;
 }
 
 .title {
@@ -13,10 +17,9 @@
 }
 
 .content {
-    width: calc(100% - 20px);
+    width: calc(100%);
     height: calc(100% - 80px);
     display: flex;
-    padding: 10px;
 }
 
 .content__left {
@@ -24,7 +27,8 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-right: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
     border-right: 1px solid #ededed;
 }
 
@@ -56,7 +60,9 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-left: 10px;
+    padding-right: 15px;
+    padding-left: 25px;
+    padding-top: 20px;
 }
 
     .content__right .item {
@@ -72,6 +78,9 @@
         .content__right .item.button button{
             margin-left: 10px;
             margin-right: 10px;
+            font-size: 20px;
+            width: auto;
+            height: 50px;
         }
     
         .content__right .item label{

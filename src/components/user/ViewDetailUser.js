@@ -13,7 +13,6 @@ export default function(props) {
     if (props.user_id!==null && props.user_id>=0) {
         user = appContext.listOwner[props.user_id];
     }
-    console.log(props.user_id);
     return (
         <Dialog className={`${viewDetailUser.ViewDetailUser} ${common.common}`} 
                 open={props.openDialog} 

@@ -16,6 +16,7 @@ export class AppProvider extends React.Component {
             setAccomSelect: this.setAccomSelect.bind(this),
             listAccom: [
               {
+                user_id: 1,
                 status: "Đã cho thuê",
                 image: "default.jpg",
                 title: "Nhà số 1",
@@ -36,6 +37,7 @@ export class AppProvider extends React.Component {
                 isSelect: false
               }, 
               {
+                user_id: 1,
                 status: "Đã cho thuê",
                 image: "default.jpg",
                 title: "Nhà số 2",
@@ -56,6 +58,7 @@ export class AppProvider extends React.Component {
                 isSelect: false
               }, 
               {
+                user_id: 1,
                 status: "Đã cho thuê",
                 image: "default.jpg",
                 title: "Nhà số 3",
@@ -76,6 +79,7 @@ export class AppProvider extends React.Component {
                 isSelect: false
               }, 
               {
+                user_id: 1,
                 status: "Đã cho thuê",
                 image: "default.jpg",
                 title: "Nhà số 4",
@@ -96,6 +100,7 @@ export class AppProvider extends React.Component {
                 isSelect: false
               },
               {
+                user_id: 1,
                 status: "Đã cho thuê",
                 image: "default.jpg",
                 title: "Nhà số 1",
@@ -116,6 +121,7 @@ export class AppProvider extends React.Component {
                 isSelect: false
               }, 
               {
+                user_id: 1,
                 status: "Đã cho thuê",
                 image: "default.jpg",
                 title: "Nhà số 2",
@@ -134,127 +140,7 @@ export class AppProvider extends React.Component {
                 typeOfAccom: "",
                 priceAccom: "200000",
                 isSelect: false
-              }, 
-              {
-                status: "Đã cho thuê",
-                image: "default.jpg",
-                title: "Nhà số 3",
-                description: "Nhà nguyên căn",
-                city: "Hà Nội",
-                district: "Cầu Giấy",
-                village: "Dịch Vọng Hậu",
-                street: "Phạm Văn Đồng",
-                number: "Số 2",
-                typeOfBathroom: "",
-                waterHeater: true,
-                airConditioner: true,
-                balcony: false,
-                electricAndWaterBill: "",
-                otherConveniences: "",
-                typeOfAccom: "",
-                priceAccom: "200000",
-                isSelect: false
-              }, 
-              {
-                status: "Đã cho thuê",
-                image: "default.jpg",
-                title: "Nhà số 4",
-                description: "Nhà nguyên căn",
-                city: "Hà Nội",
-                district: "Cầu Giấy",
-                village: "Dịch Vọng Hậu",
-                street: "Phạm Văn Đồng",
-                number: "Số 2",
-                typeOfBathroom: "",
-                waterHeater: true,
-                airConditioner: true,
-                balcony: false,
-                electricAndWaterBill: "",
-                otherConveniences: "",
-                typeOfAccom: "",
-                priceAccom: "200000",
-                isSelect: false
-              },
-              {
-                status: "Đã cho thuê",
-                image: "default.jpg",
-                title: "Nhà số 1",
-                description: "Nhà nguyên căn",
-                city: "Hà Nội",
-                district: "Cầu Giấy",
-                village: "Dịch Vọng Hậu",
-                street: "Phạm Văn Đồng",
-                number: "Số 1",
-                typeOfBathroom: "",
-                waterHeater: true,
-                airConditioner: true,
-                balcony: false,
-                electricAndWaterBill: "",
-                otherConveniences: "",
-                typeOfAccom: "",
-                priceAccom: "100000",
-                isSelect: false
-              }, 
-              {
-                status: "Đã cho thuê",
-                image: "default.jpg",
-                title: "Nhà số 2",
-                description: "Nhà nguyên căn",
-                city: "Hà Nội",
-                district: "Cầu Giấy",
-                village: "Dịch Vọng Hậu",
-                street: "Phạm Văn Đồng",
-                number: "Số 2",
-                typeOfBathroom: "",
-                waterHeater: true,
-                airConditioner: true,
-                balcony: false,
-                electricAndWaterBill: "",
-                otherConveniences: "aaaaaaaaa",
-                typeOfAccom: "",
-                priceAccom: "200000",
-                isSelect: false
-              }, 
-              {
-                status: "Đã cho thuê",
-                image: "default.jpg",
-                title: "Nhà số 3",
-                description: "Nhà nguyên căn",
-                city: "Hà Nội",
-                district: "Cầu Giấy",
-                village: "Dịch Vọng Hậu",
-                street: "Phạm Văn Đồng",
-                number: "Số 2",
-                typeOfBathroom: "",
-                waterHeater: true,
-                airConditioner: true,
-                balcony: false,
-                electricAndWaterBill: "",
-                otherConveniences: "",
-                typeOfAccom: "",
-                priceAccom: "200000",
-                isSelect: false
-              }, 
-              {
-                status: "Đã cho thuê",
-                image: "default.jpg",
-                title: "Nhà số 4",
-                description: "Nhà nguyên căn",
-                city: "Hà Nội",
-                district: "Cầu Giấy",
-                village: "Dịch Vọng Hậu",
-                street: "Phạm Văn Đồng",
-                number: "Số 2",
-                typeOfBathroom: "",
-                waterHeater: true,
-                airConditioner: true,
-                balcony: false,
-                electricAndWaterBill: "",
-                otherConveniences: "",
-                typeOfAccom: "",
-                priceAccom: "200000",
-                isSelect: false
-              },
+              }
             ],
             setListAccom: this.setListAccom.bind(this),
             listNotification: [
@@ -280,7 +166,7 @@ export class AppProvider extends React.Component {
               }
             ],
             user: {
-                type: typeOfUsers.ADMIN
+                type: typeOfUsers.OWNER
             },
             typeOfUsers: typeOfUsers,
             listOwner: [

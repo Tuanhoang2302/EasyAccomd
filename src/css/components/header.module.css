@@ -13,6 +13,7 @@
         cursor: pointer;
         background: url('../../image/icon-home.svg') no-repeat center;
         background-size: contain;
+        margin-left: 47px;
     }
 
     .header .header__title {
@@ -57,7 +58,8 @@
         float: right;
         right: 0px;
         margin: 15px 5px;
-        margin-right: 10px;
+        margin-right: 37px;
+        margin-left: 15px;
         width: 35px;
         height: 35px;
         background: url('../../image/icon-user.svg') no-repeat center;
@@ -101,6 +103,7 @@
         background: url('../../image/icon-notification.svg') no-repeat center;
         background-size: contain;
         cursor: pointer;
+        margin-left: 20px;
     }
 
         .header .header__notification .dialog {

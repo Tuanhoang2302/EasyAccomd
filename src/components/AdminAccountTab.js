@@ -7,8 +7,8 @@ import manage from '../css/pages/manage.module.css'
 
 export default function(props) {
     const [currentRow, setCurrentRow] = useState(null);
-    const [openDialog, setOpenDialog] = useState(false);
-    const [user_id, setUser_id] = useState(null);
+    const [openDialog, setOpenDialog] = useState(false); //new
+    const [user_id, setUser_id] = useState(null); //new
     const appContext = useContext(AppContext);
     var content = [ //key:title
         {
