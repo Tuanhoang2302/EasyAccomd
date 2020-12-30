@@ -41,63 +41,63 @@ const ConveniencesAccom = (props) => {
                 <label>Kiểu phòng tắm</label><br/>
                 <input type="text" name="typeOfBathroom" value={props.accom.typeOfBathroom} onChange={inputOnChange}/>
                 {props.accom.typeOfBathroom == null ? 
-                <div>invalid</div>
+                    <div style={{color:"red", marginTop: 5, fontSize: 13}}>Ô phải điền</div>
                 :null}
             </div><br/>
             <div>
                 <label>Số lượng phòng</label><br/>
-                <input type="number" name="numberOfRooms" value={props.accom.numberOfRooms} onChange={inputOnChange}/>
+                <input type="number" min={1} name="numberOfRooms" value={props.accom.numberOfRooms} onChange={inputOnChange}/>
                 {props.accom.numberOfRooms == null ? 
-                <div>invalid</div>
+                    <div style={{color:"red", marginTop: 5, fontSize: 13}}>Ô phải điền</div>
                 :null}
             </div><br/>
             <div>
                 <label>Diện tích</label><br/>
-                <input type="number" name="square" value={props.accom.square} onChange={inputOnChange}/>
+                <input type="number" min={1} name="square" value={props.accom.square} onChange={inputOnChange}/>
                 {props.accom.square == null ? 
-                <div>invalid</div>
+                    <div style={{color:"red", marginTop: 5, fontSize: 13}}>Ô phải điền</div>
                 :null}
             </div><br/>
 
             <div style={{display:"flex"}}>
-                <div>
-                    <div>
+                <div style={{marginRight: 40}}>
+                    <div style={{display:"flex"}}>
                         <input type="checkbox" name="waterHeater" checked={props.accom.waterHeater} onChange={inputOnChange}/>
-                        <label>Bình nước nóng</label>
+                        <label style={{marginLeft:5}}>Bình nước nóng</label>
                     </div><br/>
-                    <div>
+                    <div style={{display:"flex"}}>
                         <input type="checkbox" name="airConditioner" checked={props.accom.airConditioner} onChange={inputOnChange}/>
-                        <label>Máy điều hòa</label>
+                        <label style={{marginLeft:5}}>Máy điều hòa</label>
                     </div><br/>
-                    <div>
+                    <div style={{display:"flex"}}>
                         <input type="checkbox" name="balcony" checked={props.accom.balcony} onChange={inputOnChange}/>
-                        <label>Ban công</label>
+                        <label style={{marginLeft:5}}>Ban công</label>
                     </div><br/>
                 </div>
 
                 <div>
-                    <div>
+                    <div style={{display:"flex"}}>
                         <input type="checkbox" name="wifi" checked={props.accom.wifi} onChange={inputOnChange}/>
-                        <label>Wifi</label>
+                        <label style={{marginLeft:5}}>Wifi</label>
                     </div><br/>
-                    <div>
+                    <div style={{display:"flex"}}>
                         <input type="checkbox" name="kitchen" checked={props.accom.kitchen} onChange={inputOnChange}/>
-                        <label>Phòng bếp </label>
+                        <label style={{marginLeft:5}}>Phòng bếp </label>
                     </div><br/>
-                    <div>
+                    <div style={{display:"flex"}}>
                         <input type="checkbox" name="fridge" checked={props.accom.fridge} onChange={inputOnChange}/>
-                        <label>Tủ lạnh</label>
+                        <label style={{marginLeft:5}}>Tủ lạnh</label>
                     </div><br/>
                 </div>
             </div>
 
             <div>
                 <label>Hóa đơn tiền điện</label><br/>
-                <input type="number" name="electricBill" value={props.accom.electricBill} onChange={inputOnChange}/>
+                <input type="number" min={0} name="electricBill" value={props.accom.electricBill} onChange={inputOnChange}/>
             </div><br/>
             <div>
                 <label>Hóa đơn tiền nước</label><br/>
-                <input type="number" name="waterBill" value={props.accom.waterBill} onChange={inputOnChange}/>
+                <input type="number" min={0} name="waterBill" value={props.accom.waterBill} onChange={inputOnChange}/>
             </div><br/>
             {/* <div>
                 <label>Tiện nghi khác</label><br/>
@@ -107,5 +107,10 @@ const ConveniencesAccom = (props) => {
     );
 };
 
+const helper =  {
+    display: "inline-block",
+    height: "100%",
+    verticalAlign: "middle"
+}
 
 export default ConveniencesAccom;

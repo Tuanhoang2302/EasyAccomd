@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-import '../../css/pages/createAccom.css'
 //import '../../css/common.css'
 import imgDefault from '../../image/default.jpg'
 import checked from '../../image/checked.svg'

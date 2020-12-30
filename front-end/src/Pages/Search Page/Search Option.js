@@ -5,7 +5,7 @@ const SearchOption = (props) => {
     var originCity = JSON.parse(localStorage.getItem("cities"))
     var originDistrict = JSON.parse(localStorage.getItem("districts"))
     var originWard = JSON.parse(localStorage.getItem("wards"))
-
+    
     var options = props.options
     var color, disable
     if(props.checked){
@@ -22,6 +22,7 @@ const SearchOption = (props) => {
         border={border: "none"}
     }
     const handleChange = (e, value, type, setAccom) => {
+        console.log("Hello");
         if(type =="Thành phố"){
             props.setDistrictValue(null)
             props.setWardValue(null)
@@ -94,7 +95,7 @@ const SearchOption = (props) => {
                 renderInput={(params) => (
                     <div ref={params.InputProps.ref}>
                     <input style={border} className={styles.clicked_search_option_section_create_accom}
-                    placeholder="Nhập tên"
+                    placeholder= {props.value? props.value : "Nhập tên"}//"Nhập tên"
                     //value={props.value}
                     type="text" {...params.inputProps} />
                     </div>

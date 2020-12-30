@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 //import '../../css/common.css'
 import axios from 'axios'
-
+import detailsAccom from '../../css/pages/detailsAccom.module.css'
 class ImageAccom extends Component {
     constructor(props) {
         super(props);
@@ -57,7 +57,8 @@ class ImageAccom extends Component {
                 checkNumberImages = true
         }
         return (
-            <div className="ImageAccom">
+            <div>
+                <div className={detailsAccom.ImageAccom}>
                     <br/><br/>
                     <div className="title"><h2>Làm cho nhà/phòng cho thuê thêm sống động nhờ ảnh chụp</h2></div>
                     <div className="subTitle">Chụp ảnh bằng điện thoại hoặc máy ảnh. Tải lên ít nhất một ảnh để 
@@ -70,36 +71,37 @@ class ImageAccom extends Component {
                     {this.state.existedFilePath ? 
                         <div/>
                     :checkNumberImages == false ? 
-                        <div>Ban phai dang 5 anh</div>
+                        <div style={{color: "red", fontSize:13, marginTop: 5}}>Bạn phải đăng 5 ảnh</div>
                     :null}
+                        
+                </div>
+                {(() => {
                     
-                    {(() => {
-                    
-                        var imageList = []
-                         if(this.state.existedFilePath){
-                            for(let i = 0; i < this.state.existedFilePath.length; i++){
+                    var imageList = []
+                     if(this.state.existedFilePath){
+                        for(let i = 0; i < this.state.existedFilePath.length; i++){
+                            imageList.push(
+                                <img key={i} style={{width:"200px", height: "200px", objectFit:"cover", borderRadius: 10, marginRight: 10, marginTop: 20}}
+                                src={this.state.existedFilePath[i]}/>
+                            )
+                        }
+                        return imageList
+                    } else {
+                        if(this.state.file){
+                            for(let i = 0; i < this.state.file.length; i++){
                                 imageList.push(
-                                    <img key={i} style={{width:"200px", height: "200px", objectFit:"cover"}} 
-                                    src={this.state.existedFilePath[i]}/>
+                                    <img key={i} style={{width:"200px", height: "200px", objectFit:"cover", borderRadius: 10, marginRight: 30, marginTop: 20}} 
+                                    src={URL.createObjectURL(this.state.file[i])}/>
+                                    //src={this.state.existedFilePath[0]}/>
                                 )
                             }
-                            return imageList
-                        } else {
-                            if(this.state.file){
-                                for(let i = 0; i < this.state.file.length; i++){
-                                    imageList.push(
-                                        <img key={i} style={{width:"200px", height: "200px", objectFit:"cover"}} 
-                                        src={URL.createObjectURL(this.state.file[i])}/>
-                                        //src={this.state.existedFilePath[0]}/>
-                                    )
-                                }
-                                return imageList 
-                            } else{
-                                return null
-                            }
+                            return imageList 
+                        } else{
+                            return null
                         }
-                         
-                    })()}
+                    }
+                     
+                })()}
             </div>
         )
     }

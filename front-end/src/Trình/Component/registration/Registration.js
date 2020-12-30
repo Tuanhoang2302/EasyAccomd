@@ -1,122 +1,10 @@
-// import React, {useState} from 'react';
-// import {NavLink} from 'react-router-dom'
-// import axios from 'axios'
-// import { useHistory } from "react-router-dom";
-// import DialogTitle from '@material-ui/core/DialogTitle';
-// import Dialog from '@material-ui/core/Dialog';
-
-// const ObjSign = (props) => {
-//     return (
-//         <div class="form-group">
-//             <label for={props.nameId}>{props.name}</label>
-//             <input onChange={props.handleChange}
-//             type={props.type} class="sign-form-control" id={props.nameId} aria-describedby={props.helpId}/>
-//         </div>
-//     );
-// };
-
-// const Registration = () => {
-//     var state = {
-//         email: null,
-//         password: null,
-//         type: null,
-//         fullname: null,
-//         address: null,
-//         phoneNumber:null
-//     }
-//     const [account, setAccount] = useState(state)
-//     const [open, setOpen] = useState(false)
-//     const history = useHistory()
-//     console.log(account);
-//     const handleSubmit = async (event) =>{
-//         event.preventDefault();
-//         console.log(account);
-        
-        // await axios.post("http://localhost:3001/auth/register", {
-        //     email: account.email,
-        //     password: account.password,
-        //     type: account.type,
-        //     fullname: account.fullname,
-        //     address: account.address,
-        //     phoneNumber:account.phoneNumber
-        // }).then((res) => {
-        //     console.log("fds");
-        //     setOpen(true)
-        // }).catch((err) =>{
-        //     console.log(err);
-        // })
-//     }
-  
-//     const handleChange = (e, key) => {
-//         setAccount({...account, [key]: e.target.value})
-//     }
-
-//     const handleChangeSelect = (e) => {
-//         setAccount({...account, ["type"]: e.target.value})
-//     }
-//     const handleClose = () =>{
-//         setOpen(false)
-//         console.log("Hello");
-//     }
-//     const handleClick = () => {
-//         history.push('/login')
-//     }
-//     return (
-//         <div className="background-signup">
-//             <div className="registration">
-//                 <div className="back-left">
-//                     <form class="sign-up" onSubmit={handleSubmit}>
-//                         <h2 style={{color: '#3463CC', textAlign: 'center'}}>ĐĂNG KÝ</h2>
-//                         <ObjSign account={account} handleChange={(e) => handleChange(e, "fullname")}
-//                         name="Họ và tên" nameId="usernameInput" helpId="usernameHelp" type="text"/>
-                        
-//                         <ObjSign account={account} handleChange={(e) => handleChange(e, "email")}
-//                         name="Địa chỉ email" nameId="emailInput" helpId="emailHelp" type="email"/>
-
-//                         <ObjSign account={account} handleChange={(e) => handleChange(e, "phoneNumber")}
-//                         name="Số điện thoại" nameId="phoneNumberInput" helpId="phoneNumberHelp" type="text"/>
-
-//                         <ObjSign account={account} handleChange={(e) => handleChange(e, "address")}
-//                         name="Địa chỉ" nameId="addressInput" helpId="addressHelp" type="text"/>
-
-//                         <div style={{marginLeft: '20px', marginBottom: '0.5rem'}}>
-//                             <label for="typeAccount" className="form-label">Loại tài khoản:</label>
-//                             <select onChange={handleChangeSelect} className="sign-form-control" id="typeAccountInput" style={{width: '90%'}}>
-//                                 <option value="renter">Người thuê trọ</option>
-//                                 <option value="owner">Chủ nhà trọ</option>
-//                             </select>
-//                         </div>
-
-//                         <ObjSign account={account} handleChange={(e) => handleChange(e, "password")}
-//                         name="Mật khẩu" nameId="passwordInput" helpId="passwordHelp" type="password"></ObjSign>
-
-//                         <ObjSign account={account} handleChange={(e) => handleChange(e, "re-password")}
-//                         name="Nhập lại mật khẩu" nameId="re-passwordInput" helpId="re-passwordHelp" type="password"></ObjSign>
-//                         <button type="submit" class="btn-main-directional">Đăng ký</button>
-//                     </form>
-//                 </div>
-
-//                 <div className="back-right">
-//                     <button type="button" className="btn-main-directional" style={{marginLeft: '105px', marginTop: '300px'}}>
-//                         <NavLink className="link-list" to="/login">Đăng nhập</NavLink>
-//                     </button>
-                    // <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-                    //     <DialogTitle id="simple-dialog-title">Bạn đã đăng ký thành công</DialogTitle>
-                    //     <button onClick={handleClick}>Chuyển tới trang đăng nhập</button>
-                    // </Dialog>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export {Registration, ObjSign};
 
 import React from 'react';
 import axios from 'axios'
 import { NavLink } from 'react-router-dom';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
+import {Redirect} from 'react-router-dom'
 
 class ObjSign extends React.Component {
     render(){
@@ -326,64 +214,64 @@ class Registration extends React.Component {
         })
     }
     
-    render(){
-        return(
+    render() {
+        return (
             <div className="background-signup">
                 <div className="registration">
                     <div className="back-left">
                         <form class="sign-up" onSubmit={this.handleSubmit}>
-                            <h2 style={{color: '#3463CC', textAlign: 'center'}}>ĐĂNG KÝ</h2>
+                            <h2 style={{ color: '#3463CC', textAlign: 'center', fontSize: '1.5rem', marginTop:'20px' }}>ĐĂNG KÝ</h2>
                             <div class="form-group">
                                 <label for="usernameInput">Họ và tên</label>
-                                <input onChange={this.onHandleChange} type="text" value={this.state.usernameInput} class="sign-form-control" name="usernameInput" aria-describedby="usernameHelp"/>
-                                {!this.state.warningFullname? <small class="wrong">Vui lòng nhập họ và tên!</small>:null}
+                                <input onChange={this.onHandleChange} type="text" value={this.state.usernameInput} class="sign-form-control" name="usernameInput" aria-describedby="usernameHelp" />
+                                {!this.state.warningFullname ? <small class="wrong">Vui lòng nhập họ và tên!</small> : null}
                             </div>
                             <div class="form-group">
                                 <label for="emailInput">Địa chỉ email</label>
-                                <input onChange={this.onHandleChange} type="email" value={this.state.emailInput} class="sign-form-control" name="emailInput" aria-describedby="emailHelp"/>
-                                {!this.state.warningEmail? <small class="wrong">Địa chỉ email không hợp lệ!</small>:null}
-                                {this.state.warningExistingEmail ? <small class="wrong">Địa chỉ email đã có người sử dụng!</small>:null}
+                                <input onChange={this.onHandleChange} type="email" value={this.state.emailInput} class="sign-form-control" name="emailInput" aria-describedby="emailHelp" />
+                                {!this.state.warningEmail ? <small class="wrong">Địa chỉ email không hợp lệ!</small> : null}
+                                {this.state.warningExistingEmail ? <small class="wrong">Địa chỉ email đã có người sử dụng!</small> : null}
                             </div>
                             <div class="form-group">
                                 <label for="phoneNumberInput">Số điện thoại</label>
-                                <input onChange={this.onHandleChange} type="text" value={this.state.phoneNumberInput} class="sign-form-control" name="phoneNumberInput" aria-describedby="phoneNumberHelp"/>
-                                {!this.state.warningPhone? <small class="wrong">Số điện thoại phải đúng 10 số!</small>:null}
+                                <input onChange={this.onHandleChange} type="text" value={this.state.phoneNumberInput} class="sign-form-control" name="phoneNumberInput" aria-describedby="phoneNumberHelp" />
+                                {!this.state.warningPhone ? <small class="wrong">Số điện thoại phải đúng 10 số!</small> : null}
                             </div>
                             <div class="form-group">
                                 <label for="addressInput">Địa chỉ</label>
-                                <input onChange={this.onHandleChange} type="text" value={this.state.addressInput} class="sign-form-control" name="addressInput" aria-describedby="addressHelp"/>
-                                {!this.state.warningAddress? <small class="wrong">Vui lòng nhập địa chỉ!</small>:null}
+                                <input onChange={this.onHandleChange} type="text" value={this.state.addressInput} class="sign-form-control" name="addressInput" aria-describedby="addressHelp" />
+                                {!this.state.warningAddress ? <small class="wrong">Vui lòng nhập địa chỉ!</small> : null}
                             </div>
-                            <div style={{marginBottom: '0.6rem'}}>
+                            <div style={{ marginBottom: '0.6rem' }}>
                                 <label for="typeAccount" className="form-label">Loại tài khoản:</label>
                                 <select value={this.state.type}
-                                onChange={this.handleChangeSelect} className="sign-form-control" name="typeAccountInput">
+                                    onChange={this.handleChangeSelect} className="sign-form-control" name="typeAccountInput">
                                     <option value="renter">Người thuê trọ</option>
                                     <option value="owner">Chủ nhà trọ</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="passwordInput">Mật khẩu</label>
-                                <input onChange={this.onHandleChange} type="password" value={this.state.passwordInput} class="sign-form-control" name="passwordInput" aria-describedby="passwordHelp"/>
-                                {!this.state.warningPassword? <small class="wrong">Mật khẩu phải hơn 8 ký tự, có chữ hoa, chữ thường, chữ số!</small>:null}
+                                <input onChange={this.onHandleChange} type="password" value={this.state.passwordInput} class="sign-form-control" name="passwordInput" aria-describedby="passwordHelp" />
+                                {!this.state.warningPassword ? <small class="wrong">Mật khẩu phải hơn 8 ký tự, có chữ hoa, chữ thường, chữ số!</small> : null}
                             </div>
                             <div class="form-group">
                                 <label for="passwordInput">Nhập lại mật khẩu</label>
-                                <input onChange={this.onHandleChange} type="password" value={this.state.rePasswordInput} class="sign-form-control" name="rePasswordInput" aria-describedby="rePasswordHelp"/>
-                                {!this.state.warningCfPassword? <small className="wrong">Mật khẩu không trùng khớp!</small>:null}
+                                <input onChange={this.onHandleChange} type="password" value={this.state.rePasswordInput} class="sign-form-control" name="rePasswordInput" aria-describedby="rePasswordHelp" />
+                                {!this.state.warningCfPassword ? <small className="wrong">Mật khẩu không trùng khớp!</small> : null}
                             </div>
                             <button type="submit" class="btn-main-directional">Đăng ký</button>
                             <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={this.state.isOpen}>
-                                <DialogTitle id="simple-dialog-title">Bạn đã đăng ký thành công</DialogTitle>
-                                <NavLink to="/login"><button>Chuyển tới trang đăng nhập</button></NavLink>
+                                <DialogTitle id="simple-dialog-title">Bạn đã đăng ký thành công!</DialogTitle>
+                                <NavLink to="/login"><button style={{ marginBottom: "20px", marginTop: "20px", marginLeft: "100px", backgroundColor: "#3fc3e5", color: 'white', fontSize: '14px' }} className="btn-main-directional">Đăng nhập</button></NavLink>
                             </Dialog>
                         </form>
                     </div>
-                    {/* <div className="back-right">
-                        <button type="button" className="btn-main-directional" style={{marginLeft: '105px', marginTop: '300px'}}>
-                            <NavLink className="link-list" to="/login">Đăng nhập</NavLink>
-                        </button>
-                    </div> */}
+                </div>
+                <div style={{position: 'relative'}} className="back-titleHeader">
+                    <span className="text-titleHeader">Bạn đang cần tìm trọ?</span>
+                    <span className="text-titleHeader">Hay muốn chia sẻ những không gian tuyệt vời của bạn?</span>
+                    <NavLink to="/login"><span className="text-header">Đăng nhập ngay</span></NavLink>
                 </div>
             </div>
         );

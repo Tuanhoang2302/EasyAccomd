@@ -34,14 +34,6 @@ class TitleAccom extends Component {
                     <label>Mô tả thêm về nhà của bạn</label><br/>
                     <input type="text" name="description" value={this.props.accom.description} onChange={this.inputOnChange.bind(this)}/>
                 </div><br/>
-                <div>
-                    <label>Email liên lạc</label><br/>
-                    <input type="text" name="email" value={this.props.accom.email} onChange={this.inputOnChange.bind(this)}/>
-                </div><br/>
-                <div>
-                    <label>Số điện thoại liên lạc</label><br/>
-                    <input type="text" name="phone" value={this.props.accom.phone} onChange={this.inputOnChange.bind(this)}/>
-                </div><br/>
             </div>
         )
     }

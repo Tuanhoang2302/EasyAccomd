@@ -16,7 +16,8 @@ import 'leaflet/dist/leaflet.css';
 import map_marker from './IconMap'
 import { useHistory } from "react-router-dom";
 import {useDispatch,useSelector} from 'react-redux'
-
+import Report from '../../Thắng/components/report/Report'
+import Footer from '../../Trình/Component/home/Footer'
 const ImageSection = (props) => {
     return (
         <div className={body.image_grid_section}>
@@ -59,7 +60,7 @@ const MultiCarousel = (props) => {
     const items = [
         <CarouselItem 
             icon={<AiOutlineDollar className={body.icon}/>} key={1}
-            title="Chi phí" content={`${props.accom.price}$/đêm`}/>,
+            title="Chi phí" content={`${props.accom.price}$/tháng`}/>,
         <CarouselItem 
         icon={<BsHouseDoor className={body.icon}/>} key={2}
         title="Loại nhà ở" content={props.accom.type}/>,
@@ -176,6 +177,7 @@ const CommentSection = (props) => {
     const [comment, setComment] = useState(null)
     var columnLeft = [], columnRight = []
     const accountId = useSelector(state => state.user._id)
+    const token = useSelector(state => state.token)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -184,8 +186,11 @@ const CommentSection = (props) => {
                   params:{
                       accomId: props.accom._id
                   }
-              }
-            );
+              },{
+                headers: {
+                    "auth-token": token
+                }
+            });
             setNumberComment(result.data.numberComment)
             setCommentList(result.data.commentList)
           };
@@ -224,6 +229,10 @@ const CommentSection = (props) => {
             accomId: props.accom._id,
             accountId: accountId,
             comment: comment
+        },{
+            headers: {
+                "auth-token": token
+            }
         })
         setComment("")
     }
@@ -336,6 +345,7 @@ const DetailSection = (props) => {
     const [isSelectReturnDayButton, setIsSelectReturnDayButton] = useState(false)
     const [rentDay, setRentDay] = useState(null)
     const [returnDay, setReturnDay] = useState(null)
+    const [dialogReport, setDialogReport] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false)
     const accountId = useSelector((state) => state.user._id)
     useEffect(() => {
@@ -373,7 +383,7 @@ const DetailSection = (props) => {
     return (
         <div className={body.detail_section}>
             <div className={body.description_section}>
-                <div style={{fontSize:"26px", fontWeight:"700"}}>Giới thiệu nhà ở</div>
+                <div style={{fontSize:"26px", fontWeight:"700", marginBottom: 16}}>Giới thiệu nhà ở</div>
                 <div>{props.accom.description}</div>
                 <div className={body.line}/>
                 <div style={{fontSize:"26px", fontWeight:"700"}}>Chi tiết nhà ở</div>    
@@ -384,8 +394,8 @@ const DetailSection = (props) => {
             </div>
 
             <div className={body.renting_board_section}>
-                <div className={body.board}>
-                    <span style={{fontSize:"20px", fontWeight:"bold"}}>${props.price} /đêm</span>
+                <div className={body.board}>            
+                    <div style={{fontSize:"20px", fontWeight:"bold"}}>${props.price} /tháng</div>
 
                     <div className={body.renting_time}>
                         <div className={body.select_time} onClick={() => setIsSelectRentDayButton(true)}>
@@ -406,6 +416,9 @@ const DetailSection = (props) => {
                             Bỏ thích
                         </div>}
                 </div>
+                <div onClick={()=>setDialogReport(true)} style={{textAlign:"center", fontSize: 15, color:"grey", cursor:"pointer", textDecoration:"underline", marginTop: 20}}>
+                Báo cáo nhà/phòng cho thuê này</div>
+                <Report onClick={()=>setDialogReport(false)} openDialog={dialogReport}/>        
             </div>
         </div>
     );
@@ -455,8 +468,9 @@ const Body = (props) => {
     }, [props.id])
 
     return (
+        <React.Fragment>
         <div style={{
-            paddingLeft: `${padding}px`, 
+            paddingLeft: `${padding}px`,
             paddingRight: `${padding}px`, 
             paddingTop: "25px",
             paddingBottom: "25px",
@@ -473,11 +487,10 @@ const Body = (props) => {
                     <div style={{color: "grey"}}>
                         {`${accomData.address.village}, ${accomData.address.district}, ${accomData.address.city}`}
                     </div>
-                    {numberOfFavorite != null ?
+                    
                     <div>
-                        {numberOfFavorite} lượt thích
+                        {accomData.favorite} lượt thích
                     </div>
-                    : null}
                 </div>
 
                 <ImageSection images={accomData.images}/>
@@ -489,6 +502,10 @@ const Body = (props) => {
             </div>
             : null}
         </div>
+        <div style={{marginTop:20}} id='footer'>
+            <Footer/>
+        </div>
+        </React.Fragment>
     );
 };
 

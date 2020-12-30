@@ -2,9 +2,11 @@ import React, {useContext, useState, useEffect} from 'react'
 import {Link} from "react-router-dom";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import {useDispatch,useSelector} from 'react-redux'
-
+import { useHistory } from "react-router-dom";
 import {AppContext} from '../context/AppContext'
 import header from '../css/components/header.module.css'
+import { IoMdNotifications } from "react-icons/io";
+import Badge from '@material-ui/core/Badge';
 import socketIOClient from "socket.io-client";
 import axios from 'axios'
 const ENDPOINT = "http://localhost:3001";
@@ -18,14 +20,22 @@ export default function({currentTab, tabs, onClick}) {
     const [dialogNoti, setDialogNoti] = useState(false);
     const userRedux = useSelector(state => state.user)
     const [notisList, setNotisList] = useState([])
-    
+    const [numberNotiDisplay, setNumberNotiDisplay] = useState(0)
+    // if(notisList.length > 0){
+    //     for(let i = 0 ; i < notisList.length; i++){
+    //         if(notisList[i].isChecked == false){
+    //             uncheckedNoti.push(notisList[i])
+    //         }
+    //     }
+    // }
+    const history = useHistory()
     useEffect(() => {
         const fetchData = async () => {
             await socket.emit("first time", {
                 email: userRedux.email
             })
             await socket.on("server send notification to admin", (data) => {
-                console.log(data);
+                setNumberNotiDisplay(notisList.length + 1)
                 setNotisList(state => [...state, data])
              });
           };
@@ -39,15 +49,34 @@ export default function({currentTab, tabs, onClick}) {
                     receiverId: userRedux._id
                 }
             })
+            var counter = 0
+            for(let i = 0 ; i < noties.data.length; i++){
+                if(noties.data[i].isChecked == false){
+                    counter++
+                }
+            }
+            setNumberNotiDisplay(counter)
             setNotisList(noties.data)
           };
         fetchData();
     }, [])
+
+    const goToDetailAccom = async (e, noti) => {
+        await axios.get("http://localhost:3001/notification/update/seenNoti", {params: {
+            notiId: noti._id
+        }})
+        history.push({
+            pathname: `/accom-detail/id=${noti.accomId}`,
+            state: {
+                id: noti.accomId
+            }
+        })
+    }
     return (
         <div className={header.header}>
             <Link to="/"><div className={header.header__logo}></div></Link>
             
-            {userRedux.type!=="admin" && <div className={header.header__title}><label>Quản lý</label></div>}
+            {userRedux.type!=="admin" && <div className={header.header__title}><div>Quản lý</div></div>}
             {userRedux.type==="admin" && <div className={`${header.header__menu__item}  ${currentTab===tabs.STATISTICAL?  header.tabOnSelect:null}`} 
                 onClick={()=>onClick(tabs.STATISTICAL)}>Thống kê</div>}
             {userRedux.type==="admin" && <div className={`${header.header__menu__item}  ${currentTab===tabs.POST?  header.tabOnSelect:null}`}
@@ -73,22 +102,44 @@ export default function({currentTab, tabs, onClick}) {
             
             <ClickAwayListener onClickAway={() => setDialogNoti(false)}>
         
-                <div className={header.header__notification} onClick={()=>setDialogNoti((prev) => !prev)}>
-                {notisList.length > 0 ? 
-                    <div style ={{top: "0px", position:"absolute", color:"red"}}>{notisList.length}</div>
-                :null}
+                <div className={header.header__notification} onClick={()=>setDialogNoti((prev) => !prev)}>                   
+                    <Badge badgeContent={numberNotiDisplay} color="error">
+                        <IoMdNotifications style={{width:35, height:35}} />
+                    </Badge>
                     {
                         dialogNoti && 
                         <div className={header.dialog}>
                         {(notisList && userRedux.type =="admin") ? 
                             <div>
-                                {notisList.map((notification, index) => 
-                                    <div className={header.dialog__item}>
-                                        {`${notification.senderId} request một ${notification.type} cho bạn.`}
+                                {notisList.map((notification, index) => {
+                                    var colorText
+                                    if(notification.isChecked){
+                                        colorText = "grey"
+                                    } else {
+                                        colorText = "black"
+                                    }
+                                    return <div style={{color:colorText}} onClick={(e) => goToDetailAccom(e, notification)} className={header.dialog__item}>
+                                        {`Một người dùng đã ${notification.type} cho bạn.`}
                                     </div>
+                                }
                                 )}
                             </div>
-                        :null}
+                        :(notisList && userRedux.type !="admin") ?
+                            <div>
+                                {notisList.map((notification, index) => {
+                                    var colorText
+                                    if(notification.isChecked){
+                                        colorText = "grey"
+                                    } else {
+                                        colorText = "black"
+                                    }
+                                    return <div style={{color:colorText}} onClick={(e) => goToDetailAccom(e, notification)} className={header.dialog__item}>
+                                        {`admin đã ${notification.type}.`}
+                                    </div>
+                                    }
+                                )}
+                            </div>
+                        : null}
                         </div>
                     }
                 </div>
@@ -97,13 +148,13 @@ export default function({currentTab, tabs, onClick}) {
             
             {
                 userRedux.type==="owner" &&
-                <div>
-                    <div className={header.header__btnCreateAccom}
-                    >
-                        <Link to="/createAccom"><button>Tạo mục cho thuê mới</button></Link>
-                    </div>
-
+               
+                <div className={header.header__btnCreateAccom}>
+                    <Link to="/createAccom"><div style={{backgroundColor:"#008489", padding:10, color:"white", borderRadius:8}}>
+                    Tạo mục cho thuê mới</div></Link>
                 </div>
+
+               
             }
             
         </div>

@@ -73,5 +73,41 @@ router.get("/modify/anAccount", async (req, res) => {
     
 })
 
+router.post("/modify/account", async (req, res) => {
+    const accountId = req.body.accountId 
+    const newValue = req.body.newValue
+    const field = req.body.field
+    const objUpdate = {}
+
+    objUpdate[field] = newValue
+    let doc = await Models.Account.findOneAndUpdate({
+        _id:accountId
+    }, objUpdate, {
+        new: true
+    })
+    .populate('userId')
+    .then((account) => {
+        res.send(account)
+    })
+})
+
+router.post("/modify/user", async (req, res) => {
+    const userId = req.body.userId
+    const newValue = req.body.newValue
+    const field = req.body.field
+    const objUpdate = {}
+    objUpdate[field] = newValue
+    let doc = await Models.User.findOneAndUpdate({
+        _id: userId
+    }, objUpdate, {
+        new: true
+    })
+    await Models.Account.findOne({
+        userId: userId
+    })
+    .populate('userId')
+    .then((user) => res.send(user))
+})
+
 
 module.exports = router

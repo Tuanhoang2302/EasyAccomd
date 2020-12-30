@@ -15,6 +15,7 @@ import PriceAccom from '../components/Detail and Create Accom/PriceAccom';
 import ListContext from '../context/ListContext'
 import axios from 'axios'
 import {useDispatch,useSelector} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import iconBar from '../image/icon-bar.svg';
 import PVT_common from '../css/common.module.css'
 import detailsAccom from '../css/pages/detailsAccom.module.css'
@@ -65,16 +66,20 @@ class DetailsAccom extends Component {
 
     async btnSaveOnClick(listAccom, setListAccom, accomSelect) {
         console.log(this.state.accom);
-        accomSelect === -1 ? setListAccom([...listAccom, this.state.accom]):
-        setListAccom([...listAccom.slice(0, accomSelect), this.state.accom, ...listAccom.slice(accomSelect + 1)])
-        var fetchImagePath = await axios.post("http://localhost:3001/accomodation/upload/image", this.state.accom.imagesFormData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
-        var imagePath = fetchImagePath.data
-        
-        var accom = await axios.post("http://localhost:3001/accomodation/create", {
+        //console.log(this.state.accom.accomId);
+        var imagePath
+        if(this.state.accom.images) {
+            imagePath = this.state.accom.images
+        } else {
+            var fetchImagePath = await axios.post("http://localhost:3001/accomodation/upload/image", this.state.accom.imagesFormData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            imagePath = fetchImagePath.data
+        }
+        var accom = {
+            accomId: this.state.accom.accomId,
             accountId: this.props.accountId,
             isHaveFridge: this.state.accom.fridge != null ? true : false,
             isHaveWaterHeater: this.state.accom.waterHeater != null ? true : false,
@@ -103,13 +108,28 @@ class DetailsAccom extends Component {
             week: this.state.accom.week,
             month: this.state.accom.month,
             year: this.state.accom.year,
-        })
+        }
         
+        accomSelect === -1 ? setListAccom([...listAccom, this.state.accom]):
+        setListAccom([...listAccom.slice(0, accomSelect), this.state.accom, ...listAccom.slice(accomSelect + 1)])
+        
+        
+        var accom = await axios.post("http://localhost:3001/accomodation/create", accom, {
+            headers: {
+              "auth-token": this.props.token
+            }
+           })
+        console.log(accom);
         socket.emit("client send notification", {
             account: this.props.user,
-            type:"accom",
-            accom: accom.data._id
+            type:"gửi đề nghị duyệt nhà ở",
+            accom: accom.data._id, 
+            senderEmail: "admin@gmail.com",
+            receiverId:"5fe34ab502c2b55488620374"
         })
+        
+
+        
     }
 
     btnNextOnClick() {
@@ -122,7 +142,8 @@ class DetailsAccom extends Component {
                 }
                 break;
             case tabs.CONVENIENCES:
-                if(accom.numberOfRooms != null && accom.typeOfBathroom != null
+                if((accom.numberOfRooms != null) 
+                && accom.typeOfBathroom != null
                 && accom.square != null){
                     this.setTab(tabs.IMAGE);
                 }
@@ -163,53 +184,56 @@ class DetailsAccom extends Component {
 
     render() {
         var self = this;
-        return (
-            <ListContext.Consumer>
-                {({listAccom, setListAccom, accomSelect}) => 
-                    <div className={`${detailsAccom.DetailsAccom} ${PVT_common.common}`}>
-                        {
-                            self.state.tab === tabs.MENU? 
-                                "":<div className={detailsAccom.DetailAccom__header}>
-                                    <img src={iconBar} width="25" onClick={self.iconBarOnClick.bind(self)}></img>
-                                    <div className={detailsAccom.title}>
-                                        {
-                                            self.state.tab === tabs.ADDRESS? 'Địa chỉ':
-                                            self.state.tab === tabs.PRICE? 'Định giá':
-                                            self.state.tab === tabs.CONVENIENCES? 'Tiện nghi':
-                                            self.state.tab === tabs.IMAGE? 'Ảnh':
-                                            self.state.tab === tabs.TITLE? 'Tiêu đề':''
-                                        }
+        if(this.props.user)
+            return (
+                <ListContext.Consumer>
+                    {({listAccom, setListAccom, accomSelect}) => 
+                        <div className={`${detailsAccom.DetailsAccom} ${PVT_common.common}`}>
+                            {
+                                self.state.tab === tabs.MENU? 
+                                    "":<div className={detailsAccom.DetailAccom__header}>
+                                        <img src={iconBar} width="25" onClick={self.iconBarOnClick.bind(self)}></img>
+                                        <div className={detailsAccom.title}>
+                                            {
+                                                self.state.tab === tabs.ADDRESS? 'Địa chỉ':
+                                                self.state.tab === tabs.PRICE? 'Định giá':
+                                                self.state.tab === tabs.CONVENIENCES? 'Tiện nghi':
+                                                self.state.tab === tabs.IMAGE? 'Ảnh':
+                                                self.state.tab === tabs.TITLE? 'Tiêu đề':''
+                                            }
+                                        </div>
+                                        <Link to="/createAccom"><button className={detailsAccom.right}>Thoát</button></Link>
                                     </div>
-                                    <Link to="/createAccom"><button className={detailsAccom.right} onClick={self.btnSaveOnClick.bind(self, listAccom, setListAccom, accomSelect)}>Thoát</button></Link>
-                                </div>
-                        }
-                        <div className={detailsAccom.DetailAccom__content}>
-                            {
-                                self.state.tab === tabs.ADDRESS? <AddressAccom accom={self.state.accom} setAccom={self.state.setAccom}/>:
-                                self.state.tab === tabs.PRICE? <PriceAccom accom={self.state.accom} setAccom={self.state.setAccom} />:
-                                self.state.tab === tabs.CONVENIENCES? <ConveniencesAccom accom={self.state.accom} setAccom={self.state.setAccom} />:
-                                self.state.tab === tabs.IMAGE? <ImageAccom accom={self.state.accom} setAccom={self.state.setAccom} />:
-                                self.state.tab === tabs.TITLE? <TitleAccom accom={self.state.accom} setAccom={self.state.setAccom} />:
-                                <MenuDetailAccom tabs={tabs} setTab={self.state.setTab} />
                             }
-                        </div>
-                        <div className={detailsAccom.DetailAccom__footer}>
-                            {
-                                self.state.tab === tabs.MENU? <Link to="/createAccom"><button  className={detailsAccom.right} 
-                                    onClick={self.btnSaveOnClick.bind(self, listAccom, setListAccom, accomSelect)}>Lưu và thoát</button></Link>:
-                                self.state.tab === tabs.PRICE? <button className={detailsAccom.right} onClick={self.btnNextOnClick.bind(self)}>Hoàn thành</button>:
-                                <button className={detailsAccom.right} onClick={self.btnNextOnClick.bind(self)}>Tiếp tục</button>
-                            }
-                            {
-                                self.state.tab === tabs.MENU? <Link to="/createAccom"><button>Huỷ</button></Link>:
-                                <button onClick={self.btnBackOnClick.bind(self)}>Quay lại</button>
-                            }
-                        </div>
+                            <div className={detailsAccom.DetailAccom__content}>
+                                {
+                                    self.state.tab === tabs.ADDRESS? <AddressAccom accom={self.state.accom} setAccom={self.state.setAccom}/>:
+                                    self.state.tab === tabs.PRICE? <PriceAccom accom={self.state.accom} setAccom={self.state.setAccom} />:
+                                    self.state.tab === tabs.CONVENIENCES? <ConveniencesAccom accom={self.state.accom} setAccom={self.state.setAccom} />:
+                                    self.state.tab === tabs.IMAGE? <ImageAccom accom={self.state.accom} setAccom={self.state.setAccom} />:
+                                    self.state.tab === tabs.TITLE? <TitleAccom accom={self.state.accom} setAccom={self.state.setAccom} />:
+                                    <MenuDetailAccom tabs={tabs} setTab={self.state.setTab} />
+                                }
+                            </div>
+                            <div className={detailsAccom.DetailAccom__footer}>
+                                {
+                                    self.state.tab === tabs.MENU? <Link to="/createAccom"><button  className={detailsAccom.right} 
+                                        onClick={self.btnSaveOnClick.bind(self, listAccom, setListAccom, accomSelect)}>Lưu và thoát</button></Link>:
+                                    self.state.tab === tabs.PRICE? <button className={detailsAccom.right} onClick={self.btnNextOnClick.bind(self)}>Hoàn thành</button>:
+                                    <button className={detailsAccom.right} onClick={self.btnNextOnClick.bind(self)}>Tiếp tục</button>
+                                }
+                                {
+                                    self.state.tab === tabs.MENU? <Link to="/createAccom"><button>Huỷ</button></Link>:
+                                    <button onClick={self.btnBackOnClick.bind(self)}>Quay lại</button>
+                                }
+                            </div>
 
-                    </div>
-                }
-            </ListContext.Consumer>
-        )
+                        </div>
+                    }
+                </ListContext.Consumer>
+            )
+        else 
+            return (<Redirect to={{pathname: '/login'}} />)
     }
 }
 

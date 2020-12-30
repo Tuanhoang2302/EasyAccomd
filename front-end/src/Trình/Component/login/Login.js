@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useHistory } from "react-router-dom";
 import { login } from '../../../redux/action/action';
 import {useDispatch,useSelector} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 const cookies = new Cookies();
 
 const Login = () => {
@@ -15,6 +16,7 @@ const Login = () => {
     const [passwordInput, setPasswordInput] = useState("")
     const [warningEmail, setWarningEmail] = useState(true)
     const [warningPassword, setWarningPassword] = useState(true)
+    const userRedux = useSelector(state => state.user)
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -66,18 +68,19 @@ const Login = () => {
         })
         
     }
-    
+    if(userRedux == null){
     return (
         <div className= "background-signup">
+            <div style={{marginLeft: '200px', marginRight: '0px'}} className="back-titleHeader">
+                    <span className="text-titleHeader">Bạn đang cần tìm trọ?</span>
+                    <span className="text-titleHeader">Hay muốn chia sẻ những không gian tuyệt vời của bạn?</span>
+                    <NavLink to="/registration"><span className="text-header">Tạo tài khoản</span></NavLink>
+            </div>
             <div className="login">
-                <div className="back-right">
-                    <button type="button" className="btn-main-directional" style={{marginLeft: '105px', marginTop: '300px'}}>
-                        <NavLink className="link-list" to="/registration">Đăng ký</NavLink>
-                    </button>
-                </div>
                 <div className="back-left">
+                    <div className="back-right"></div>
                     <form className="sign-in" onSubmit={handleSubmit}>
-                        <h1 style={{color: '#3463CC', textAlign: 'center'}}>ĐĂNG NHẬP</h1>
+                        <h1 style={{color: '#3463CC', textAlign: 'center', fontSize: '2rem', marginBottom: '20px'}}>WELCOME</h1>
                         <div className="form-group">
                                 <label for="emailInput">Địa chỉ email</label>
                                 <input onChange={(e) => (setEmailInput(e.target.value))} type="email" value={emailInput} class="sign-form-control" aria-describedby="emailHelp"/>
@@ -88,13 +91,16 @@ const Login = () => {
                                 <input onChange={(e) => (setPasswordInput(e.target.value))} type="password" value={passwordInput} class="sign-form-control" aria-describedby="passwordHelp"/>
                                 {isLoginValid == false ? <small className="wrong">Email hoặc Password không đúng!</small>:null}
                         </div>
-                        <button style={{marginBottom:"120px", marginTop:"20px"}} type="submit" className="btn-main-directional">Đăng nhập</button>
+                        <button style={{marginBottom:"50px", marginTop:"20px"}} type="submit" className="btn-main-directional">Đăng nhập</button>
                     </form>
                 </div>
                 
             </div>
         </div>
     );
+    }else {
+        return (<Redirect to={{pathname: '/'}} />)
+    }
 };
 
 export default Login;

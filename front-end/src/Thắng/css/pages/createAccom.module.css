@@ -6,7 +6,7 @@
 }
 
 .CreateAccom .CreateAccom__content {
-    padding-bottom: 50px;
+    padding-bottom: 60px;
 }
 
 .CreateAccom .CreateAccom__footer {
@@ -20,9 +20,8 @@
 }
 
 .CreateAccom .CreateAccom__footer button{
-    margin: 10px;
-    padding: 15px;
-    height: 45px;
+    padding: 10px;
+    margin-top: 10px;
 }
 
 .CreateAccom .ItemAccom {

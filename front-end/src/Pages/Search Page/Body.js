@@ -18,6 +18,7 @@ import Slider from '@material-ui/core/Slider';
 import CustomizedSlider from './Custom Slider'
 import Checkbox from '@material-ui/core/Checkbox';
 import Pagination from '@material-ui/lab/Pagination';
+import Footer from '../../Trình/Component/home/Footer'
 import { delete_accomtype_filter, delete_otherfilter, delete_price_filter, get_location_search, get_search_filter, remove_all_search} from '../../redux/action/action';
 
 const Option = (props) => {
@@ -225,7 +226,8 @@ const AccomTile = (props) => {
         location: props.data.address.city,
         title: props.data.title,
         price: props.data.price, 
-        images: props.data.images
+        images: props.data.images,
+        favorite: props.data.favorite
     }
     
     let history = useHistory();
@@ -264,7 +266,7 @@ const AccomTile = (props) => {
             <div className={body.description_section}>
                 <div style={{marginTop:"5px"}} className="rate">
                     <AiFillStar style={{color:"#ff0080", marginRight:"5px"}}/>
-                    <span>{accom.rate}</span>
+                    <span>{accom.favorite} lượt thích</span>
                 </div>
 
                 <div className="location">
@@ -293,14 +295,25 @@ const AccomListSection = (props) => {
     const [currentPage, setCurrentPage] = useState(1)
     const locationSearch = useSelector(state => state.locationSearch)
     const filterSearch = useSelector(state => state.filterSearch)
+    const token = useSelector(state => state.token)
     console.log(totalResult);
     useEffect(() => {
         if(filterSearch == null && locationSearch == null){
             var fetchData = async () => {
-            const result = await axios.get('http://localhost:3001/accomodation/get/recently/'+ currentPage);
-            setData(result.data.listAccom)
-            setTotalResult(result.data.totalResult)
-            
+            const result = await axios.get('http://localhost:3001/accomodation/get/recently/'+ currentPage, {
+                headers: {
+                    "auth-token": token
+                }
+               }).then((accomData) => {
+                setData(accomData.data.listAccom)
+                setTotalResult(accomData.data.totalResult)
+                console.log("fsads");
+               }).catch(err => {
+                   console.log(err);
+               })
+                   
+            // setData(result.data.listAccom)
+            // setTotalResult(result.data.totalResult)
           };
           
           fetchData();
@@ -322,6 +335,10 @@ const AccomListSection = (props) => {
                     },
                     price: filterSearch ? filterSearch.price : null,
                     type: filterSearch ? filterSearch.accomType : null
+                }, {
+                    headers: {
+                        "auth-token": token
+                    }
                 })
                 setData(result.data.listAccom)
                 setTotalResult(result.data.totalResult)
@@ -493,7 +510,6 @@ function Body() {
         color = "rgba(0, 0, 0, 0.1)"
     
     return (
-
     <div style={{background: color}} className={body.body}>
         {(() => {
             var title
@@ -502,7 +518,7 @@ function Body() {
             } else if(locationSearch && filterSearch == null){
                 title = `Chỗ ở tại ${locationSearch.city.province_name}`
             } else if(locationSearch == null && filterSearch){
-                if(numberFilter == 0){
+                if(numberFilter == 0 && filterSearch.price == null && filterSearch.accomType == null){
                     title = "Chỗ ở đăng gần đây"
                 }else
                     title = "Tìm kiếm theo bộ lọc"
@@ -581,18 +597,16 @@ function Body() {
 
             
                 <div style={{backgroundColor:"#f32c72"}} onClick={SearchByFilter} className={body.option} >
-                    <span style={{color:"white"}}>Tìm kiếm</span> 
+                    <span style={{color:"white", cursor:"pointer"}}>Tìm kiếm</span> 
                 </div>
             
             
         </div>
 
-        <div className={body.accom_section}>
+        <div style={{marginBottom:40}} className={body.accom_section}>
             <AccomListSection/>
         </div>
-
     </div>
-        
     );
 }
 

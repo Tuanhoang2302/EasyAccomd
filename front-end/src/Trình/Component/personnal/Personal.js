@@ -2,14 +2,49 @@ import React, { useState } from 'react';
 // import {NavLink} from 'react-router-dom'
 import styles from './Personal.module.css';
 import {ObjSign} from '../registration/Registration'
+import {Redirect} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import axios from 'axios'
+import { update_account } from '../../../redux/action/action';
+import Footer from '../home/Footer';
 
 const FormEdit = (props) =>{
-    const handleSubmit =() =>{
-        alert("update completed")
+    const [value, setValue] = useState("")
+    const accountId = useSelector(state => state.user._id)
+    const state = useSelector(state => state)
+    const dispatch = useDispatch()
+    const handleSubmit = async (e, typeSearch, field) =>{
+        //props.setOnEdit(false)
+        e.preventDefault()
+        if(typeSearch == "account"){
+            var newAccount = await axios.post("http://localhost:3001/find/modify/account", {
+                accountId: accountId,
+                newValue: value,
+                field: field
+            })
+            dispatch(update_account(newAccount.data, state))
+            props.setOnEdit(false)
+        }
+        else {
+            var newAccount = await axios.post("http://localhost:3001/find/modify/user", {
+                userId: state.user.userId,
+                newValue: value,
+                field: field
+            })
+            console.log(newAccount.data);
+            dispatch(update_account(newAccount.data, state))
+            props.setOnEdit(false)
+        }
     }
     return(
-        <form onSubmit={handleSubmit}>
-            <ObjSign nameId={props.props.type+"Input"} helpId={props.props.type+"Help"} type={props.props.type}/>
+        <form onSubmit={(e) => handleSubmit(e,props.props.typeSearch, props.props.field)}>
+            {/* <ObjSign nameId={props.props.type+"Input"} helpId={props.props.type+"Help"} type={props.props.type}/> */}
+            <div class="form-group">
+                <label for={props.props.type+"Input"}></label>
+                <input value={value} onChange={(e) => setValue(e.target.value)}
+                type={props.props.type} class="sign-form-control" name={props.props.type+"Input"} aria-describedby={props.props.type+"Help"}></input>
+                <small className="wrong"></small>
+            </div>
             <button type="submit" className={styles.btn_save}>
                 <span class={styles.save}>Lưu</span>
             </button>
@@ -39,30 +74,37 @@ const Info = (props) => {
                             {!onEdit? <div class={styles.content}>{props.content}</div>:null}
                         </div>
                     </div>
+                    {props.type !="typeUser" ?
                     <div style={{display: 'table-cell', verticalAlign: 'top', whiteSpace: 'nowrap'}}>
                         <div className={styles.edit} onClick={handleClickEdit}>
                             <button type="button" className={styles.btn_edit}>{textEdit}</button>
                         </div>
                     </div>
+                    :null}
                 </div>
-                { onEdit? <FormEdit props={props}/> :null}
+                { onEdit? <FormEdit setOnEdit={setOnEdit} props={props}/> :null}
             </div>
         </div>
     );
 }
 const Personal = () => {
-    return (
-        <div className={styles.main_info}>
-            <div className={styles.list_info}>
-                <div className={styles.title}>Thông tin cá nhân</div>
-                <Info name="Tên pháp lý" content="Nguyễn Tiến Trình" type="name"/>
-                <Info name="Giới tính" content="Nam" type="gender"/>
-                <Info name="Ngày sinh" content="14 tháng 01 năm 2000" type="date"/>
-                <Info name="Địa chỉ email" content="Nguyentrinhs2000@gmail.com" type="email"/>
-                <Info name="Số điện thoại" content="0934655724" type="phone"/>
-                <Info name="Địa chỉ liên hệ" content="Mễ Trì Thượng, Nam Từ Liêm, Hà Nội" type="address"/>
+    const user = useSelector(state => state.user)
+    if(user)
+        return (
+            <div className={styles.main_info}>
+                <div className={styles.list_info}>
+                    <div className={styles.title}>Thông tin cá nhân</div>
+                    <Info name="Tên pháp lý" content={user.userId.fullname} type="name" field="fullname" typeSearch="user"/>
+                    <Info name="Giới tính" content="Nam" type="gender" />
+                    <Info name="Loại tài khoản" content={user.type} type="typeUser" />
+                    <Info name="Địa chỉ email" content={user.email} propSearch="email" field="email" typeSearch="account"/>
+                    <Info name="Số điện thoại" content={user.userId.phoneNumber} field="phoneNumber" typeSearch="user"/>
+                    <Info name="Địa chỉ liên hệ" content={user.userId.address} type="userId.address" field="address" typeSearch="user"/>
+                </div>
+                
             </div>
-        </div>
-    );
+        );
+    else 
+        return (<Redirect to={{pathname: '/login'}} />)
 }
 export default Personal;

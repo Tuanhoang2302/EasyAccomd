@@ -1,6 +1,3 @@
-/* .DetailsAccom {
-    
-}
 
 .DetailsAccom .DetailAccom__header {
     width: 100%;
@@ -46,63 +43,7 @@
     position: fixed;
     bottom: 0px;
     background-color: #ffffff;
-    border-top: 1px solid #000000;
-}
-
-@media only screen and (max-width: 768px) {
-    .DetailAccom .DetailAccom__content {
-        margin-left: 0px;
-    }
-    .DetailAccom .DetailAccom__footer {
-        margin-left: 0px;
-    }
-}
- */
-
- .DetailsAccom .DetailAccom__header {
-    width: 100%;
-    height: 60px;
-    position: fixed;
-    top: 0px;
-    border-bottom: 10px solid #008489;
-    background-color: #ffffff;
-    overflow: hidden;
-}
-
-.DetailsAccom .DetailAccom__header img {
-    float: left;
-    margin: 15px 10px 0px 15px;
-    cursor: pointer;
-}
-
-.DetailsAccom .DetailAccom__header .title {
-    float: left;
-    height: 100%;
-    font-size: 20px;
-    line-height: 60px;
-}
-
-.DetailsAccom .DetailAccom__content {
-    width: calc(100% - 40px);
-    padding: 70px 20px 100px 20px;
-    max-width: 600px;
-    margin-left: 10%;
-}
-
-    .DetailsAccom .DetailAccom__content .MenuDetailAccom li:hover {
-        cursor: pointer;
-        
-    }
-
-.DetailsAccom .DetailAccom__footer {
-    width: calc(100% - 40px);
-    height: 70px;
-    padding: 0px 20px 0px 20px;
-    max-width: 600px;
-    margin-left: 10%;
-    position: fixed;
-    bottom: 0px;
-    background-color: #ffffff;
+    padding-top: 10px;
     border-top: 1px solid #000000;
 }
 
@@ -118,3 +59,4 @@
         margin-left: 0px;
     }
 }
+

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NavLink} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux'
 import { logout } from '../../../redux/action/action';
 import { useHistory } from "react-router-dom";
@@ -93,6 +93,22 @@ const Control = () => {
 const FirtHeader = () => {
     const [showResults, setShowResults] = useState(false)
     const user = useSelector(state => state.user)
+    const [onScroll, setOnScroll] = useState(false)
+    const handleScroll = () => {
+        if(!window.pageYOffset){
+            setOnScroll(false);
+        }
+        else setOnScroll(true);
+    }
+    var style={
+        position: "fixed",
+        bordeeBottom: '#dddddd solid 1px',
+        backgroundColor: '#f7f7f7',
+        boxShadow: '0px 15px 15px rgba(255, 255, 255, 0.5)',
+        opacity: '90%',
+        color: 'black'
+    }
+    window.addEventListener('scroll', handleScroll);
     const handleEnter = () => {
         setShowResults(true)
     }
@@ -101,7 +117,31 @@ const FirtHeader = () => {
     }
     return (
         <div style={{minHeight: '70px'}}>
-            <div className="firtHeader">
+            {onScroll? <div style={style} className="firtHeader">
+                <NavLink className="logo" to="/"></NavLink>
+                <div className="directional">
+                    {!user &&
+                    <React.Fragment>
+                        <div className="owner">
+                            <NavLink style={{color: style['color']}} className="link-owner" to="/registration">
+                                <div className="link-owner-text">Đăng ký</div>
+                            </NavLink>
+                        </div>
+                        <div className="owner">
+                            <NavLink style={{color: style['color']}} className="link-owner" to="/login">
+                                <div className="link-owner-text">Đăng nhập</div>
+                            </NavLink>
+                        </div>
+                    </React.Fragment>}
+                    <div className="main-directional" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+                        <button type="button" className="btn-main-directional">
+                            <div className="btn-list"></div>
+                            <div className="btn-user"></div>
+                        </button>
+                        { showResults ? <Control /> : null }
+                    </div>
+                </div>
+            </div>: <div className="firtHeader">
                 <NavLink className="logo" to="/"></NavLink>
                 <div className="directional">
                     {!user &&
@@ -125,7 +165,7 @@ const FirtHeader = () => {
                         { showResults ? <Control /> : null }
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     );
 };
@@ -135,6 +175,13 @@ class Header extends React.Component {
         return (
             <div className="homeHeader">
                 <FirtHeader/>
+                <div style={{ marginTop:"350px", marginLeft: 130}}>
+                    <div style={{color:'white', zIndex:10, fontSize:54, fontWeight:"bold", marginBottom: 16}}>
+                        Khám phá địa điểm
+                    </div>
+                    <Link to="/search"><button style={{padding:5, borderRadius:10, paddingLeft: 20, paddingRight: 20, border: "none", fontWeight: 500,
+                    boxShadow: "0 0 10px hsl(300, 2%, 80%)"}}>Tìm kiếm xung quanh</button></Link>
+                </div>
             </div>
         );
     }

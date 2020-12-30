@@ -71,16 +71,19 @@ io.on("connection", (socket) => {
     userOnline[data.email] = socket.id
   })
   socket.on("client send notification", async (data) => {
-    console.log("Hello");
+    console.log(data);
     const noti = new Models.Notification({
        senderId: data.account,
+       senderEmail: data.senderEmail,
        type: data.type,
        createdAt: Date.now(),
-       receiverId: mongoose.Types.ObjectId("5fe34ab502c2b55488620374")
+       receiverId: mongoose.Types.ObjectId(data.receiverId),
+       accomId: data.accom,
+       isChecked: false
     })
     noti.save().then((notiData) => {
-      io.to(userOnline['admin@gmail.com'])
-      .emit("server send notification to admin", noti)
+      io.to(userOnline[data.senderEmail])
+      .emit("server send notification to admin", notiData)
     })
   })
 })

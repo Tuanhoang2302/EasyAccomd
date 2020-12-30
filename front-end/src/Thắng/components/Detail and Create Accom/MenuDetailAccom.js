@@ -6,7 +6,6 @@ import {
     Link
   } from "react-router-dom";
 
-import '../../css/pages/detailsAccom.css';
 //import '../../css/common.css'
 
 class MenuDetailAccom extends Component {

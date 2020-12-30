@@ -14,6 +14,7 @@ export default function(props) {
     const [currentRow, setCurrentRow] = useState(null);
     const appContext = useContext(AppContext);
     const manageContext = useContext(ManageContext)
+    const history = useHistory()
     const tabs = {
         isAccepted: 'Bài được chấp nhận',
         isDenied: 'Bài bị từ chối'
@@ -64,6 +65,7 @@ export default function(props) {
     ];
     const [data, setData] = useState(null)
     const [totalResult, setTotalResult] = useState(null)
+    const [dataModify, setDataModify]= useState(null)
     useEffect(() => {
         var fetchData = async () => {
             var typeOfSearch
@@ -80,7 +82,9 @@ export default function(props) {
             })
             
             const listAccom = fetchResult.data.accom
+            console.log(listAccom);
             setTotalResult(fetchResult.data.totalResult)
+            setDataModify(listAccom)
             var formatArrayData = []
             for(let i = 0; i < listAccom.length; i++){
                 var postTimeString, expiredTimeString
@@ -121,7 +125,15 @@ export default function(props) {
 
     function btnDeleteOnClick() {
         if (currentRow !== null)
-            appContext.setListAccom([...appContext.listAccom.slice(0, currentRow), ...appContext.listAccom.slice(currentRow + 1)]);
+        setData([...data.slice(0, currentRow), ...data.slice(currentRow + 1)]);
+    }
+    const goToDetailAccom = (e, accomId) => {
+        history.push({
+            pathname: `/accom-detail/id=${accomId}`,
+            state: {
+                id: accomId
+            }
+        })
     }
     var fieldForSearch = ["type", "status", "price", "view", "favorite", "postTime","expiredTime"]
     return (
@@ -147,9 +159,8 @@ export default function(props) {
                     <Table searchValue={searchValue} fieldForSearch={fieldForSearch}
                     data={data} content={content} currentRow={currentRow} setCurrentRow={setCurrentRow}>
                         <div className={manage.dialog}>
-                            <Link to="/"><div className={manage.dialog__item}>Vô hiệu hóa</div></Link>
                             <div className={manage.dialog__item} onClick={()=>btnDeleteOnClick()}>Xóa</div>
-                            <Link to="/"><div className={manage.dialog__item}>Chi tiết</div></Link>
+                            <div onClick={(e) => goToDetailAccom(e, dataModify[currentRow]._id)} className={manage.dialog__item}>Chi tiết</div>
                         </div>
                     </Table>
                 :null}

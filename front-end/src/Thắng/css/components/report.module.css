@@ -1,0 +1,113 @@
+.dialog {
+    width: 600px;
+    height: 540px;
+    padding: 10px 10px 5px 10px;
+    font-size: 20px;
+}
+
+.title {
+    width: 100%;
+    height: 49px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #008489;
+    border-bottom: 1px solid #ededed;
+}
+
+    .title .btnCancel {
+        width: 30px;
+        height: 30px;
+        background-color: #f0f2f5;
+        border-radius: 50%;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        cursor: pointer;
+        font-weight: normal;
+        color: #65676b;
+        text-align: center;
+        line-height: 23px;
+    }
+
+.content {
+    width: calc(100%) - 20px;
+    height: calc(100% - 50px - 70px);
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+}
+
+    .content .content__title {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        font-weight: 700;
+    }
+
+    .content .content__subTitle {
+        font-size: 16px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        color: gray;
+    }
+
+    .content .option {
+        margin-bottom: 20px;
+    }
+
+    .content .option .item{
+        margin: 10px 10px 0 0;
+        height: 35px;
+        border-radius: 22px;
+        font-size: 16px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .content .input {
+        width: 100%;
+    }
+
+    .content .input textarea{
+        width: calc(100%);
+        height: 100px;
+        resize: none;
+        padding: 5px 10px 5px 10px;
+        font-size: 16px;
+        overflow: hidden;
+        border: 1px solid #ededed;
+        border-radius: 10px;
+    }
+
+    .content .input textarea:focus{
+        outline: none;
+        border: 1px solid #008489;
+    }
+
+    .content .note {
+        background-color: #f0f2f5;
+        border-radius: 8px;
+        color: #65676b;
+        font-size: 16px;
+        padding: 10px;
+        margin-top: 25px;
+    }
+
+.footer {
+    width: 100%;
+    height: 69px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid #ededed;
+    overflow: hidden;
+}
+
+    .footer button {
+        margin-right: 20px;
+        width: 80px;
+    }

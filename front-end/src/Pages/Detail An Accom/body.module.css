@@ -180,13 +180,14 @@
 }
 
 .load_comment_button{
+    margin-top: 20px;
     border: 1px solid black;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
     border-radius: 10px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .load_comment_button:hover{

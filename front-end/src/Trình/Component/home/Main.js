@@ -1,8 +1,45 @@
 import React from 'react';
-import discovery1 from '../../img/discovery1.jpg';
+import discovery1 from '../../img/discovery5.jpg';
 import discovery2 from '../../img/discovery2.jpg';
 import discovery3 from '../../img/discovery3.jpg';
-import discovery4 from '../../img/discovery4.jpg';
+import discovery4 from '../../img/discovery6.jpg';
+import uni from '../../img/uni.png';
+import body from '../../../Pages/Search Page/Body.module.css'
+import useViewport from '../../../Component/Detect Screen';
+import Footer from './Footer';
+
+const PopularPlaceTile = () => {
+    return(
+        <div className={body.popular_places_tile}>
+            <span className={body.helper}></span>
+            <img 
+            className= {body.popular_places_image} 
+            src={uni} alt='places'/>
+            <div style={{marginLeft:"15px", fontSize:"16px"}}>
+                <span className={body.helper}></span>
+                <span>Thị xã Sầm Sơn</span>
+            </div>
+        </div>
+    )
+}
+
+const PopularPlaceList = () => {
+    var number = 4
+    const {width} = useViewport()
+    var popularPlaceList = []
+
+    if(width < 1130){
+        number = 2
+    }
+    for(let i = 0; i < number; i++){
+        popularPlaceList.push(<PopularPlaceTile key={i+1}/>)
+    }
+    return(
+        <div className={body.popular_places_list}>
+            {popularPlaceList}
+        </div>
+    )
+}
 class Uni extends React.Component {
     render(){
         return(
@@ -25,8 +62,7 @@ class Post extends React.Component {
                 <a className="link-post" href="http://localhost:3000/">
                     <span className="img-post"></span>
                     <span className="text-post">
-                        <span className="info-post"><b>{this.props.money}</b></span>
-                        <span className="info-post"><b>{this.props.address}</b></span>
+                        <div className="info-post"><b>{this.props.address}</b></div>
                     </span>
                 </a>
             </div>
@@ -46,8 +82,8 @@ class Main extends React.Component{
         return(
             <div>
                 <div className="content-main">
-                    <span className="text-content-main">Gần trường đại học</span>
-                    <div className="content-uni">
+                    
+                    {/* <div className="content-uni">
                         <Uni name="Đại học Quốc gia Hà Nội" address="Dịch Vọng Hậu-Cầu Giấy"></Uni>
                         <Uni name="Đại học Thương mại" address="Mai Dịch-Cầu Giấy"></Uni>
                         <Uni name="Đại học Bách khoa Hà Nội" address="Bách Khoa-Hai Bà Trưng"></Uni>
@@ -56,6 +92,13 @@ class Main extends React.Component{
                         <Uni name="Đại học Giao thông vận tải" address="Cầu Giấy-Hà Nội"></Uni>
                         <Uni name="Học viện Báo chí và Tuyên truyền" address="Xuân Thủy-Hà Đông"></Uni>
                         <Uni name="Đại học Mỏ Hà Nội" address="Cầu Diễn-Bắc Từ Liêm"></Uni>
+                    </div> */}
+                    <div
+                        style={{fontWeight:"600", fontSize:"24px", marginBottom:"60px"}}
+                        className={body.popular_places_section}>
+                            <div>Điểm đến phổ biến khác</div>
+                            <PopularPlaceList/>
+                            <PopularPlaceList/>
                     </div>
                 </div>
 
@@ -73,13 +116,16 @@ class Main extends React.Component{
                 </div>
 
                 <div className="content-main">
-                    <span className="text-content-main">Mới đăng gần đây</span>
+                    <span style={{marginBottom:20}} className="text-content-main">Mới đăng gần đây</span>
                     <div className="content">
-                        <Post money="3 Triệu" address="Dịch Vọng Hậu-Cầu Giấy"></Post>
-                        <Post money="2 Triệu" address="Mai Dịch-Cầu Giấy"></Post>
-                        <Post money="5 Triệu" address="Bách Khoa-Hai Bà Trưng"></Post>
-                        <Post money="4 Triệu" address="Văn Quán-Hà Đông"></Post>
+                        <Post  address="Dịch Vọng Hậu-Cầu Giấy"></Post>
+                        <Post  address="Mai Dịch-Cầu Giấy"></Post>
+                        <Post  address="Bách Khoa-Hai Bà Trưng"></Post>
+                        <Post  address="Văn Quán-Hà Đông"></Post>
                     </div>
+                </div>
+                <div id='footer'>
+                    <Footer/>
                 </div>
             </div>
         );

@@ -26,17 +26,19 @@ export const logout = (user) => {
     }
 }
 
-export const change_chat_tile = (data) => {
+export const change_chat_tile = (data, token) => {
     return {
         type: "CHANGE_CHAT_TITLE",
-        data
+        data,
+        token
     }
 }
 
-export const get_room_and_contactid = (data) => {
+export const get_room_and_contactid = (data, token) => {
     return {
         type: "GET_ROOM_AND_CONTACTID",
-        data
+        data, 
+        token
     }
 }
 
@@ -85,6 +87,14 @@ export const delete_accomtype_filter = (existing) => {
 export const delete_otherfilter = (existing) => {
     return{
         type:"DELETE_OTHERFILTER",
+        existing
+    }
+}
+
+export const update_account = (data, existing) => {
+    return {
+        type:"UPDATE_ACCOUNT",
+        data,
         existing
     }
 }

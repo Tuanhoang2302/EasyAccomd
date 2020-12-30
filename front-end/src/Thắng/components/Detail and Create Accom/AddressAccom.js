@@ -16,7 +16,6 @@ const AddressAccom = (props) => {
     const [districtOptions, setDistrictOptions] = useState([])
     const [wardOptions, setwardOptions] = useState([])
 
-    console.log(props.accom.city);
     const check = (value, name) => {
         if(value.length > 0) {
             props.setAccom(name, value);
@@ -47,7 +46,7 @@ const AddressAccom = (props) => {
                     setAccom={props.setAccom}    
                     />
                 {cityValue == null ? 
-                <div>invalid</div>
+                <div style={{color:"red", marginTop: 5, fontSize: 13}}>Ô phải điền</div>
                 : null}
             </div><br/>
             <div>
@@ -61,7 +60,7 @@ const AddressAccom = (props) => {
                     setAccom={props.setAccom}    
                     />
                 {districtValue == null ? 
-                <div>invalid</div>
+                    <div style={{color:"red", marginTop: 5, fontSize: 13}}>Ô phải điền</div>
                 : null}
             </div><br/>
             <div>
@@ -75,21 +74,21 @@ const AddressAccom = (props) => {
                     setAccom={props.setAccom}    
                     />
                 {wardValue == null ? 
-                <div>invalid</div>
+                    <div style={{color:"red", marginTop: 5, fontSize: 13}}>Ô phải điền</div>
                 : null}
             </div><br/>
             <div >
                 <label>Địa chỉ đường/phố</label><br/>
                 <input type="text" name="street" value={props.accom.street} onChange={inputOnChange}/>
                 {props.accom.street == null?
-                <div>invalid</div>
+                    <div style={{color:"red", marginTop: 5, fontSize: 13}}>Ô phải điền</div>
                 : null}
             </div><br/>
             <div>
                 <label>Số nhà</label><br/>
                 <input type="text" name="number" value={props.accom.number} onChange={inputOnChange}/>
                 {props.accom.number == null?
-                <div>invalid</div>
+                    <div style={{color:"red", marginTop: 5, fontSize: 13}}>Ô phải điền</div>
                 : null}
             </div><br/>
             </div>

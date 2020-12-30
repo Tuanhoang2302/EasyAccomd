@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Models = require('../../models/index')
 var mongoose = require('mongoose');
+const verify = require('../auth/verifyToken')
 
-router.post("/create", async (req, res) => {
+router.post("/create", verify, async (req, res) => {
     var accomId = req.body.accomId
     var accountId = req.body.accountId
     for(let i = 0; i < 1; i++) {
@@ -19,7 +20,7 @@ router.post("/create", async (req, res) => {
     res.send("success")
 })
 
-router.get("/get/allComment", async (req, res) => {
+router.get("/get/allComment", verify, async (req, res) => {
     var accomId = req.query.accomId
     var numberComment = await Models.Comment.countDocuments({
         accomId: accomId

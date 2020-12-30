@@ -27,7 +27,7 @@ const InboxList = (props) => {
     const [contactList, setContactList] = useState(null)
     const account = useSelector((state) => state.user)
     const [selectedRoomIndex, setSelectedRoomIndex] = useState(1)
-
+    const token = useSelector(state => state.token)
     var dispatch = useDispatch()
     useEffect(() => {
         const fetchData = async () => {
@@ -46,13 +46,13 @@ const InboxList = (props) => {
     console.log(contactList);
     const changeRoomChat = (e, accountContact, roomid, index) => {
         setSelectedRoomIndex(index)
-        dispatch(change_chat_tile({chat_title: accountContact.userId.fullname, user: account}))
+        dispatch(change_chat_tile({chat_title: accountContact.email, user: account}, token))
         dispatch(get_room_and_contactid({
             chat_title: accountContact.userId.fullname,
             user: account,
             roomChatId: roomid,
             contactId: accountContact._id
-        }))
+        }, token))
 
         socket.emit("join room", roomid)
         props.fetchMessList(roomid)

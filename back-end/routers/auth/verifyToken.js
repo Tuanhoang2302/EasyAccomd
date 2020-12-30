@@ -9,13 +9,11 @@ module.exports = async function(req, res, next){
    
     try{
         const verified = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-        //res.send(verified)
         const account = await Models.Account.findOne({ _id: verified._id,})
         if (!account) {
             throw new Error()
         }
-        req.user = user
-        req.token = token
+        
         next();
     }catch(err){
         res.status(400).send('Not authorized to access this resource')

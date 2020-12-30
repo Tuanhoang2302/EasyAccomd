@@ -12,6 +12,8 @@ import DetailsAccom from '../page/DetailsAccom'
 
 import PVT_common from '../css/common.module.css'
 import createAccom from '../css/pages/createAccom.module.css'
+import {Redirect} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
 
 class CreateAccom extends Component {
     constructor(props) {
@@ -43,38 +45,42 @@ class CreateAccom extends Component {
 
     render() {
         var self = this;
-        return (
-            <ListContext.Consumer>
-                {({listAccom, setListAccom}) =>
-                    <div className={`${createAccom.CreateAccom} ${PVT_common.common}`}>
-                        <div className={createAccom.CreateAccom__header} onClick={self.itemOnClick}>
-                            <h2>Bạn muốn bắt đầu như thế nào?</h2>
+        if(this.props.user)
+            return (
+                <ListContext.Consumer>
+                    {({listAccom, setListAccom}) =>
+                        <div className={`${createAccom.CreateAccom} ${PVT_common.common}`}>
+                            <div className={createAccom.CreateAccom__header} onClick={self.itemOnClick}>
+                                <h2>Bạn muốn bắt đầu như thế nào?</h2>
+                            </div>
+                            <br/><br/>
+                            <div className={createAccom.CreateAccom__content}>
+                                <ItemAccom onClick={self.itemOnClick(-1)} key={-1} accomSelected={self.state.accomSelected} index={-1} self={self} 
+                                    item={{title: "Tạo mục cho thuê mới"}}/>
+                                <br/>
+                                {/* {
+                                    listAccom.length>0? <h3>Hoàn thành mục cho thuê đang xử lý</h3>:""
+                                }
+                                {
+                                    listAccom.map((item, index) => 
+                                        <ItemAccom onClick={this.itemOnClick(index)} key={index} index={index} item={item} self={self} accomSelected={this.state.accomSelected} />)
+                                } */}
+                            </div>
+                            <div className={createAccom.CreateAccom__footer}>
+                                <Link to="/user/manage"><button>Quay lại</button></Link>
+                                <Link to="/createAccom/details"><button className={createAccom.right} onClick={self.btnNextOnClick} 
+                                    disabled={self.state.accomSelected===-2? true:false}>Tiếp theo</button></Link>
+                                <button style={{marginRight:20}} className={createAccom.right} onClick={self.btnCloneOnClick.bind(self, listAccom, setListAccom)} 
+                                disabled={self.state.accomSelected<0? true:false}>Sao chép</button>
+                            </div>
                         </div>
-                        <br/><br/>
-                        <div className={createAccom.CreateAccom__content}>
-                            <ItemAccom onClick={self.itemOnClick(-1)} key={-1} accomSelected={self.state.accomSelected} index={-1} self={self} 
-                                item={{title: "Tạo mục cho thuê mới"}}/>
-                            <br/>
-                            {
-                                listAccom.length>0? <h3>Hoàn thành mục cho thuê đang xử lý</h3>:""
-                            }
-                            {
-                                listAccom.map((item, index) => 
-                                    <ItemAccom onClick={this.itemOnClick(index)} key={index} index={index} item={item} self={self} accomSelected={this.state.accomSelected} />)
-                            }
-                        </div>
-                        <div className={createAccom.CreateAccom__footer}>
-                            <Link to="/user/manage"><button>Quay lại</button></Link>
-                            <Link to="/createAccom/details"><button className={createAccom.right} onClick={self.btnNextOnClick} 
-                                disabled={self.state.accomSelected===-2? true:false}>Tiếp theo</button></Link>
-                            <button className={createAccom.right} onClick={self.btnCloneOnClick.bind(self, listAccom, setListAccom)} disabled={self.state.accomSelected<0? true:false}>Sao chép</button>
-                        </div>
-                    </div>
-                }
-           
-            </ListContext.Consumer>
-        )
-    }
+                    }
+            
+                </ListContext.Consumer>
+            )
+        else
+            return (<Redirect to={{pathname: '/login'}} />)
+        }
 }
 
 export default CreateAccom;

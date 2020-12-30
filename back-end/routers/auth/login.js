@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-
+const validateInput = require('../getQuery/ValidateInput')
 const Models = require('../../models/index')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
@@ -9,6 +9,8 @@ const {registerValidation, loginValidation} = require('../../validation');
 require('dotenv').config()
 var tokenList = []
 router.post('/login', async (req, res) => {
+    validateInput.checkemailInput(req.body.email)
+    validateInput.checkpasswordInput(req.body.password)
     const {error} = loginValidation(req.body)
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -21,7 +23,7 @@ router.post('/login', async (req, res) => {
     let accessToken = jwt.sign({_id: account._id},
         process.env.ACCESS_TOKEN_SECRET, {
         algorithm: "HS256",
-       expiresIn: "7d"
+    expiresIn: "7d"
     })
 
     let refreshToken = jwt.sign({_id: account._id},
@@ -32,13 +34,8 @@ router.post('/login', async (req, res) => {
 
     tokenList.push(refreshToken);
     res.header('auth-token', accessToken)
-    // await Models.Account.where({
-    //     email: req.body.email
-    // }).update({
-    //     $push : {tokens: accessToken}
-    // })
-    //await account.save();
     res.send({account,accessToken, refreshToken})
+    
 })
 
 router.post('/refresh', async (req, res) => {

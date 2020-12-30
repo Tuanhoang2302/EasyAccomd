@@ -83,11 +83,19 @@ export default function(props) {
                     const expiredTime = new Date(listAccom[i].accom.expiredTime)
                     expiredTimeString = expiredTime.getDate() + "/" + (expiredTime.getMonth() + 1) + "/" + expiredTime.getFullYear()
                 }
-            
+                var status
+                if(listAccom[i].accom.isAccepted == 0){
+                    status = "Không được duyệt"
+                }else if(listAccom[i].accom.isAccepted == 1){
+                    status = "Đã được duyệt"
+                } else {
+                    status = "Chưa được duyệt"
+                }
+
                 var accom = {
                     image: listAccom[i].accom.images[0],
                     title: listAccom[i].accom.title,
-                    status: listAccom[i].accom.isDisplay == true ? "Chưa cho thuê" : "Đã cho thuê",
+                    status: status,
                     price: listAccom[i].accom.price,
                     view: listAccom[i].accom.view,
                     favorite: listAccom[i].accom.favorite,
@@ -133,6 +141,7 @@ export default function(props) {
     const modifyAccom = (e, accomData) => {
         console.log(accomData);
         props.setAccomSelect({
+            accomId: accomData.accom._id,
             accountId: accomData.accom.accountId,
             fridge: accomData.accom.conveniences.isHaveFridge,
             waterHeater: accomData.accom.conveniences.isHaveWaterHeater,

@@ -99,7 +99,7 @@ export default function(props) {
     }
     function btnDeleteOnClick() {
         if (currentRow !== null)
-            appContext.setListAccom([...appContext.listAccom.slice(0, currentRow), ...appContext.listAccom.slice(currentRow + 1)]);
+            setData([...data.slice(0, currentRow), ...data.slice(currentRow + 1)]);
     }
     const [data, setData] = useState(null)
     const [totalResult, setTotalResult] = useState(null)

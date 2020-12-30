@@ -6,7 +6,7 @@ const initialState = {
     contactId: null,
     token: null,
     locationSearch: null,
-    filterSearch: null
+    filterSearch: null, 
 }
 
 
@@ -40,7 +40,8 @@ export default function appReducer(state = initialState, action){
             return{
                 ...initialState,
                 user: action.data.user,
-                chatTitle:action.data.chat_title
+                chatTitle:action.data.chat_title,
+                token: action.token
             }  
         }
         case "GET_ROOM_AND_CONTACTID": {
@@ -49,7 +50,8 @@ export default function appReducer(state = initialState, action){
                 user: action.data.user,
                 chatTitle:action.data.chat_title,
                 contactId: action.data.contactId,
-                roomChatId: action.data.roomChatId
+                roomChatId: action.data.roomChatId,
+                token: action.token
             }  
         }
         case "GET_LOCATION_SEARCH": {
@@ -61,7 +63,8 @@ export default function appReducer(state = initialState, action){
         case "REMOVE_ALL_SEARCH": {
             return{
                 ...initialState,
-                user: action.existing.user
+                user: action.existing.user,
+                token: action.existing.token
             }  
         }
         case "GET_FILTER_SEARCH": {
@@ -96,6 +99,12 @@ export default function appReducer(state = initialState, action){
                     otherFilter: null
                 },
             }  
+        }
+        case "UPDATE_ACCOUNT": {
+            return {
+                ...action.existing,
+                user: action.data
+            }
         }
         default:
             return initialState

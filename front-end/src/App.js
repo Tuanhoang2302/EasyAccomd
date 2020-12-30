@@ -5,7 +5,8 @@ import SearchPage from './Pages/Search Page/index';
 import {
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 
 import Error from './Thắng/page/Error'
@@ -34,6 +35,7 @@ function App() {
   const [listAccom, setListAccom] = useState(listAccomData)
   const [listNotification, setListNotification] = useState(listNotificationData)
   const user = useSelector(state => state.user)
+  const token = useSelector(state => state.token)
   var accountId = null
   if(user != null){
     accountId = user._id
@@ -58,10 +60,10 @@ function App() {
               <Manage setAccomSelect={setAccomSelect}/>
           </Route>
           <Route exact path="/createAccom">
-              <CreateAccom setIndex={setAccomSelect} index={accomSelect}/>
+              <CreateAccom user={user} setIndex={setAccomSelect} index={accomSelect} token={token}/>
           </Route>
           <Route exact path="/createAccom/details">
-              <DetailsAccom accountId={accountId} user={user}
+              <DetailsAccom accountId={accountId} user={user} token={token}
               accom={accomSelect} />
           </Route>
           <Route path='/error'>

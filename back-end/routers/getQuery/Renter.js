@@ -30,6 +30,7 @@ router.get("/get/favoriteAccom", async (req, res) => {
             })
         }
         res.send(result)
+        //res.send(accomData)
     })
 })
 
